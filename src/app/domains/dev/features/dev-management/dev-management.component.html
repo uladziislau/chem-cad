@@ -1,0 +1,203 @@
+<div class="p-6 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+  <header class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-white mb-2">Управление Разработкой</h1>
+      <p class="text-slate-400 max-w-2xl">
+        Строгий инженерный процесс создания суверенного ХимСАПР.
+      </p>
+    </div>
+    <div class="flex flex-col items-end gap-4">
+      <div class="px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-xl">
+        <div class="text-[10px] text-indigo-400 uppercase font-bold">Версия Движка</div>
+        <div class="text-lg font-mono text-white">ChemCore 1.3.0-Multiphase</div>
+      </div>
+      
+      <!-- View Toggle -->
+      <div class="flex bg-slate-900/80 p-1 rounded-lg border border-white/5">
+        <button 
+          (click)="viewMode.set('active')"
+          [class.bg-indigo-500]="viewMode() === 'active'"
+          [class.text-white]="viewMode() === 'active'"
+          [class.text-slate-400]="viewMode() !== 'active'"
+          class="px-4 py-1.5 rounded-md text-xs font-bold transition-all">
+          Активные задачи
+        </button>
+        <button 
+          (click)="viewMode.set('archive')"
+          [class.bg-slate-700]="viewMode() === 'archive'"
+          [class.text-white]="viewMode() === 'archive'"
+          [class.text-slate-400]="viewMode() !== 'archive'"
+          class="px-4 py-1.5 rounded-md text-xs font-bold transition-all">
+          Архив (Завершено)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Strategy Section (Methodology) -->
+  @if (viewMode() === 'active') {
+    <section class="p-6 bg-indigo-500/5 border border-indigo-500/10 rounded-3xl">
+      <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+        AI-Driven Методология
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-white/5">
+              <span class="text-indigo-500 font-bold font-mono">01</span>
+              <div>
+                <strong class="text-white block mb-1">Проектирование (Design)</strong>
+                <span class="text-xs text-slate-400">Определение изменений в текущей реализации. Структура файлов, архитектура, удаление старого кода. Утверждается пользователем.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-white/5">
+              <span class="text-indigo-500 font-bold font-mono">02</span>
+              <div>
+                <strong class="text-white block mb-1">Реализация (Code Generation)</strong>
+                <span class="text-xs text-slate-400">Автоматическая генерация кода ИИ-инженером строго по утвержденному дизайн-документу.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-white/5">
+              <span class="text-indigo-500 font-bold font-mono">03</span>
+              <div>
+                <strong class="text-white block mb-1">Верификация (Verification)</strong>
+                <span class="text-xs text-slate-400">Линтинг, компиляция, прогон юнит-тестов. Ревью пользователем перед отправкой в Архив.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/80 rounded-2xl p-5 border border-white/10 font-mono text-xs text-slate-400 shadow-inner">
+          <div class="text-indigo-400 mb-3 font-bold border-b border-indigo-500/20 pb-2">// Терминал Ведущего Инженера</div>
+          <div class="space-y-1.5">
+            <div><span class="text-emerald-500">✔</span> [SYS] AI-Driven Pipeline Enabled</div>
+            <div class="text-indigo-300">➜ [TASK 007] Multiphase Systems ... DECOMPOSED</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Sub-task 7.1: Phase Abstraction</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Sub-task 7.2: Phase Boundary</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Task 009: Test Infrastructure Reorganized</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Sub-task 7.3: MultiphaseSystem</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Sub-task 7.4: Physical Solvers</div>
+            <div class="text-indigo-300">➜ [TASK 007] COMPLETED</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Task 010: AI Studio Sandbox Specs</div>
+            <div class="text-indigo-300">➜ [TASK 010] COMPLETED</div>
+            <div><span class="text-emerald-500">✔</span> [VERIFIED] Task 008: Reactive State Manager</div>
+            <div class="text-indigo-300">➜ [TASK 008] COMPLETED</div>
+            <div class="mt-2"><span class="text-slate-500">[SYSTEM]</span> Analyzing weakest links in current implementation...</div>
+            <div class="text-amber-400">➜ [WARNING] 3D Viewer & SMILES parser detached from UI.</div>
+            <div class="text-amber-400">➜ [WARNING] Physical solvers contain hardcoded stubs (Enthalpy = 0, Tension = 50).</div>
+            <div><span class="text-emerald-500">✔</span> [GENERATED] Task 011: Molecule Explorer</div>
+            <div><span class="text-emerald-500">✔</span> [GENERATED] Task 012: Advanced Solvers</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [VERIFIED] Task 011: Molecule Explorer</div>
+            <div class="text-indigo-300">➜ [TASK 011] COMPLETED</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [VERIFIED] Task 012: Advanced Solvers</div>
+            <div class="text-indigo-300">➜ [TASK 012] COMPLETED</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [CATALOG] Task 004 & 013: Ingredients Expanded</div>
+            <div class="text-indigo-300">➜ [CATALOG] 12 INGREDIENTS LOADED</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [SOLVER] Task 014: HLB Engine & Stability Insight</div>
+            <div class="text-indigo-300">➜ [ADVISOR] HLB OPTIMIZER ACTIVE</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [PROCESS] Task 015: Homogenization Simulation</div>
+            <div class="text-indigo-300">➜ [UI] MICROSCOPE VIEW ACTIVE</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [THERMAL] Task 016: Thermal Dynamics & Phase Transitions</div>
+            <div class="text-indigo-300">➜ [CORE] ARRHENIUS & MELTING LOGIC ACTIVE</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [QA] Task 017: Comprehensive Integration Testing</div>
+            <div class="text-indigo-300">➜ [TEST] THERMAL-PHYSICAL SUITE PASSED</div>
+            <div class="mt-2"><span class="text-emerald-500">✔</span> [CHEM] Task 018: pH & Electrolyte Balance</div>
+            <div class="text-indigo-300">➜ [CORE] IONIC SOLVER ACTIVE</div>
+            <div class="mt-2 text-emerald-500">✔ [SAFETY] Task 021: SafetyValidator Active</div>
+            <div class="text-indigo-300">➜ [VALIDATOR] SURF-CHARGE & PH-HAZARD LOGIC ENABLED</div>
+            <div class="mt-2 text-emerald-500">✔ [ARCH] Task 019: Autarky Hub & Segmentation</div>
+            <div class="text-indigo-300">➜ [HUB] VECTOR SELECTION DASHBOARD DEPLOYED</div>
+            <div class="text-indigo-300">➜ [CATALOG] SEGMENT-BASED FILTERING ACTIVE</div>
+            <div class="mt-2 text-fuchsia-400">▶ [STRATEGY] PIVOT TO B2B R&D SAAS INITIATED</div>
+            <div class="text-indigo-300">➜ [SYS] DEFINING PROFESSIONAL LAB VECTORS (E-PRO)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Epics View -->
+    <div class="space-y-8">
+      @for (epic of epics(); track epic.id) {
+        <div class="bg-slate-800/50 border border-white/10 rounded-xl overflow-hidden">
+          <!-- Epic Header -->
+          <div class="p-4 border-b border-white/10 flex items-start justify-between bg-slate-800/80">
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                      [class.bg-emerald-500/20]="epic.status === 'completed'"
+                      [class.text-emerald-400]="epic.status === 'completed'"
+                      [class.bg-amber-500/20]="epic.status === 'active'"
+                      [class.text-amber-400]="epic.status === 'active'"
+                      [class.bg-slate-500/20]="epic.status === 'planned'"
+                      [class.text-slate-400]="epic.status === 'planned'">
+                  {{ epic.status === 'completed' ? 'Завершено' : epic.status === 'active' ? 'В работе' : 'В планах' }}
+                </span>
+                <span class="text-xs font-mono text-slate-500">{{ epic.id }}</span>
+              </div>
+              <h2 class="text-lg font-bold text-white">{{ epic.title }}</h2>
+              <p class="text-sm text-slate-400 mt-1">{{ epic.description }}</p>
+            </div>
+          </div>
+
+          <!-- Epic Tasks -->
+          <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @for (task of epic.tasks; track task.id) {
+              <div class="bg-slate-900/50 border border-white/5 rounded-lg p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-mono text-indigo-400">#{{ task.id }}</span>
+                    <span class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+                          [class.bg-rose-500/20]="task.priority === 'critical'"
+                          [class.text-rose-400]="task.priority === 'critical'"
+                          [class.bg-orange-500/20]="task.priority === 'high'"
+                          [class.text-orange-400]="task.priority === 'high'"
+                          [class.bg-blue-500/20]="task.priority === 'medium'"
+                          [class.text-blue-400]="task.priority === 'medium'"
+                          [class.bg-slate-500/20]="task.priority === 'low'"
+                          [class.text-slate-400]="task.priority === 'low'">
+                      {{ task.priority }}
+                    </span>
+                  </div>
+                  <span class="text-[10px] uppercase tracking-wider font-bold"
+                        [class.text-emerald-400]="task.status === 'done'"
+                        [class.text-amber-400]="task.status === 'implementation'"
+                        [class.text-slate-500]="task.status === 'backlog' || task.status === 'pending'">
+                    {{ task.status }}
+                  </span>
+                </div>
+                
+                <h3 class="text-sm font-bold text-white mb-1">{{ task.title }}</h3>
+                <p class="text-xs text-slate-400 mb-3">{{ task.description }}</p>
+
+                @if (task.subtasks && task.subtasks.length > 0) {
+                  <div class="space-y-1.5 mt-3 pt-3 border-t border-white/5">
+                    @for (sub of task.subtasks; track sub.id) {
+                      <div class="flex items-start gap-2 text-xs">
+                        <div class="mt-0.5">
+                          @if (sub.status === 'done') {
+                            <span class="text-emerald-500">✔</span>
+                          } @else if (sub.status === 'in-progress' || sub.status === 'implementation') {
+                            <span class="text-amber-500 animate-pulse">▶</span>
+                          } @else {
+                            <span class="text-slate-600">○</span>
+                          }
+                        </div>
+                        <span [class.text-slate-300]="sub.status === 'done'"
+                              [class.text-white]="sub.status === 'in-progress' || sub.status === 'implementation'"
+                              [class.text-slate-500]="sub.status === 'pending'">
+                          {{ sub.title }}
+                        </span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
