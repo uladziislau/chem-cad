@@ -1,44 +1,28 @@
 // @ts-check
-const eslint = require('@eslint/js');
+// ESLint остался ТОЛЬКО на шаблонах: oxlint HTML не парсит.
+// TypeScript/JavaScript линтует oxlint (см. .oxlintrc.json).
+//
+// Блок для **/*.ts нужен ради processInlineTemplates: он вытаскивает
+// инлайн-шаблон `template: \`...\`` из .ts и линтует его как HTML.
+// Без него a11y инлайнов не проверяется (в этом проекте их 30).
 const {defineConfig} = require('eslint/config');
-const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
+
+const templateRules = [
+  angular.configs.templateRecommended,
+  angular.configs.templateAccessibility,
+];
 
 module.exports = defineConfig([
   {
-    files: ['**/*.ts'],
-    extends: [
-      eslint.configs.recommended,
-      tseslint.configs.recommended,
-      tseslint.configs.stylistic,
-      angular.configs.tsRecommended,
-    ],
-    processor: angular.processInlineTemplates,
-    rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          type: 'attribute',
-          prefix: 'app',
-          style: 'camelCase',
-        },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          type: 'element',
-          prefix: 'app',
-          style: 'kebab-case',
-        },
-      ],
-    },
+    files: ['**/*.html'],
+    extends: templateRules,
+    rules: {},
   },
   {
-    files: ['**/*.html'],
-    extends: [
-      angular.configs.templateRecommended,
-      angular.configs.templateAccessibility,
-    ],
+    files: ['**/*.ts'],
+    processor: angular.processInlineTemplates,
+    extends: templateRules,
     rules: {},
   }
 ]);
