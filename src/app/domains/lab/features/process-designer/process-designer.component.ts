@@ -29,7 +29,7 @@ import { OperationType } from '../../../../../core/engine/process-step.interface
         
         <div class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
           @for (step of process.currentProcess().steps; track step.id; let i = $index) {
-            <div (click)="process.activeStepIndex.set(i)"
+            <div (click)="process.activeStepIndex.set(i)" (keydown.enter)="process.activeStepIndex.set(i)" tabindex="0" role="button"
                  class="p-3 border rounded-xl cursor-pointer transition-all group relative"
                  [class.bg-indigo-500/10]="process.activeStepIndex() === i"
                  [class.border-indigo-500/50]="process.activeStepIndex() === i"
@@ -290,7 +290,7 @@ export class ProcessDesignerComponent {
   }
 
   updateIngredientMass(stepId: string, index: number, mass: number) {
-    const step = this.process.currentProcess().steps.find((s: any) => s.id === stepId);
+    const step = this.process.currentProcess().steps.find((s: { id: string }) => s.id === stepId);
     if (step && step.ingredients) {
       const newIngredients = [...step.ingredients];
       newIngredients[index] = { ...newIngredients[index], massGrams: mass };

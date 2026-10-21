@@ -206,11 +206,11 @@ export class MolecularViewerComponent implements OnInit {
         (this.drawer as unknown as { draw: (t: unknown, id: string, theme: string, b: boolean) => void }).draw(tree, 'smiles-canvas', 'light', false);
       }, (err: unknown) => {
         console.error('SmilesDrawer parse error:', err);
-        throw new Error('Некорректный SMILES для 2D отрисовки.');
+        throw new Error('Некорректный SMILES для 2D отрисовки.', { cause: err });
       });
     } catch (e) {
       console.error(e);
-      throw new Error('Ошибка при генерации 2D структуры.');
+      throw new Error('Ошибка при генерации 2D структуры.', { cause: e });
     }
   }
 
@@ -249,7 +249,7 @@ export class MolecularViewerComponent implements OnInit {
       this.render3D(sdfText);
     } catch (e: unknown) {
       console.error(e);
-      throw new Error(e instanceof Error ? e.message : 'Ошибка загрузки 3D модели.');
+      throw new Error(e instanceof Error ? e.message : 'Ошибка загрузки 3D модели.', { cause: e });
     }
   }
 

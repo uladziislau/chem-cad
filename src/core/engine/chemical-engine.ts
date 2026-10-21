@@ -15,7 +15,6 @@ import { IonicSolver } from '../solvers/ionic-solver';
 import { SafetyValidator, ISafetyIssue } from '../solvers/safety-validator';
 import { MiscibilitySolver, IMiscibilityReport } from '../solvers/miscibility-solver';
 import { SolubilitySolver, ISolubilityIssue } from '../solvers/solubility-solver';
-import { IChemicalEntity } from '../entities/chemical-entity.interface';
 import { ISurfactant } from '../entities/surfactant.interface';
 
 import { FormulationEntity } from '../entities/formulation-entity';
@@ -196,8 +195,8 @@ export class ChemicalEngine {
     }
 
     // Обновляем массы фаз
-    (waterPhase as any).totalMass = new Mass(waterMass, 'g');
-    (oilPhase as any).totalMass = new Mass(oilMass, 'g');
+    (waterPhase as { totalMass: Mass }).totalMass = new Mass(waterMass, 'g');
+    (oilPhase as { totalMass: Mass }).totalMass = new Mass(oilMass, 'g');
 
     const phases: Phase[] = [];
     if (waterPhase.composition.getComponents().length > 0) phases.push(waterPhase);

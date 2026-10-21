@@ -17,7 +17,7 @@ export class Oil extends PureSubstance implements IOil {
         viscosityA = 0.0001,
         viscosityB = 3000,
         ionicCharge = 0,
-        public readonly eacn: number = 10
+        public readonly eacn = 10
     ) {
         super(name, molarMass, antoineA, antoineB, antoineC, density, meltingPoint, viscosityA, viscosityB, ionicCharge);
     }

@@ -1,5 +1,4 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
-import { MixtureComponent } from '../entities/mixture';
 
 export interface ISolubilityIssue {
     entityName: string;

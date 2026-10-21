@@ -143,7 +143,7 @@ export class FormulationSolver {
         const phiWater = volWater / totalVol;
 
         // 1. Приоритет HLD (если есть ПАВ)
-        let type: 'O/W' | 'W/O' = 'Unknown' as any;
+        let type: 'O/W' | 'W/O' = 'Unknown' as unknown as 'O/W' | 'W/O';
         
         if (hlb > 0) {
             // HLD < 0 -> O/W

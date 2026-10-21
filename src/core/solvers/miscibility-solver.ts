@@ -18,7 +18,7 @@ export class MiscibilitySolver {
   public static calculateMiscibility(
     solute: HansenParameters, 
     solvent: HansenParameters, 
-    interactionRadiusR0: number = 8.0 // Эмпирический радиус взаимодействия
+    interactionRadiusR0 = 8.0 // Эмпирический радиус взаимодействия
   ): IMiscibilityReport {
     const ra = solute.distanceTo(solvent);
     const red = ra / interactionRadiusR0;

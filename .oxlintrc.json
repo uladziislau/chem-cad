@@ -136,6 +136,14 @@
             "prefix": "app",
             "style": "kebab-case"
           }
+        ],
+        "max-lines": [
+          "warn",
+          300
+        ],
+        "complexity": [
+          "warn",
+          12
         ]
       },
       "plugins": [
@@ -144,6 +152,23 @@
       "jsPlugins": [
         "@angular-eslint/eslint-plugin"
       ]
+    },
+    {
+      "files": [
+        "**/*.model.ts"
+      ],
+      "rules": {
+        "max-lines": "off"
+      }
+    },
+    {
+      "files": [
+        "**/*.test.ts",
+        "**/*.spec.ts"
+      ],
+      "rules": {
+        "max-lines": "off"
+      }
     }
   ]
 }

@@ -17,7 +17,7 @@ export class Surfactant extends PureSubstance implements ISurfactant {
         viscosityA = 0.0001,
         viscosityB = 3500,
         ionicCharge = 0,
-        public readonly cc: number = 0
+        public readonly cc = 0
     ) {
         super(name, molarMass, antoineA, antoineB, antoineC, density, meltingPoint, viscosityA, viscosityB, ionicCharge);
     }
