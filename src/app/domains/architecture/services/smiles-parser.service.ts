@@ -18,15 +18,61 @@ export class SmilesParserService {
   parse(smiles: string): Molecule {
     const atoms: Atom[] = [];
     const bonds: CovalentBond[] = [];
-    
+
     const branchStack: Atom[] = [];
     const rings: Record<string, Atom> = {};
-    
+
     let currentAtom: Atom | null = null;
     let nextBondType: 'single' | 'double' | 'triple' = 'single';
 
     // Очистка строки от пробелов
     const cleanSmiles = smiles.replace(/\s+/g, '');
+
+    const handleRingClosure = (ringChar: string) => {
+      if (rings[ringChar]) {
+        // Кольцо закрывается
+        if (currentAtom) {
+          bonds.push(new CovalentBond(currentAtom, rings[ringChar], nextBondType));
+        }
+        delete rings[ringChar];
+        nextBondType = 'single';
+      } else {
+        // Кольцо открывается
+        if (currentAtom) {
+          rings[ringChar] = currentAtom;
+        }
+      }
+    };
+
+    const handleAtomToken = (startIndex: number): number => {
+      // Чтение символа элемента (учитываем двухбуквенные, например Cl, Br)
+      let symbol = cleanSmiles[startIndex];
+      let i = startIndex;
+      if (i + 1 < cleanSmiles.length && /[a-z]/.test(cleanSmiles[i + 1])) {
+        symbol += cleanSmiles[i + 1];
+        i++;
+      }
+
+      // Нормализация регистра для инвентаря (например c -> C для ароматики)
+      // В упрощенном парсере мы трактуем ароматические атомы (c, n, o) как обычные
+      const normalizedSymbol = symbol.charAt(0).toUpperCase() + symbol.slice(1);
+
+      try {
+        const newAtom = this.inventory.createAtom(normalizedSymbol);
+        atoms.push(newAtom);
+
+        if (currentAtom) {
+          bonds.push(new CovalentBond(currentAtom, newAtom, nextBondType));
+          nextBondType = 'single';
+        }
+
+        currentAtom = newAtom;
+      } catch {
+        console.warn(`[SMILES Parser] Элемент ${normalizedSymbol} не найден в инвентаре. Пропуск.`);
+      }
+
+      return i;
+    };
 
     for (let i = 0; i < cleanSmiles.length; i++) {
       const char = cleanSmiles[i];
@@ -41,44 +87,9 @@ export class SmilesParserService {
         nextBondType = 'triple';
       } else if (/[0-9]/.test(char)) {
         // Замыкание или открытие кольца
-        if (rings[char]) {
-          // Кольцо закрывается
-          if (currentAtom) {
-            bonds.push(new CovalentBond(currentAtom, rings[char], nextBondType));
-          }
-          delete rings[char];
-          nextBondType = 'single';
-        } else {
-          // Кольцо открывается
-          if (currentAtom) {
-            rings[char] = currentAtom;
-          }
-        }
+        handleRingClosure(char);
       } else if (/[A-Za-z]/.test(char)) {
-        // Чтение символа элемента (учитываем двухбуквенные, например Cl, Br)
-        let symbol = char;
-        if (i + 1 < cleanSmiles.length && /[a-z]/.test(cleanSmiles[i + 1])) {
-          symbol += cleanSmiles[i + 1];
-          i++;
-        }
-
-        // Нормализация регистра для инвентаря (например c -> C для ароматики)
-        // В упрощенном парсере мы трактуем ароматические атомы (c, n, o) как обычные
-        const normalizedSymbol = symbol.charAt(0).toUpperCase() + symbol.slice(1);
-
-        try {
-          const newAtom = this.inventory.createAtom(normalizedSymbol);
-          atoms.push(newAtom);
-
-          if (currentAtom) {
-            bonds.push(new CovalentBond(currentAtom, newAtom, nextBondType));
-            nextBondType = 'single';
-          }
-
-          currentAtom = newAtom;
-        } catch {
-          console.warn(`[SMILES Parser] Элемент ${normalizedSymbol} не найден в инвентаре. Пропуск.`);
-        }
+        i = handleAtomToken(i);
       }
     }
 
@@ -94,4 +105,5 @@ export class SmilesParserService {
 
     return molecule;
   }
+
 }

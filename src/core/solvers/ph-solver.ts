@@ -1,4 +1,5 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
+import type { MixtureComponent } from '../entities/mixture';
 
 /**
  * Решатель для расчета pH системы на основе уравнения электронейтральности
@@ -19,14 +20,21 @@ export class PHSolver {
 
         if (volumeLiters === 0 || components.length === 0) return 7.0;
 
-        // Собираем все электролиты
+        const electrolytes = this.collectElectrolytes(components, volumeLiters);
+
+        if (electrolytes.length === 0) return 7.0;
+
+        return this.bisectPH(electrolytes);
+    }
+
+    private static collectElectrolytes(components: MixtureComponent[], volumeLiters: number): { type: 'acid' | 'base', pKas: number[], concentration: number }[] {
         const electrolytes: { type: 'acid' | 'base', pKas: number[], concentration: number }[] = [];
 
         for (const c of components) {
             const entity = c.entity;
             const type = entity.getElectrolyteType();
             const pKas = entity.getPKas();
-            
+
             if ((type === 'acid' || type === 'base') && pKas && pKas.length > 0) {
                 electrolytes.push({
                     type,
@@ -36,9 +44,10 @@ export class PHSolver {
             }
         }
 
-        if (electrolytes.length === 0) return 7.0;
+        return electrolytes;
+    }
 
-        // Метод бисекции для поиска корня уравнения электронейтральности
+    private static bisectPH(electrolytes: { type: 'acid' | 'base', pKas: number[], concentration: number }[]): number {
         let minPH = 0.0;
         let maxPH = 14.0;
         let currentPH = 7.0;
@@ -48,15 +57,13 @@ export class PHSolver {
         for (let i = 0; i < maxIterations; i++) {
             currentPH = (minPH + maxPH) / 2;
             const hPlus = Math.pow(10, -currentPH);
-            
+
             const chargeBalance = this.calculateChargeBalance(hPlus, electrolytes);
 
             if (Math.abs(chargeBalance) < tolerance) {
-                break; // Нашли корень
+                break;
             }
 
-            // Если баланс положительный (избыток катионов, например H+), 
-            // значит реальный pH выше (нужно меньше H+ или больше OH-)
             if (chargeBalance > 0) {
                 minPH = currentPH;
             } else {

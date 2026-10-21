@@ -63,9 +63,25 @@ export class FormulationSolver {
      * HLD = F(S) - k*EACN + Cc + aT*(T - 25)
      */
     static calculateHLD(system: IMultiphaseSystem, temperatureCelsius: number): number {
+        const avgCc = this.averageSurfactantCc(system);
+        const avgEacn = this.averageOilEacn(system);
+        const salinity = this.computeSalinity(system);
+
+        // 4. Расчет HLD
+        // Упрощенная модель: HLD = 0.17*S - 0.15*EACN + Cc + 0.06*(T - 25)
+        // HLD = 0 -> Оптимальная микроэмульсия (минимальное IFT)
+        // HLD < 0 -> O/W эмульсия
+        // HLD > 0 -> W/O эмульсия
+
+        const k = 0.15;
+        const aT = 0.06;
+        const bS = 0.17;
+
+        return (bS * salinity) - (k * avgEacn) + avgCc + (aT * (temperatureCelsius - 25));
+    }
+
+    private static averageSurfactantCc(system: IMultiphaseSystem): number {
         const globalComposition = system.getGlobalComposition();
-        
-        // 1. Средний Cc ПАВ
         let totalSurfactantMoles = 0;
         let weightedCc = 0;
         for (const comp of globalComposition.getComponents()) {
@@ -76,9 +92,11 @@ export class FormulationSolver {
                 totalSurfactantMoles += comp.moles;
             }
         }
-        const avgCc = totalSurfactantMoles > 0 ? weightedCc / totalSurfactantMoles : 0;
+        return totalSurfactantMoles > 0 ? weightedCc / totalSurfactantMoles : 0;
+    }
 
-        // 2. Средний EACN масел
+    private static averageOilEacn(system: IMultiphaseSystem): number {
+        const globalComposition = system.getGlobalComposition();
         let totalOilMass = 0;
         let weightedEacn = 0;
         for (const comp of globalComposition.getComponents()) {
@@ -90,35 +108,22 @@ export class FormulationSolver {
                 totalOilMass += mass;
             }
         }
-        const avgEacn = totalOilMass > 0 ? weightedEacn / totalOilMass : 10;
-
-        // 3. Соленость (S) в г/100мл (wt%)
-        // Ищем водную фазу
-        const waterPhase = system.phases.find(p => p.composition.getComponents().some(c => c.entity.getName().toLowerCase().includes('water')));
-        let salinity = 0;
-        if (waterPhase) {
-            let saltMass = 0;
-            for (const comp of waterPhase.composition.getComponents()) {
-                if (comp.entity.getIonicCharge() !== 0 || comp.entity.getName().toLowerCase().includes('salt')) {
-                    saltMass += comp.moles * comp.entity.getMass();
-                }
-            }
-            const waterMass = waterPhase.totalMass.to('g');
-            salinity = waterMass > 0 ? (saltMass / waterMass) * 100 : 0;
-        }
-
-        // 4. Расчет HLD
-        // Упрощенная модель: HLD = 0.17*S - 0.15*EACN + Cc + 0.06*(T - 25)
-        // HLD = 0 -> Оптимальная микроэмульсия (минимальное IFT)
-        // HLD < 0 -> O/W эмульсия
-        // HLD > 0 -> W/O эмульсия
-        
-        const k = 0.15;
-        const aT = 0.06;
-        const bS = 0.17;
-
-        return (bS * salinity) - (k * avgEacn) + avgCc + (aT * (temperatureCelsius - 25));
+        return totalOilMass > 0 ? weightedEacn / totalOilMass : 10;
     }
+
+    private static computeSalinity(system: IMultiphaseSystem): number {
+        const waterPhase = system.phases.find(p => p.composition.getComponents().some(c => c.entity.getName().toLowerCase().includes('water')));
+        if (!waterPhase) return 0;
+        let saltMass = 0;
+        for (const comp of waterPhase.composition.getComponents()) {
+            if (comp.entity.getIonicCharge() !== 0 || comp.entity.getName().toLowerCase().includes('salt')) {
+                saltMass += comp.moles * comp.entity.getMass();
+            }
+        }
+        const waterMass = waterPhase.totalMass.to('g');
+        return waterMass > 0 ? (saltMass / waterMass) * 100 : 0;
+    }
+
 
     /**
      * Прогнозирует тип эмульсии на основе HLD (более точно) и ГЛБ

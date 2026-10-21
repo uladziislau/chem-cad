@@ -21,6 +21,8 @@ import { FormulationEntity } from '../entities/formulation-entity';
 import { ManufacturingProcess } from './process-step.interface';
 import { RawIngredientInput } from './types';
 
+export type { RawIngredientInput } from './types';
+
 export interface SimulationResult {
   system: MultiphaseSystem;
   context: SimulationContext;
@@ -180,10 +182,7 @@ export class ChemicalEngine {
 
     for (const input of inputs) {
       const mass = new Mass(input.massGrams, 'g');
-      if (input.category === 'water' || input.category === 'active' || input.category === 'solvent' || input.category === 'thickener') {
-        waterPhase.composition.addComponent(input.entity, mass);
-        waterMass += input.massGrams;
-      } else if (input.category === 'oil') {
+      if (input.category === 'oil') {
         oilPhase.composition.addComponent(input.entity, mass);
         oilMass += input.massGrams;
       } else if (input.category === 'surfactant') {

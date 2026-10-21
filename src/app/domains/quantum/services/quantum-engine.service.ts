@@ -1,6 +1,30 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { AtomState, AtomComputedProperties, PERIODIC_TABLE } from '../models/atom.model';
 
+function determineIonType(netCharge: number): 'cation' | 'anion' | 'neutral' {
+  if (netCharge > 0) return 'cation';
+  if (netCharge < 0) return 'anion';
+  return 'neutral';
+}
+
+function determineStability(protons: number, neutrons: number): boolean {
+  if (protons === 1) {
+    return neutrons === 0 || neutrons === 1;
+  }
+  if (protons > 1) {
+    const ratio = neutrons / protons;
+    return ratio >= 0.9 && ratio <= 1.2;
+  }
+  return false;
+}
+
+function determineIsotopeName(protons: number, neutrons: number, element: { name: string } | null, massNumber: number): string {
+  if (protons === 1 && neutrons === 0) return 'Протий (Водород)';
+  if (protons === 1 && neutrons === 1) return 'Дейтерий';
+  if (protons === 1 && neutrons === 2) return 'Тритий (Радиоактивен)';
+  return element ? `${element.name}-${massNumber}` : 'Неизвестный изотоп';
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,24 +47,9 @@ export class QuantumEngineService {
     const massNumber = protons + neutrons;
     const netCharge = protons - electrons;
     
-    let ionType: 'cation' | 'anion' | 'neutral' = 'neutral';
-    if (netCharge > 0) ionType = 'cation';
-    if (netCharge < 0) ionType = 'anion';
-
-    // Simplified stability logic for the first few elements
-    let isStable = false;
-    if (protons === 1) {
-      isStable = neutrons === 0 || neutrons === 1; // Protium, Deuterium stable. Tritium (2) unstable.
-    } else if (protons > 1) {
-      // Roughly N/Z ratio ≈ 1 for light elements
-      const ratio = neutrons / protons;
-      isStable = ratio >= 0.9 && ratio <= 1.2;
-    }
-
-    let isotopeName = element ? `${element.name}-${massNumber}` : 'Неизвестный изотоп';
-    if (protons === 1 && neutrons === 0) isotopeName = 'Протий (Водород)';
-    if (protons === 1 && neutrons === 1) isotopeName = 'Дейтерий';
-    if (protons === 1 && neutrons === 2) isotopeName = 'Тритий (Радиоактивен)';
+    const ionType = determineIonType(netCharge);
+    const isStable = determineStability(protons, neutrons);
+    const isotopeName = determineIsotopeName(protons, neutrons, element, massNumber);
 
     return {
       element,
