@@ -24,22 +24,7 @@ export const routes: Routes = [
   },
   {
     path: 'dev',
-    loadComponent: () => import('./domains/dev/features/dev-layout/dev-layout.component').then(m => m.DevLayoutComponent),
-    children: [
-      {
-        path: '',
-        redirectTo: 'board',
-        pathMatch: 'full'
-      },
-      {
-        path: 'board',
-        loadComponent: () => import('./domains/dev/features/dev-management/dev-management.component').then(m => m.DevManagementComponent)
-      },
-      {
-        path: 'specs',
-        loadComponent: () => import('./domains/dev/features/dev-specifications/dev-specifications.component').then(m => m.DevSpecificationsComponent)
-      }
-    ]
+    loadChildren: () => import('./modules/development/development.routes').then(m => m.DEVELOPMENT_ROUTES)
   },
   {
     path: '**',

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-dev-layout',
+  selector: 'app-development-navigation',
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
@@ -15,9 +15,9 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
           Спецификации
         </a>
       </nav>
-      
+
       <router-outlet></router-outlet>
     </div>
   `
 })
-export class DevLayoutComponent {}
+export class DevelopmentNavigationComponent {}

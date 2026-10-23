@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dev-specifications',
+  selector: 'app-development-specs',
   standalone: true,
   template: `
     <div class="p-6 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 bg-slate-900/30 border border-white/5 rounded-3xl">
@@ -55,4 +55,4 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class DevSpecificationsComponent {}
+export class DevelopmentSpecsComponent {}
