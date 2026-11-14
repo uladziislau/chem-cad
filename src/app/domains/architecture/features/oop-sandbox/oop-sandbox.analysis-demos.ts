@@ -1,5 +1,5 @@
 import { OopSandboxContext } from './oop-sandbox.demos';
-import { CovalentBond, MoleculeGraph, AtomNode, BondEdge, Orbital, Electron, Spin, Sp3Hybridization, MolecularDynamicsEngine } from '../../models';
+import { CovalentBond, MoleculeGraph, AtomNode, BondEdge, Orbital, Electron, Spin, Sp3Hybridization, MolecularDynamicsEngine } from '@root-modules/architecture/models';
 
 
 export function runGraphAnalysis(ctx: OopSandboxContext): void {

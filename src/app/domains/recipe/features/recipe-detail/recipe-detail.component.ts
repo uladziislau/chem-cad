@@ -91,11 +91,11 @@ import { IngredientService } from '../../../formulation/services/ingredient.serv
               <div class="space-y-3 text-sm">
                 <div class="flex justify-between">
                   <span class="text-slate-600">Категория:</span>
-                  <span class="font-medium text-slate-900">{{ getCategoryName(recipe()?.category || '') }}</span>
+                  <span class="font-medium text-slate-900">{{ getCategoryName(recipe()?.category || ') }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-slate-600">Сложность:</span>
-                  <span class="font-medium text-slate-900">{{ getDifficultyName(recipe()?.difficulty || '') }}</span>
+                  <span class="font-medium text-slate-900">{{ getDifficultyName(recipe()?.difficulty || ') }}</span>
                 </div>
               </div>
             </section>

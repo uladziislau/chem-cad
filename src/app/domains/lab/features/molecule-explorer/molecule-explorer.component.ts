@@ -7,7 +7,7 @@ import { JsmeEditorComponent } from '../../../simulator/features/jsme-editor/jsm
 import { ChemEventBusService, SystemEventType, SystemEvent } from '../../../architecture/services/chem-event-bus.service';
 import { SmilesParserService } from '../../../architecture/services/smiles-parser.service';
 import { ChemCoreService, ChemCoreProperties } from '../../../architecture/services/chem-core.service';
-import { Molecule } from '../../../architecture/models';
+import { Molecule } from '@root-modules/architecture/models';
 
 @Component({
   selector: 'app-molecule-explorer',

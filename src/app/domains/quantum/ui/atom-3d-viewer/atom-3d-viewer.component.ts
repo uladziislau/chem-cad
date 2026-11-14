@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, input, effect, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as THREE from 'three';
-import { AtomState } from '../../models/atom.model';
+import { AtomState } from '@root-modules/quantum/models/atom.model';
 
 @Component({
   selector: 'app-atom-3d-viewer',

@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { ReactionParticipant, ReactionCalculation, THERMO_DATA } from '../models/thermo.model';
+import { ReactionParticipant, ReactionCalculation, THERMO_DATA } from '@root-modules/thermodynamics/models/thermo.model';
 
 @Injectable({
   providedIn: 'root'

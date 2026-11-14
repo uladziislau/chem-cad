@@ -1,4 +1,4 @@
-import { Lesson } from '../models/lesson.model';
+import { Lesson } from '@root-modules/classroom/models/lesson.model';
 
 export const LESSONS: Lesson[] = [
   {

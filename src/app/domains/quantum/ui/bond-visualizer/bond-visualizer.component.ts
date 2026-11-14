@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { ElementProperties, BondResult } from '../../models/bonding.model';
+import { ElementProperties, BondResult } from '@root-modules/quantum/models/bonding.model';
 import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
 

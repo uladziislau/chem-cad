@@ -4,11 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ChemEventBusService, SystemEventType, SystemEvent } from '../../../architecture/services/chem-event-bus.service';
-import { Molecule, Atom } from '../../../architecture/models';
+import { Molecule, Atom } from '@root-modules/architecture/models';
 import { Subscription } from 'rxjs';
-import { computeRepulsion, applySprings, integrateParticles } from './vmd-3d.physics';
-import { createVmdScene } from './vmd-3d.scene';
-import { ATOM_COLORS } from './vmd-3d.colors';
+import { computeRepulsion, applySprings, integrateParticles } from '@root-modules/simulator/vmd-3d.physics';
+import { createVmdScene } from '@root-modules/simulator/vmd-3d.scene';
+import { ATOM_COLORS } from '@root-modules/simulator/vmd-3d.colors';
 
 
 @Component({

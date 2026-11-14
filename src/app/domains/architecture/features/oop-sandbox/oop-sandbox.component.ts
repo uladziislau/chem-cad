@@ -1,7 +1,7 @@
 import { Component, signal, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { CovalentBond, Molecule, Reactor, HydrogenCombustionMechanism } from '../../models';
+import { CovalentBond, Molecule, Reactor, HydrogenCombustionMechanism } from '@root-modules/architecture/models';
 import { ChemistryInventoryService } from '../../services/chemistry-inventory.service';
 import { SmilesParserService } from '../../services/smiles-parser.service';
 import { runReaction, runVirtualLab, runThermodynamics, runSimulation, OopSandboxContext } from './oop-sandbox.demos';

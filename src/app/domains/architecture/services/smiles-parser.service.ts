@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { ChemistryInventoryService } from './chemistry-inventory.service';
 import { ChemEventBusService, SystemEventType } from './chem-event-bus.service';
-import { Atom, CovalentBond, Molecule } from '../models';
+import { Atom, CovalentBond, Molecule } from '@root-modules/architecture/models';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { Ingredient } from '../models/ingredient.model';
+import { Ingredient } from '@root-modules/formulation/models/ingredient.model';
 
 export const INGREDIENTS: Ingredient[] = [
   { id: 'water', name: 'Дистиллированная вода', type: 'base', description: 'Основа для большинства жидких продуктов.', safety: 'Безопасно.' },

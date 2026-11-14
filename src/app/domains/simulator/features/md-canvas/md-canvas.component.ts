@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MolecularDynamicsEngine } from '../../../architecture/models';
+import { MolecularDynamicsEngine } from '@root-modules/architecture/models';
 
 interface Particle {
   id: number;

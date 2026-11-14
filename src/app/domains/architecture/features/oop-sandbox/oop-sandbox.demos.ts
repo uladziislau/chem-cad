@@ -1,7 +1,7 @@
 import { signal, WritableSignal } from '@angular/core';
 import { ChemistryInventoryService } from '../../services/chemistry-inventory.service';
 import { SmilesParserService } from '../../services/smiles-parser.service';
-import { CovalentBond, Molecule, SynthesisReaction, Reactor, HydrogenCombustionMechanism, ThermodynamicsEngine } from '../../models';
+import { CovalentBond, Molecule, SynthesisReaction, Reactor, HydrogenCombustionMechanism, ThermodynamicsEngine } from '@root-modules/architecture/models';
 
 export interface OopSandboxContext {
   logs: ReturnType<typeof signal<string[]>>;

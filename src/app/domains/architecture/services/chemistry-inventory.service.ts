@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Atom } from '../models';
-import { ELECTRONEGATIVITY } from '../models/constants';
+import { Atom } from '@root-modules/architecture/models';
+import { ELECTRONEGATIVITY } from '@root-modules/architecture/models/constants';
 
 @Injectable({
   providedIn: 'root'

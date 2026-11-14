@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { ELEMENT_PROPERTIES, BondResult } from '../models/bonding.model';
+import { ELEMENT_PROPERTIES, BondResult } from '@root-modules/quantum/models/bonding.model';
 
 @Injectable({
   providedIn: 'root'

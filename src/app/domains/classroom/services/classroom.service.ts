@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { Lesson } from '../models/lesson.model';
-import { LESSONS } from '../data/lesson.mock';
+import { Lesson } from '@root-modules/classroom/models/lesson.model';
+import { LESSONS } from '@data/classroom/lesson.mock';
 
 @Injectable({ providedIn: 'root' })
 export class ClassroomService {

@@ -1,6 +1,6 @@
 import { Component, output, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { AtomState } from '../../models/atom.model';
+import { AtomState } from '@root-modules/quantum/models/atom.model';
 
 @Component({
   selector: 'app-atom-controls',

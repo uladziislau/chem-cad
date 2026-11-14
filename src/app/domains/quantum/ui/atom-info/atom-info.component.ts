@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { AtomComputedProperties } from '../../models/atom.model';
+import { AtomComputedProperties } from '@root-modules/quantum/models/atom.model';
 
 @Component({
   selector: 'app-atom-info',
@@ -19,7 +19,7 @@ import { AtomComputedProperties } from '../../models/atom.model';
                       [class.text-rose-700]="props().netCharge > 0"
                       [class.bg-cyan-100]="props().netCharge < 0"
                       [class.text-cyan-700]="props().netCharge < 0">
-                  {{ props().netCharge > 0 ? '+' : '' }}{{ props().netCharge }}
+                  {{ props().netCharge > 0 ? '+' : ' }}{{ props().netCharge }}
                 </span>
               }
             </h2>

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Molecule } from '../models';
+import { Molecule } from '@root-modules/architecture/models';
 import { WebGpuEngineService } from './webgpu-engine.service';
-import { TopologyCalculator } from '../calculators/topology-calculator';
+import { TopologyCalculator } from '@root-modules/architecture/calculators/topology-calculator';
 
 export interface ChemCoreProperties {
   exactMass: number;

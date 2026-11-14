@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { AtomState, AtomComputedProperties, PERIODIC_TABLE } from '../models/atom.model';
+import { AtomState, AtomComputedProperties, PERIODIC_TABLE } from '@root-modules/quantum/models/atom.model';
 
 function determineIonType(netCharge: number): 'cation' | 'anion' | 'neutral' {
   if (netCharge > 0) return 'cation';

@@ -8,6 +8,6 @@
       "node"
     ]
   },
-  "include": ["src/**/*.ts", "agentica/**/*.ts", "angular/**/*.ts", "modules/**/*.ts", "domain/**/*.ts"],
+  "include": ["src/**/*.ts", "agentica/**/*.ts", "angular/**/*.ts", "modules/**/*.ts", "domain/**/*.ts", "data/**/*.ts"],
   "exclude": ["**/*.spec.ts"]
 }

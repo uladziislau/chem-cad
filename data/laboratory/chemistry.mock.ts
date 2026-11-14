@@ -1,4 +1,4 @@
-import { Reagent, ReactionRule } from '../models/chemistry.model';
+import { Reagent, ReactionRule } from '@root-modules/laboratory/models/chemistry.model';
 
 export const REAGENTS: Reagent[] = [
   { id: 'water', name: 'Вода', formula: 'H₂O', molarMass: 18.015, state: 'liquid', color: 'rgba(200, 230, 255, 0.3)', description: 'Универсальный растворитель.' },

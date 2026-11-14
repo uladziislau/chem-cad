@@ -1,4 +1,4 @@
-import { Recipe } from '../models/recipe.model';
+import { Recipe } from '@root-modules/recipe/models/recipe.model';
 
 export const RECIPES: Recipe[] = [
   {

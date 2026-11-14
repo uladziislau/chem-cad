@@ -2,7 +2,7 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { IngredientService } from '../../services/ingredient.service';
-import { Ingredient, FormulationItem } from '../../models/ingredient.model';
+import { Ingredient, FormulationItem } from '@root-modules/formulation/models/ingredient.model';
 
 @Component({
   selector: 'app-formulator',

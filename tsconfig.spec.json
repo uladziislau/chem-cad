@@ -6,5 +6,5 @@
     "outDir": "./out-tsc/spec",
     "types": ["vitest/globals", "@webgpu/types"]
   },
-  "include": ["src/**/*.d.ts", "src/**/*.spec.ts", "agentica/**/*.ts", "angular/**/*.ts", "modules/**/*.ts", "domain/**/*.ts", "tests/**/*.ts"]
+  "include": ["src/**/*.d.ts", "angular/**/*.spec.ts", "agentica/**/*.ts", "angular/**/*.ts", "modules/**/*.ts", "domain/**/*.ts", "data/**/*.ts", "tests/**/*.ts"]
 }
