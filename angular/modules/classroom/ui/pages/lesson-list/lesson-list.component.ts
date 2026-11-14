@@ -29,7 +29,7 @@ import { ClassroomService } from '@modules/classroom/services/classroom.service'
             <h2 class="text-xl font-bold text-slate-900 mb-2">{{ lesson.title }}</h2>
             <p class="text-slate-600 mb-6 flex-grow">{{ lesson.description }}</p>
             
-            <a [routerLink]="['/classroom', lesson.id]" 
+            <a [routerLink]="['/classroom/lesson', lesson.id]"
                class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium text-center transition-colors flex items-center justify-center gap-2">
               Начать урок
               <span class="material-icons text-[18px] w-[18px] h-[18px]">play_arrow</span>
