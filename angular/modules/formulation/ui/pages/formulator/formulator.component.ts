@@ -2,6 +2,7 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
+import { FormulationDraftService } from '@modules/formulation/services/formulation-draft.service';
 import { Ingredient, FormulationItem } from '@root-modules/formulation/models/ingredient.model';
 
 @Component({
@@ -52,9 +53,20 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
         <div class="lg:col-span-2 space-y-6">
           <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
             <div class="flex justify-between items-center mb-6">
-              <h2 class="text-xl font-semibold text-slate-900">Текущая рецептура</h2>
-              <div class="text-lg font-bold" [class.text-rose-600]="totalPercentage() > 100" [class.text-green-600]="totalPercentage() === 100" [class.text-slate-700]="totalPercentage() < 100">
-                Итого: {{ totalPercentage() }}%
+              <div>
+                <h2 class="text-xl font-semibold text-slate-900">Текущая рецептура</h2>
+                <p class="text-xs text-slate-400 mt-1">Автосохранение в браузере</p>
+              </div>
+              <div class="flex items-center gap-4">
+                @if (formulation().length > 0) {
+                  <button type="button" (click)="clearFormulation()"
+                          class="text-xs font-medium text-rose-600 hover:text-rose-800">
+                    Очистить
+                  </button>
+                }
+                <div class="text-lg font-bold" [class.text-rose-600]="totalPercentage() > 100" [class.text-green-600]="totalPercentage() === 100" [class.text-slate-700]="totalPercentage() < 100">
+                  Итого: {{ totalPercentage() }}%
+                </div>
               </div>
             </div>
 
@@ -117,9 +129,11 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
 })
 export class FormulatorComponent {
   private ingredientService = inject(IngredientService);
-  
+  private draftService = inject(FormulationDraftService);
+
   availableIngredients = this.ingredientService.getIngredients();
-  formulation = signal<FormulationItem[]>([]);
+  /** Рецептура автосохраняется в localStorage через FormulationDraftService. */
+  formulation = signal<FormulationItem[]>(this.draftService.getItems()());
 
   totalPercentage = computed(() => {
     return Number(this.formulation().reduce((sum, item) => sum + (item.percentage || 0), 0).toFixed(2));
@@ -128,20 +142,30 @@ export class FormulatorComponent {
   addIngredient(ingredient: Ingredient) {
     const current = this.formulation();
     if (!current.find(i => i.ingredient.id === ingredient.id)) {
-      this.formulation.set([...current, { ingredient, percentage: 0 }]);
+      this.setFormulation([...current, { ingredient, percentage: 0 }]);
     }
   }
 
   removeIngredient(index: number) {
     const current = [...this.formulation()];
     current.splice(index, 1);
-    this.formulation.set(current);
+    this.setFormulation(current);
   }
 
   updatePercentage(index: number, value: number) {
     const current = [...this.formulation()];
     current[index].percentage = value;
-    this.formulation.set(current);
+    this.setFormulation(current);
+  }
+
+  clearFormulation() {
+    this.draftService.clear();
+    this.formulation.set([]);
+  }
+
+  private setFormulation(items: FormulationItem[]) {
+    this.formulation.set(items);
+    this.draftService.setItems(items);
   }
 
   getTypeName(type: string): string {
