@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { MolecularDynamicsEngine } from '@root-modules/architecture/models';
 
 interface Particle {
@@ -17,7 +16,7 @@ interface Particle {
 @Component({
   selector: 'app-md-canvas',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   templateUrl: './md-canvas.component.html',
 })
 export class MdCanvasComponent implements AfterViewInit, OnDestroy {

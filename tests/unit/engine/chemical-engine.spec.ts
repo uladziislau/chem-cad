@@ -1,5 +1,5 @@
-import { ChemicalEngine, RawIngredientInput } from './chemical-engine';
-import { SimulationContext } from './simulation-context';
+import { ChemicalEngine, RawIngredientInput } from '@root-modules/engine/chemical-engine';
+import { SimulationContext } from '@root-modules/engine/simulation-context';
 import { PureSubstance } from '@domain/entities/pure-substance';
 import { Oil } from '@domain/entities/oil';
 import { Surfactant } from '@domain/entities/surfactant';

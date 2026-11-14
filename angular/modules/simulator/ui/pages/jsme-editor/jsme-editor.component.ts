@@ -1,21 +1,20 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-jsme-editor',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   template: `
     <div class="bg-slate-900 border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200" style="width: 600px; height: 500px;">
       <!-- Header -->
       <div class="px-4 py-3 border-b border-white/10 bg-slate-800/50 flex justify-between items-center">
         <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
-          <mat-icon class="text-sm text-indigo-400">draw</mat-icon>
+          <span class="material-icons text-sm text-indigo-400">draw</span>
           2D Редактор Молекул
         </h3>
         <button (click)="editorClose.emit()" class="text-slate-400 hover:text-white transition-colors">
-          <mat-icon class="text-sm">close</mat-icon>
+          <span class="material-icons text-sm">close</span>
         </button>
       </div>
       
@@ -35,7 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
         <div class="flex gap-2">
           <button (click)="editorClose.emit()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/5 transition-colors">Отмена</button>
           <button (click)="save()" class="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-600/20 flex items-center gap-2">
-            <mat-icon class="text-sm">check</mat-icon>
+            <span class="material-icons text-sm">check</span>
             Применить SMILES
           </button>
         </div>

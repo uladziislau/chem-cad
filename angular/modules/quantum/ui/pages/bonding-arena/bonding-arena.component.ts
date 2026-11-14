@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { BondingEngineService } from '@modules/quantum/services/bonding-engine.service';
-import { BondVisualizerComponent } from '@modules/quantum/ui/bond-visualizer/bond-visualizer.component';
+import { BondVisualizerComponent } from '@modules/quantum/ui/components/bond-visualizer/bond-visualizer.component';
 
 @Component({
   selector: 'app-bonding-arena',
   standalone: true,
-  imports: [MatIconModule, BondVisualizerComponent],
+  imports: [BondVisualizerComponent],
   template: `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <header class="mb-8">
         <div class="flex items-center gap-3 mb-2">
           <div class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center">
-            <mat-icon>compare_arrows</mat-icon>
+            <span class="material-icons">compare_arrows</span>
           </div>
           <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Арена связей</h1>
         </div>
@@ -99,7 +98,7 @@ import { BondVisualizerComponent } from '@modules/quantum/ui/bond-visualizer/bon
 
             <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
               <h4 class="text-sm font-semibold text-indigo-900 mb-2 flex items-center gap-2">
-                <mat-icon class="text-[18px] w-[18px] h-[18px]">rule</mat-icon>
+                <span class="material-icons text-[18px] w-[18px] h-[18px]">rule</span>
                 Закон природы
               </h4>
               <p class="text-sm text-indigo-800 leading-relaxed">

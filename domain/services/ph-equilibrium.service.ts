@@ -1,7 +1,7 @@
-import { DomainPhase } from '../entities/domain-phase';
+import { DomainPhase } from '@domain/entities/domain-phase';
 import { AcidBaseAspect } from '../aspects/acid-base.aspect';
 import { ElectrolyteAspect } from '../aspects/electrolyte.aspect';
-import { ChemicalSpecies } from '../entities/chemical-species';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
 
 export interface TitrationPoint {
   readonly titrantVolumeMl: number;

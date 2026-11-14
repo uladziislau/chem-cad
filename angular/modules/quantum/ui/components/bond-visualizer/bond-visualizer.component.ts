@@ -1,12 +1,11 @@
 import { Component, input } from '@angular/core';
 import { ElementProperties, BondResult } from '@root-modules/quantum/models/bonding.model';
-import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-bond-visualizer',
   standalone: true,
-  imports: [MatIconModule, DecimalPipe],
+  imports: [DecimalPipe],
   template: `
     <div class="w-full h-[400px] bg-slate-950 rounded-2xl border border-slate-800 shadow-inner relative overflow-hidden flex items-center justify-center">
       
@@ -61,8 +60,8 @@ import { DecimalPipe } from '@angular/common';
             <!-- Force Indicators -->
             @if (result().type !== 'ionic') {
               <div class="absolute top-0 w-full flex justify-between px-4 text-slate-500">
-                <mat-icon [class.text-rose-400]="result().electronShift < -0.2" class="transition-colors">keyboard_double_arrow_left</mat-icon>
-                <mat-icon [class.text-rose-400]="result().electronShift > 0.2" class="transition-colors">keyboard_double_arrow_right</mat-icon>
+                <span class="material-icons transition-colors" [class.text-rose-400]="result().electronShift < -0.2">keyboard_double_arrow_left</span>
+                <span class="material-icons transition-colors" [class.text-rose-400]="result().electronShift > 0.2">keyboard_double_arrow_right</span>
               </div>
             }
           </div>
@@ -95,7 +94,7 @@ import { DecimalPipe } from '@angular/common';
       } @else {
         <div class="text-center">
           <div class="w-24 h-24 bg-slate-800 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <mat-icon class="text-4xl text-slate-600">block</mat-icon>
+            <span class="material-icons text-4xl text-slate-600">block</span>
           </div>
           <p class="text-slate-400 text-lg">Взаимодействие невозможно</p>
         </div>

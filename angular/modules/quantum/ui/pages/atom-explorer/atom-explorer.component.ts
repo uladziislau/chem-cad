@@ -1,20 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { QuantumEngineService } from '@modules/quantum/services/quantum-engine.service';
-import { Atom3DViewerComponent } from '@modules/quantum/ui/atom-3d-viewer/atom-3d-viewer.component';
-import { AtomControlsComponent } from '@modules/quantum/ui/atom-controls/atom-controls.component';
-import { AtomInfoComponent } from '@modules/quantum/ui/atom-info/atom-info.component';
+import { Atom3DViewerComponent } from '@modules/quantum/ui/components/atom-3d-viewer/atom-3d-viewer.component';
+import { AtomControlsComponent } from '@modules/quantum/ui/components/atom-controls/atom-controls.component';
+import { AtomInfoComponent } from '@modules/quantum/ui/components/atom-info/atom-info.component';
 
 @Component({
   selector: 'app-atom-explorer',
   standalone: true,
-  imports: [MatIconModule, Atom3DViewerComponent, AtomControlsComponent, AtomInfoComponent],
+  imports: [Atom3DViewerComponent, AtomControlsComponent, AtomInfoComponent],
   template: `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <header class="mb-8">
         <div class="flex items-center gap-3 mb-2">
           <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
-            <mat-icon>blur_on</mat-icon>
+            <span class="material-icons">blur_on</span>
           </div>
           <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Квантовый уровень</h1>
         </div>
@@ -41,7 +40,7 @@ import { AtomInfoComponent } from '@modules/quantum/ui/atom-info/atom-info.compo
           
           <div class="bg-slate-900 rounded-2xl p-6 text-slate-300 border border-slate-800 shadow-lg">
             <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
-              <mat-icon class="text-indigo-400">lightbulb</mat-icon>
+              <span class="material-icons text-indigo-400">lightbulb</span>
               Смысл химии
             </h4>
             <p class="text-sm leading-relaxed mb-4">

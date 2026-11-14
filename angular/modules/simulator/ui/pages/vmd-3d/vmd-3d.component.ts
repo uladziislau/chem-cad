@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, signal, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ChemEventBusService, SystemEventType, SystemEvent } from '@modules/architecture/services/chem-event-bus.service';
@@ -14,7 +13,7 @@ import { ATOM_COLORS } from '@root-modules/simulator/vmd-3d.colors';
 @Component({
   selector: 'app-vmd-3d',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   templateUrl: './vmd-3d.component.html',
 })
 export class Vmd3dComponent implements AfterViewInit, OnDestroy {

@@ -2,7 +2,7 @@
       <div class="p-4 border-b border-slate-800 bg-slate-900/80 backdrop-blur flex justify-between items-center z-10">
         <div>
           <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent flex items-center gap-2">
-            <mat-icon>view_in_ar</mat-icon>
+            <span class="material-icons">view_in_ar</span>
             VMD 3D: Минимизация Энергии
           </h1>
           <p class="text-xs text-slate-400 mt-1">
@@ -15,13 +15,13 @@
             (click)="toggleSimulation()"
             [class]="isRunning() ? 'bg-rose-500/20 text-rose-400 border-rose-500/50' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'"
             class="px-4 py-2 border rounded-lg font-medium flex items-center gap-2 transition-colors hover:bg-opacity-30 text-sm">
-            <mat-icon class="text-sm">{{ isRunning() ? 'pause' : 'play_arrow' }}</mat-icon>
+            <span class="material-icons text-sm">{{ isRunning() ? 'pause' : 'play_arrow' }}</span>
             {{ isRunning() ? 'Пауза' : 'Запуск' }}
           </button>
           <button 
             (click)="resetGas()"
             class="px-4 py-2 bg-slate-800 text-slate-300 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2 text-sm">
-            <mat-icon class="text-sm">science</mat-icon>
+            <span class="material-icons text-sm">science</span>
             Газ (Аргон)
           </button>
         </div>

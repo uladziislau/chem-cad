@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CatalogService } from '@modules/lab/services/catalog.service';
 import { FormulationStateService } from '@modules/lab/services/formulation-state.service';
-import { AutarkyService } from '../../../../../services/autarky.service';
+import { AutarkyService } from '@adapters/autarky.service';
 import { MicroscopeViewComponent } from './microscope-view.component';
 import { RouterLink } from '@angular/router';
+
+import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
 
 @Component({
   selector: 'app-lab-dashboard',
@@ -37,6 +39,18 @@ export class LabDashboardComponent {
     const name = prompt('Введите название премикса (базы):', 'Новая база');
     if (name) {
       this.state.saveAsPremix(name);
+    }
+  }
+
+  exportReport(format: 'txt' | 'csv') {
+    const result = this.state.report();
+    if (!result) return;
+
+    const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+    if (format === 'txt') {
+      downloadText(`chem-report-${stamp}.txt`, formatReportText(result));
+    } else {
+      downloadText(`chem-report-${stamp}.csv`, formatReportCsv(result), 'text/csv');
     }
   }
 }

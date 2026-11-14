@@ -1,11 +1,10 @@
 import { Component, input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { AtomComputedProperties } from '@root-modules/quantum/models/atom.model';
 
 @Component({
   selector: 'app-atom-info',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [],
   template: `
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 h-full flex flex-col">
       @if (props().element) {
@@ -48,9 +47,9 @@ import { AtomComputedProperties } from '@root-modules/quantum/models/atom.model'
             <div class="text-lg font-semibold flex items-center gap-2"
                  [class.text-emerald-800]="props().isStable"
                  [class.text-amber-800]="!props().isStable">
-              <mat-icon class="text-[20px] w-[20px] h-[20px]">
+              <span class="material-icons text-[20px] w-[20px] h-[20px]">
                 {{ props().isStable ? 'check_circle' : 'warning' }}
-              </mat-icon>
+              </span>
               {{ props().isStable ? 'Стабильно' : 'Радиоактивно' }}
             </div>
           </div>
@@ -65,7 +64,7 @@ import { AtomComputedProperties } from '@root-modules/quantum/models/atom.model'
           @if (props().netCharge !== 0) {
             <div class="mt-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
               <h4 class="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
-                <mat-icon class="text-[18px] w-[18px] h-[18px]">electric_bolt</mat-icon>
+                <span class="material-icons text-[18px] w-[18px] h-[18px]">electric_bolt</span>
                 Ион ({{ props().ionType === 'cation' ? 'Катион' : 'Анион' }})
               </h4>
               <p class="text-sm text-indigo-800">
@@ -76,7 +75,7 @@ import { AtomComputedProperties } from '@root-modules/quantum/models/atom.model'
         </div>
       } @else {
         <div class="flex-grow flex flex-col items-center justify-center text-center">
-          <mat-icon class="text-6xl text-slate-300 mb-4">science</mat-icon>
+          <span class="material-icons text-6xl text-slate-300 mb-4">science</span>
           <h3 class="text-xl font-bold text-slate-900 mb-2">Неизвестный элемент</h3>
           <p class="text-slate-500">
             Мы пока ограничили симуляцию первыми 8 элементами таблицы Менделеева для простоты понимания.

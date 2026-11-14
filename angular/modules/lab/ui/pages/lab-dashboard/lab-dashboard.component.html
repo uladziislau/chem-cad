@@ -60,6 +60,21 @@
               В каталог
             </button>
 
+            <!-- Export Report Buttons -->
+            <div class="flex items-center gap-1 bg-slate-950/50 px-2 py-1.5 rounded-lg border border-white/5">
+              <button (click)="exportReport('txt')" [disabled]="!state.report()"
+                      class="px-2 py-1 text-[10px] font-bold text-emerald-400 hover:text-emerald-300 disabled:opacity-40 transition-colors"
+                      title="Скачать текстовый отчёт">
+                TXT
+              </button>
+              <span class="text-slate-700">|</span>
+              <button (click)="exportReport('csv')" [disabled]="!state.report()"
+                      class="px-2 py-1 text-[10px] font-bold text-cyan-400 hover:text-cyan-300 disabled:opacity-40 transition-colors"
+                      title="Скачать CSV">
+                CSV
+              </button>
+            </div>
+
             <!-- Process Controls -->
             <div class="flex items-center gap-2 bg-slate-950/50 px-3 py-1.5 rounded-lg border border-white/5">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

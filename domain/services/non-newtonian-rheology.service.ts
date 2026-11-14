@@ -1,4 +1,4 @@
-import { ColloidalSystem } from '../entities/colloidal-system';
+import { ColloidalSystem } from '@domain/entities/colloidal-system';
 import { RheologicalProfile } from '../values/rheological-profile';
 import { PolymericNetworkAspect } from '../aspects/polymeric-network.aspect';
 import { PHEquilibriumService } from './ph-equilibrium.service';

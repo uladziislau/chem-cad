@@ -1,4 +1,4 @@
-import { ColloidalSystem } from '../entities/colloidal-system';
+import { ColloidalSystem } from '@domain/entities/colloidal-system';
 import { DLVOPotential } from '../values/dlvo-potential';
 import { ElectrokineticAspect } from '../aspects/electrokinetic.aspect';
 import { PHEquilibriumService } from './ph-equilibrium.service';

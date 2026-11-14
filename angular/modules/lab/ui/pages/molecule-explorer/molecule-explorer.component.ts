@@ -1,6 +1,5 @@
 import { Component, signal, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { Pro3DViewerComponent } from '@modules/simulator/ui/pages/pro-3d-viewer/pro-3d-viewer.component';
 import { JsmeEditorComponent } from '@modules/simulator/ui/pages/jsme-editor/jsme-editor.component';
@@ -12,7 +11,7 @@ import { Molecule } from '@root-modules/architecture/models';
 @Component({
   selector: 'app-molecule-explorer',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, Pro3DViewerComponent, JsmeEditorComponent],
+  imports: [CommonModule, FormsModule, Pro3DViewerComponent, JsmeEditorComponent],
   template: `
     <div class="h-[calc(100vh-8rem)] flex flex-col bg-slate-950 text-slate-100 overflow-hidden font-sans rounded-3xl border border-white/5 animate-in fade-in slide-in-from-bottom-4 duration-700 relative">
       
@@ -35,7 +34,7 @@ import { Molecule } from '@root-modules/architecture/models';
             <!-- Ввод SMILES -->
             <section>
               <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <mat-icon class="text-sm">terminal</mat-icon>
+                <span class="material-icons text-sm">terminal</span>
                 SMILES Анализатор
               </h3>
               <div class="space-y-3">
@@ -50,13 +49,13 @@ import { Molecule } from '@root-modules/architecture/models';
                 <button 
                   (click)="parseSmiles()"
                   class="w-full bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl py-3 text-sm font-semibold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2">
-                  <mat-icon class="text-sm">auto_awesome</mat-icon>
+                  <span class="material-icons text-sm">auto_awesome</span>
                   Создать 3D Модель
                 </button>
                 <button 
                   (click)="show2DEditor.set(true)"
                   class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/10 rounded-xl py-2 text-xs font-semibold transition-all flex items-center justify-center gap-2">
-                  <mat-icon class="text-sm">draw</mat-icon>
+                  <span class="material-icons text-sm">draw</span>
                   Нарисовать 2D Структуру
                 </button>
               </div>
@@ -73,7 +72,7 @@ import { Molecule } from '@root-modules/architecture/models';
             @if (currentMolecule(); as mol) {
               <section class="animate-in fade-in slide-in-from-left duration-500">
                 <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <mat-icon class="text-sm">info</mat-icon>
+                  <span class="material-icons text-sm">info</span>
                   Характеристики
                 </h3>
                 <div class="bg-indigo-500/5 border border-indigo-500/20 rounded-2xl p-4 space-y-3">
