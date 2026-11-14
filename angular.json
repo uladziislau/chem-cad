@@ -35,7 +35,11 @@
             "outputMode": "server",
             "ssr": {
               "entry": "angular/server.ts"
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "3dmol",
+              "smiles-drawer"
+            ]
           },
           "configurations": {
             "production": {

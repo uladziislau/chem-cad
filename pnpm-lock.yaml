@@ -169,9 +169,6 @@ importers:
       3dmol:
         specifier: ^2.5.4
         version: 2.5.5
-      '@angular/cdk':
-        specifier: ^21.0.0
-        version: 21.2.14(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@angular/common':
         specifier: 22.2.2
         version: 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
@@ -427,14 +424,6 @@ packages:
         optional: true
       vitest:
         optional: true
-
-  '@angular/cdk@21.2.14':
-    resolution: {integrity: sha512-806REq/CLf37nEhmmd8Q+ILN8z/RVG2vk2n8YZ/4TdHpcBCi5ux4AxLbpMmduLwGPOzPagJ6ggRzE5fnX0rmcQ==}
-    peerDependencies:
-      '@angular/common': ^21.0.0 || ^22.0.0
-      '@angular/core': ^21.0.0 || ^22.0.0
-      '@angular/platform-browser': ^21.0.0 || ^22.0.0
-      rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/cli@22.2.2':
     resolution: {integrity: sha512-AALIN+zai0CiA7HgSCGVPHyZyiw3yFWliCfbaS4ueHDJHVZ8QhVjRUrnfGZc3EJnigcyQ0w2DKeTxjwqpDjKew==}
@@ -4187,15 +4176,6 @@ snapshots:
       - terser
       - tsx
       - yaml
-
-  '@angular/cdk@21.2.14(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2)':
-    dependencies:
-      '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
-      '@angular/platform-browser': 22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
-      parse5: 8.0.1
-      rxjs: 7.8.2
-      tslib: 2.8.1
 
   '@angular/cli@22.2.2(@types/node@20.19.43)(chokidar@5.0.0)':
     dependencies:
