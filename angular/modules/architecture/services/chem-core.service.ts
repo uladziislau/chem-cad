@@ -53,9 +53,7 @@ export class ChemCoreService {
           positions[i * 4 + 3] = 0; // padding
         });
         
-        const energies = await this.gpu.runComputeShader(positions);
-        const totalEnergy = energies.reduce((a, b) => a + b, 0);
-        console.log(`[ChemCore GPU] Общая энергия системы: ${totalEnergy.toFixed(4)}`);
+        await this.gpu.runComputeShader(positions);
       } catch (e) {
         console.error('Ошибка выполнения GPU шейдера:', e);
         props.gpuStatus = 'error';

@@ -28,7 +28,6 @@ export class WebGpuEngineService {
 
       this.device = await this.adapter.requestDevice();
       this.isInitialized.set(true);
-      console.log('WebGPU движок ChemCore успешно инициализирован.');
       return true;
     } catch (error) {
       console.error('Ошибка инициализации WebGPU:', error);

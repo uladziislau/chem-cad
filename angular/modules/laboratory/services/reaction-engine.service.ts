@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { FlaskState, Reagent, ReactionRule, ReagentInFlask } from '@root-modules/laboratory/models/chemistry.model';
-import { REAGENTS, REACTION_RULES } from '@data/laboratory/chemistry.mock';
+import { REAGENTS, REACTION_RULES } from '@data/laboratory/chemistry.data';
 
 @Injectable({
   providedIn: 'root'

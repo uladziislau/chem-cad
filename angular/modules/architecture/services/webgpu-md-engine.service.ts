@@ -111,8 +111,6 @@ export class WebGpuMdEngineService {
           entryPoint: 'main',
         },
       });
-
-      console.log('✅ WebGPU Compute Pipeline успешно инициализирован!');
       return true;
     } catch (e) {
       console.error('Ошибка инициализации WebGPU:', e);

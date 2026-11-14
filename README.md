@@ -1,20 +1,47 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ChemCAD — ХимСАПР: Инженерная Среда
 
-# Run and deploy your AI Studio app
+Платформа для проектирования полезных химических продуктов и обеспечения технологического суверенитета через самообеспечение.
 
-This contains everything you need to run your app locally.
+## Стек
 
-View your app in AI Studio: https://ai.studio/apps/f037573a-89c6-4499-9bb9-57d1d43c3806
+- **Angular 21** + SSR (Express)
+- **TypeScript** strict mode
+- **pnpm** package manager
+- **Vitest** + `ng test` для unit/integration тестов
+- **oxlint** + `angular-eslint` для линтинга
 
-## Run Locally
+## Структура
 
-**Prerequisites:**  Node.js
+```
+├── domain/          # DDD: entities, values, aspects (чистый TS)
+├── modules/         # Core-модули: solvers, engine, units (чистый TS)
+├── data/            # Source of truth: данные и моки
+├── angular/         # Angular-слой: UI, services, adapters
+│   ├── modules/     # Feature-модули (lab, quantum, recipe, ...)
+│   ├── ui/          # App shell, entry page
+│   ├── adapters/    # DI-мосты и кросс-доменные сервисы
+│   └── initialization/ # Bootstrap-сервисы
+├── tests/           # Unit и integration тесты
+└── agentica/        # Инструментарий аудита и рефакторинга
+```
 
+## Команды
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+pnpm install          # зависимости
+pnpm dev              # dev-сервер на :3000
+pnpm build            # production build
+pnpm test             # тесты
+pnpm lint             # oxlint + angular-eslint
+pnpm typecheck        # tsc --noEmit
+pnpm audit:arch       # архитектурный аудит (agentica/tools)
+```
+
+## Архитектура
+
+- **Domain layer** (`domain/`): химические сущности, значения, аспекты — чистый TypeScript без Angular
+- **Core modules** (`modules/`): решатели (solvers), движок (engine), единицы измерения (units)
+- **Angular layer** (`angular/`): UI-компоненты, сервисы, маршрутизация, SSR
+- **Data** (`data/`): JSON/TS данные, разделённые по доменам
+
+Подробности: `documentation/architecture/`, `documentation/development/`

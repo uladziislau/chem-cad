@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Ingredient } from '@root-modules/formulation/models/ingredient.model';
-import { INGREDIENTS } from '@data/formulation/ingredient.mock';
+import { INGREDIENTS } from '@data/formulation/ingredient.data';
 
 @Injectable({ providedIn: 'root' })
 export class IngredientService {

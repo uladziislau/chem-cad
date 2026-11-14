@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Recipe } from '@root-modules/recipe/models/recipe.model';
-import { RECIPES } from '@data/recipe/recipe.mock';
+import { RECIPES } from '@data/recipe/recipe.data';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
