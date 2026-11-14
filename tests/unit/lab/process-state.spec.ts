@@ -181,7 +181,7 @@ describe('ProcessStateService + ProcessPersistenceService', () => {
       ]);
 
       const issues = state.stepIssues().get(id)!;
-      expect(issues.some(i => i.includes('масса'))).toBe(true);
+      expect(issues.some(i => i.includes('компонент'))).toBe(true);
     });
 
     it('несколько шагов: ошибки только у невалидных', () => {

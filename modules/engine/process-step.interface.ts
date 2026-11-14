@@ -2,6 +2,13 @@ import { RawIngredientInput } from './types';
 
 export type OperationType = 'ADD' | 'MIX' | 'HEAT' | 'COOL' | 'EMULSIFY' | 'HOLD';
 
+const OPERATIONS: readonly OperationType[] = ['ADD', 'MIX', 'HEAT', 'COOL', 'EMULSIFY', 'HOLD'];
+
+/** Типобезопасная проверка значения из внешних данных (localStorage, API). */
+export function isOperationType(value: unknown): value is OperationType {
+  return typeof value === 'string' && (OPERATIONS as readonly string[]).includes(value);
+}
+
 /**
  * Описание одной технологической операции (Unit Operation).
  */
@@ -43,6 +50,12 @@ export interface ManufacturingProcess {
 export function validateProcessStep(step: ProcessStep): string[] {
   const issues: string[] = [];
 
+  if (!step.id || !step.id.trim()) {
+    issues.push('Идентификатор этапа не может быть пустым');
+  }
+  if (!isOperationType(step.operation)) {
+    issues.push(`Неизвестный тип операции «${String(step.operation)}»`);
+  }
   if (!step.name || !step.name.trim()) {
     issues.push('Название этапа не может быть пустым');
   }
@@ -56,9 +69,12 @@ export function validateProcessStep(step: ProcessStep): string[] {
     issues.push('Скорость вращения должна быть неотрицательным числом');
   }
 
-  const firstBad = (step.ingredients ?? []).find(i => !Number.isFinite(i.massGrams) || i.massGrams <= 0);
+  const firstBad = (step.ingredients ?? []).find(i =>
+    !i.entity || typeof i.entity.getName !== 'function' ||
+    !Number.isFinite(i.massGrams) || i.massGrams <= 0
+  );
   if (firstBad) {
-    issues.push(`Некорректная масса компонента «${firstBad.entity?.getName?.() ?? 'ингредиент'}»`);
+    issues.push(`Некорректный компонент «${firstBad.entity?.getName?.() ?? 'ингредиент'}» на этапе`);
   }
 
   return issues;
