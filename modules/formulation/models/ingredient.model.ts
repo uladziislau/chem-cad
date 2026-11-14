@@ -4,6 +4,8 @@ export interface Ingredient {
   type: 'surfactant' | 'solvent' | 'fragrance' | 'preservative' | 'active' | 'base' | 'additive';
   description: string;
   safety: string;
+  /** true для пользовательских ингредиентов (localStorage), false/undefined — встроенные */
+  isCustom?: boolean;
 }
 
 export interface FormulationItem {

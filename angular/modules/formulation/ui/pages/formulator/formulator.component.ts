@@ -1,17 +1,24 @@
 import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
 import { Ingredient, FormulationItem } from '@root-modules/formulation/models/ingredient.model';
 
 @Component({
   selector: 'app-formulator',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   template: `
     <div class="space-y-6">
-      <div>
-        <h1 class="text-3xl font-bold text-slate-900">Формулатор</h1>
-        <p class="text-slate-600 mt-2">Создайте свою собственную рецептуру, добавляя компоненты.</p>
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900">Формулатор</h1>
+          <p class="text-slate-600 mt-2">Создайте свою собственную рецептуру, добавляя компоненты.</p>
+        </div>
+        <a routerLink="/formulator/ingredients"
+           class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 shrink-0">
+          Каталог ингредиентов
+        </a>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">

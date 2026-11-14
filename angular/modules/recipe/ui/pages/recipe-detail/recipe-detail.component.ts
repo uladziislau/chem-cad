@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
-import { downloadJson } from '../../../download-json';
+import { downloadJson } from '../../../../download-json';
 
 @Component({
   selector: 'app-recipe-detail',

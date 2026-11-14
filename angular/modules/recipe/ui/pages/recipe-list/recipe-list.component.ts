@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
-import { downloadJson } from '../../../download-json';
+import { downloadJson } from '../../../../download-json';
 
 @Component({
   selector: 'app-recipe-list',

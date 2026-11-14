@@ -32,7 +32,6 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'phenoxyethanol', name: 'Феноксиэтанол', type: 'preservative', description: 'Консервант широкого спектра действия.', safety: 'Безопасен в концентрациях до 1%. Избегать попадания в глаза.' },
   { id: 'sodium_benzoate', name: 'Бензоат натрия', type: 'preservative', description: 'Консервант для кислых продуктов.', safety: 'Может образовывать бензол при нагревании с витамином C.' },
   { id: 'potassium_sorbate', name: 'Сорбат калия', type: 'preservative', description: 'Консервант для широкого спектра pH.', safety: 'Безопасен, натурального происхождения.' },
-  { id: 'leucidal', name: 'Лейцидал (радика', type: 'preservative', description: 'Натуральный консервант из радиальной статьи.', safety: 'Безопасен, подходит для «чистой» косметики.' },
 
   // Масла и воски
   { id: 'coconut_oil', name: 'Кокосовое масло', type: 'additive', description: 'Натуральное масло с антибактериальными свойствами.', safety: 'Безопасно, может забивать поры при жирной коже.' },
