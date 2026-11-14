@@ -63,4 +63,48 @@ test.describe('Recipe Form', () => {
     await page.goto('/recipes');
     await expect(page.getByText('Персистентный лосьон')).toBeVisible({ timeout: 10000 });
   });
+
+
+  test('edit custom recipe via detail page', async ({ page }) => {
+    // Создаём рецептуру
+    await page.goto('/recipes/create');
+    await expect(page.locator('app-recipe-form')).toBeVisible({ timeout: 15000 });
+    await page.locator('#r-name').fill('Редактируемый гель');
+    await page.locator('#r-desc').fill('Для проверки редактирования');
+    await page.locator('app-recipe-form select.ingredient-select').first().selectOption({ index: 1 });
+    await page.locator('app-recipe-form input[type="number"]').first().fill('100');
+    await page.locator('app-recipe-form textarea').first().fill('Шаг 1');
+    await page.getByRole('button', { name: 'Сохранить рецептуру' }).click();
+    await expect(page).toHaveURL(/\/recipes\/detail\//, { timeout: 15000 });
+
+    // Кнопка редактирования видна (isCustom)
+    const editBtn = page.locator('a[title="Редактировать"]');
+    await expect(editBtn).toBeVisible();
+    await editBtn.click();
+
+    await expect(page).toHaveURL(/\/recipes\/edit\//, { timeout: 15000 });
+    await expect(page.locator('app-recipe-form')).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Редактирование рецептуры' })).toBeVisible();
+
+    // Поля предзаполнены
+    await expect(page.locator('#r-name')).toHaveValue('Редактируемый гель');
+
+    // Меняем имя и сохраняем
+    await page.locator('#r-name').fill('Обновлённый гель');
+    await page.getByRole('button', { name: 'Сохранить изменения' }).click();
+
+    await expect(page).toHaveURL(/\/recipes\/detail\//, { timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Обновлённый гель' })).toBeVisible({ timeout: 10000 });
+  });
+
+  test('built-in recipe has no edit button', async ({ page }) => {
+    // Первый встроенный рецепт из списка
+    await page.goto('/recipes');
+    const firstCard = page.locator('a[href*="/recipes/detail/"]').first();
+    await firstCard.click();
+    await expect(page).toHaveURL(/\/recipes\/detail\//, { timeout: 15000 });
+
+    // У встроенного рецепта нет кнопки редактирования (isCustom = false)
+    await expect(page.locator('a[title="Редактировать"]')).toHaveCount(0);
+  });
 });

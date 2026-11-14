@@ -62,6 +62,17 @@ export class RecipeService {
     return created;
   }
 
+  /**
+   * Обновляет пользовательскую рецептуру. Встроенные (isCustom != true) не редактируются.
+   */
+  updateRecipe(id: string, patch: Omit<Recipe, 'id' | 'isCustom'>): Recipe | undefined {
+    const target = this.getRecipeById(id);
+    if (!target || !target.isCustom) return undefined;
+    const updated: Recipe = { ...target, ...patch };
+    this.persist(this.recipesSignal().map(r => r.id === id ? updated : r));
+    return updated;
+  }
+
   duplicateRecipe(id: string): Recipe | undefined {
     const source = this.getRecipeById(id);
     if (!source) return undefined;

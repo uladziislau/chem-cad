@@ -26,6 +26,10 @@ import { downloadJson } from '../../../../download-json';
             <span class="material-icons">content_copy</span>
           </button>
           @if (recipe()?.isCustom) {
+            <a [routerLink]="['/recipes', 'edit', recipe()?.id]" title="Редактировать"
+               class="p-2 rounded-full hover:bg-indigo-100 transition-colors text-indigo-600">
+              <span class="material-icons">edit</span>
+            </a>
             <button (click)="remove()" title="Удалить"
                     class="p-2 rounded-full hover:bg-rose-100 transition-colors text-rose-500">
               <span class="material-icons">delete</span>

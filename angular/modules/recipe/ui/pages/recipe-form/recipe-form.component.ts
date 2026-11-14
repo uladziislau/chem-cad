@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
-import { RecipeIngredient } from '@root-modules/recipe/models/recipe.model';
+import { Recipe, RecipeIngredient } from '@root-modules/recipe/models/recipe.model';
 
 type Category = 'hygiene' | 'perfume' | 'cleaning';
 type Difficulty = 'easy' | 'medium' | 'hard';
@@ -52,8 +52,8 @@ function emptyIngredient(): DraftIngredient {
           <span class="material-icons">arrow_back</span>
         </a>
         <div>
-          <h1 class="text-3xl font-bold text-slate-900">Новая рецептура</h1>
-          <p class="text-slate-600 mt-1">Сохранённая рецептура появится в общем списке и хранится локально.</p>
+          <h1 class="text-3xl font-bold text-slate-900">{{ isEdit ? 'Редактирование рецептуры' : 'Новая рецептура' }}</h1>
+          <p class="text-slate-600 mt-1">{{ isEdit ? 'Изменения сохранятся локально.' : 'Сохранённая рецептура появится в общем списке и хранится локально.' }}</p>
         </div>
       </div>
 
@@ -183,7 +183,7 @@ function emptyIngredient(): DraftIngredient {
         <div class="flex gap-3 pt-2">
           <button type="button" (click)="save()" [disabled]="!canSave()"
                   class="flex-1 px-4 py-2.5 bg-indigo-600 rounded-lg text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-40">
-            Сохранить рецептуру
+            {{ isEdit ? 'Сохранить изменения' : 'Сохранить рецептуру' }}
           </button>
           <a routerLink="/recipes"
              class="px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
@@ -198,6 +198,11 @@ export class RecipeFormComponent {
   private recipeService = inject(RecipeService);
   private ingredientService = inject(IngredientService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  /** id редактируемой рецептуры (undefined = создание) */
+  editingId: string | undefined;
+  isEdit = false;
 
   ingredients = this.ingredientService.getIngredients();
   categoryOptions = CATEGORY_OPTIONS;
@@ -214,6 +219,30 @@ export class RecipeFormComponent {
   };
 
   formError = signal<string | null>(null);
+
+  constructor() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const recipe = this.recipeService.getRecipeById(id);
+      if (recipe && recipe.isCustom) {
+        this.editingId = id;
+        this.isEdit = true;
+        this.loadDraft(recipe);
+      }
+    }
+  }
+
+  private loadDraft(recipe: Recipe): void {
+    this.draft = {
+      name: recipe.name,
+      category: recipe.category,
+      difficulty: recipe.difficulty,
+      description: recipe.description,
+      ingredients: recipe.ingredients.map(i => ({ ...i, rowId: ++rowSeq })),
+      steps: recipe.steps.length ? [...recipe.steps] : [''],
+      safetyWarnings: recipe.safetyWarnings.length ? [...recipe.safetyWarnings] : [''],
+    };
+  }
 
   percentageSum(): number {
     const sum = this.draft.ingredients.reduce((acc, i) => acc + (Number(i.percentage) || 0), 0);
@@ -275,8 +304,7 @@ export class RecipeFormComponent {
       this.formError.set('Добавьте хотя бы один шаг.');
       return;
     }
-
-    const created = this.recipeService.addRecipe({
+    const payload = {
       name: d.name.trim(),
       category: d.category,
       description: d.description.trim(),
@@ -284,7 +312,15 @@ export class RecipeFormComponent {
       ingredients,
       steps,
       safetyWarnings,
-    });
+    };
+
+    if (this.isEdit && this.editingId) {
+      const updated = this.recipeService.updateRecipe(this.editingId, payload);
+      this.router.navigate(['/recipes', 'detail', updated?.id ?? this.editingId]);
+      return;
+    }
+
+    const created = this.recipeService.addRecipe(payload);
     this.router.navigate(['/recipes', 'detail', created.id]);
   }
 }
