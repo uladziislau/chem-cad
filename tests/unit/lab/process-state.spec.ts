@@ -107,6 +107,92 @@ describe('ProcessStateService + ProcessPersistenceService', () => {
       expect(step.ingredients![0].massGrams).toBe(50);
       expect(step.ingredients![0].entity).toBe(waterEntity());
     });
+
+    it('moveStep меняет порядок и сохраняет активный шаг по id', () => {
+      state.addStep('MIX');
+      state.addStep('HEAT');
+      state.addStep('COOL');
+      // activeStepIndex = 2 (COOL)
+      const [mix, heat, cool] = state.currentProcess().steps;
+
+      state.moveStep(2, 0); // COOL → первая позиция
+      const steps = state.currentProcess().steps;
+      expect(steps.map(s => s.id)).toEqual([cool.id, mix.id, heat.id]);
+      expect(state.activeStepIndex()).toBe(0); // COOL остался активным
+    });
+
+    it('moveStep игнорирует невалидные индексы и no-op', () => {
+      state.addStep('MIX');
+      state.addStep('HEAT');
+      const before = state.currentProcess().steps.map(s => s.id);
+
+      state.moveStep(0, 0);      // no-op
+      state.moveStep(-1, 1);     // out of range
+      state.moveStep(0, 99);     // out of range
+      state.moveStep(1, -5);     // out of range
+
+      expect(state.currentProcess().steps.map(s => s.id)).toEqual(before);
+      expect(state.activeStepIndex()).toBe(1);
+    });
+
+    it('moveStep персистит новый порядок', () => {
+      state.addStep('MIX');
+      state.addStep('HEAT');
+      const [mix, heat] = state.currentProcess().steps;
+
+      state.moveStep(1, 0); // HEAT → 0
+      const restored = persistence.load();
+      expect(restored!.steps.map(s => s.id)).toEqual([heat.id, mix.id]);
+    });
+  });
+
+  describe('ProcessStateService — валидация шагов', () => {
+    it('валидный шаг не попадает в stepIssues', () => {
+      state.addStep('MIX');
+      expect(state.stepIssues().size).toBe(0);
+    });
+
+    it('пустое название и неположительная длительность дают ошибки', () => {
+      state.addStep('MIX');
+      const id = state.currentProcess().steps[0].id;
+      state.updateStep(id, { name: '   ', durationMinutes: 0 });
+
+      const issues = state.stepIssues().get(id)!;
+      expect(issues.length).toBeGreaterThanOrEqual(2);
+      expect(issues.some(i => i.includes('Название'))).toBe(true);
+      expect(issues.some(i => i.includes('Длительность'))).toBe(true);
+    });
+
+    it('нечисловая температура и отрицательный rpm дают ошибки', () => {
+      state.addStep('MIX');
+      const id = state.currentProcess().steps[0].id;
+      state.updateStep(id, { targetTemperature: NaN, rpm: -100 });
+
+      const issues = state.stepIssues().get(id)!;
+      expect(issues.some(i => i.includes('температура'))).toBe(true);
+      expect(issues.some(i => i.includes('вращения'))).toBe(true);
+    });
+
+    it('нулевая масса ингредиента даёт ошибку', () => {
+      state.addStep('ADD');
+      const id = state.currentProcess().steps[0].id;
+      state.addIngredientsToStep(id, [
+        { entity: waterEntity(), massGrams: 0, category: 'water' },
+      ]);
+
+      const issues = state.stepIssues().get(id)!;
+      expect(issues.some(i => i.includes('масса'))).toBe(true);
+    });
+
+    it('несколько шагов: ошибки только у невалидных', () => {
+      state.addStep('MIX');
+      state.addStep('HEAT');
+      const [good, bad] = state.currentProcess().steps;
+      state.updateStep(bad.id, { durationMinutes: -5 });
+
+      expect(state.stepIssues().has(good.id)).toBe(false);
+      expect(state.stepIssues().has(bad.id)).toBe(true);
+    });
   });
 
   describe('ProcessPersistenceService', () => {
