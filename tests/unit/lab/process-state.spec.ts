@@ -144,6 +144,20 @@ describe('ProcessStateService + ProcessPersistenceService', () => {
       const restored = persistence.load();
       expect(restored!.steps.map(s => s.id)).toEqual([heat.id, mix.id]);
     });
+
+    it('reorderSteps (drag&drop) переставляет на произвольную позицию и персистит', () => {
+      state.addStep('MIX');
+      state.addStep('HEAT');
+      state.addStep('COOL');
+      state.addStep('HOLD');
+      const [mix, heat, cool, hold] = state.currentProcess().steps;
+
+      state.reorderSteps(0, 3); // MIX → конец
+      expect(state.currentProcess().steps.map(s => s.id)).toEqual([heat.id, cool.id, hold.id, mix.id]);
+
+      const restored = persistence.load();
+      expect(restored!.steps.map(s => s.id)).toEqual([heat.id, cool.id, hold.id, mix.id]);
+    });
   });
 
   describe('ProcessStateService — валидация шагов', () => {

@@ -13,9 +13,11 @@
           </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+        <div class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar"
+             cdkDropList (cdkDropListDropped)="dropStep($event)">
           @for (step of process.currentProcess().steps; track step.id; let i = $index) {
-            <div (click)="process.activeStepIndex.set(i)" (keydown.enter)="process.activeStepIndex.set(i)" tabindex="0" role="button"
+            <div cdkDrag cdkDragBoundary=".cdk-drop-list"
+                 (click)="process.activeStepIndex.set(i)" (keydown.enter)="process.activeStepIndex.set(i)" tabindex="0" role="button"
                  class="p-3 border rounded-xl cursor-pointer transition-all group relative"
                  [class.bg-indigo-500/10]="process.activeStepIndex() === i"
                  [class.border-indigo-500/50]="process.activeStepIndex() === i"
@@ -67,13 +69,13 @@
               }
             </div>
           }
+        </div>
 
-          <div class="grid grid-cols-2 gap-2 mt-4">
-            <button (click)="addStep('MIX')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Перемешать</button>
-            <button (click)="addStep('HEAT')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Нагреть</button>
-            <button (click)="addStep('COOL')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Охладить</button>
-            <button (click)="addStep('EMULSIFY')" class="text-[10px] p-2 bg-indigo-900/40 hover:bg-indigo-900/60 text-indigo-300 rounded-lg transition-colors uppercase font-bold border border-indigo-500/20">Эмульгировать</button>
-          </div>
+        <div class="grid grid-cols-2 gap-2 mt-4 shrink-0">
+          <button (click)="addStep('MIX')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Перемешать</button>
+          <button (click)="addStep('HEAT')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Нагреть</button>
+          <button (click)="addStep('COOL')" class="text-[10px] p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors uppercase font-bold">Охладить</button>
+          <button (click)="addStep('EMULSIFY')" class="text-[10px] p-2 bg-indigo-900/40 hover:bg-indigo-900/60 text-indigo-300 rounded-lg transition-colors uppercase font-bold border border-indigo-500/20">Эмульгировать</button>
         </div>
       </div>
 

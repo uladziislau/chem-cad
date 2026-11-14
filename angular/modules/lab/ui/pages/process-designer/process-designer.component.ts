@@ -1,6 +1,7 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ProcessStateService } from '@modules/lab/services/process-state.service';
 import { CatalogService, ICatalogIngredient } from '@modules/lab/services/catalog.service';
 import { RouterLink } from '@angular/router';
@@ -11,7 +12,7 @@ import { OperationType } from '@root-modules/engine/process-step.interface';
 @Component({
   selector: 'app-process-designer',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, MicroscopeViewComponent],
+  imports: [CommonModule, FormsModule, RouterLink, MicroscopeViewComponent, DragDropModule],
   templateUrl: './process-designer.component.html',
   styles: [`
     :host { display: block; }
@@ -19,6 +20,9 @@ import { OperationType } from '@root-modules/engine/process-step.interface';
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    .cdk-drag-preview { box-shadow: 0 10px 30px rgba(0,0,0,.5); border-radius: 12px; }
+    .cdk-drag-placeholder { opacity: .3; }
+    .cdk-drag-animating { transition: transform .2s ease; }
   `]
 })
 export class ProcessDesignerComponent {
@@ -37,6 +41,10 @@ export class ProcessDesignerComponent {
 
   addStep(op: OperationType) {
     this.process.addStep(op);
+  }
+
+  dropStep(event: CdkDragDrop<unknown[]>) {
+    this.process.reorderSteps(event.previousIndex, event.currentIndex);
   }
 
   addIngredientToStep(stepId: string, ingredient: ICatalogIngredient) {
