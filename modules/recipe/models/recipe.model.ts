@@ -13,4 +13,6 @@ export interface Recipe {
   ingredients: RecipeIngredient[];
   steps: string[];
   safetyWarnings: string[];
+  /** true для пользовательских рецептов (localStorage), false/undefined — встроенные */
+  isCustom?: boolean;
 }

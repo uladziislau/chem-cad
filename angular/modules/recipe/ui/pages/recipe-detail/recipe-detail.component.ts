@@ -1,8 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
+import { downloadJson } from '../../../download-json';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,7 +16,21 @@ import { IngredientService } from '@modules/formulation/services/ingredient.serv
           <a routerLink="/recipes" class="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600">
             <span class="material-icons">arrow_back</span>
           </a>
-          <h1 class="text-3xl font-bold text-slate-900">{{ recipe()?.name }}</h1>
+          <h1 class="text-3xl font-bold text-slate-900 flex-1">{{ recipe()?.name }}</h1>
+          <button (click)="exportRecipe()" title="Экспорт в JSON"
+                  class="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600">
+            <span class="material-icons">download</span>
+          </button>
+          <button (click)="duplicate()" title="Дублировать"
+                  class="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600">
+            <span class="material-icons">content_copy</span>
+          </button>
+          @if (recipe()?.isCustom) {
+            <button (click)="remove()" title="Удалить"
+                    class="p-2 rounded-full hover:bg-rose-100 transition-colors text-rose-500">
+              <span class="material-icons">delete</span>
+            </button>
+          }
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -111,6 +126,7 @@ import { IngredientService } from '@modules/formulation/services/ingredient.serv
 })
 export class RecipeDetailComponent {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private recipeService = inject(RecipeService);
   private ingredientService = inject(IngredientService);
   private params = toSignal(this.route.paramMap);
@@ -140,5 +156,26 @@ export class RecipeDetailComponent {
       'hard': 'Сложно'
     };
     return map[diff] || diff;
+  }
+
+  exportRecipe(): void {
+    const recipe = this.recipe();
+    if (!recipe) return;
+    const json = this.recipeService.exportRecipe(recipe.id);
+    if (json) downloadJson(json, `${recipe.id}.recipe.json`);
+  }
+
+  duplicate(): void {
+    const recipe = this.recipe();
+    if (!recipe) return;
+    const copy = this.recipeService.duplicateRecipe(recipe.id);
+    if (copy) this.router.navigate(['/recipes', 'detail', copy.id]);
+  }
+
+  remove(): void {
+    const recipe = this.recipe();
+    if (!recipe) return;
+    this.recipeService.removeRecipe(recipe.id);
+    this.router.navigate(['/recipes', 'list']);
   }
 }

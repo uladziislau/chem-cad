@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
+import { downloadJson } from '../../../download-json';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,6 +11,22 @@ import { RecipeService } from '@modules/recipe/services/recipe.service';
     <div class="space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-3xl font-bold text-slate-900">База рецептур</h1>
+        <div class="flex items-center gap-2">
+          <button (click)="exportAll()" title="Экспорт всех рецептур в JSON"
+                  class="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">
+            <span class="material-icons text-[18px]">download</span>
+            Экспорт
+          </button>
+          <button (click)="fileInput.click()" title="Импорт рецептур из JSON"
+                  class="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-indigo-600 hover:bg-indigo-50 transition-colors">
+            <span class="material-icons text-[18px]">upload</span>
+            Импорт
+          </button>
+          <input #fileInput type="file" accept=".json,application/json" class="hidden" (change)="onImportFile($event)">
+          @if (importMessage()) {
+            <span class="text-sm text-emerald-600">{{ importMessage() }}</span>
+          }
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -35,7 +52,7 @@ import { RecipeService } from '@modules/recipe/services/recipe.service';
               <p class="text-slate-600 text-sm mb-4">{{ recipe.description }}</p>
             </div>
             <div class="px-6 py-4 bg-slate-50 border-t border-slate-100">
-              <a [routerLink]="['/recipes', recipe.id]" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm flex items-center justify-center">
+              <a [routerLink]="['/recipes', 'detail', recipe.id]" class="text-indigo-600 hover:text-indigo-900 font-medium text-sm flex items-center justify-center">
                 Посмотреть рецептуру
                 <span class="material-icons text-[18px] w-[18px] h-[18px] ml-1">arrow_forward</span>
               </a>
@@ -66,5 +83,24 @@ export class RecipeListComponent {
       'hard': 'Сложно'
     };
     return map[diff] || diff;
+  }
+
+  importMessage = signal('');
+
+  exportAll(): void {
+    downloadJson(this.recipeService.exportRecipes(), 'recipes.json');
+  }
+
+  onImportFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const count = this.recipeService.importRecipes(String(reader.result ?? ''));
+      this.importMessage.set(count > 0 ? `Импортировано: ${count}` : 'Не удалось импортировать: невалидный JSON');
+    };
+    reader.readAsText(file);
   }
 }
