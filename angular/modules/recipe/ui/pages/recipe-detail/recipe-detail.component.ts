@@ -1,20 +1,19 @@
 import { Component, computed, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
 
 @Component({
   selector: 'app-recipe-detail',
   standalone: true,
-  imports: [MatIconModule, RouterLink],
+  imports: [RouterLink],
   template: `
     @if (recipe()) {
       <div class="space-y-8">
         <div class="flex items-center gap-4">
           <a routerLink="/recipes" class="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600">
-            <mat-icon>arrow_back</mat-icon>
+            <span class="material-icons">arrow_back</span>
           </a>
           <h1 class="text-3xl font-bold text-slate-900">{{ recipe()?.name }}</h1>
         </div>
@@ -24,7 +23,7 @@ import { IngredientService } from '@modules/formulation/services/ingredient.serv
             <!-- Ingredients -->
             <section class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
               <h2 class="text-xl font-semibold text-slate-900 mb-4 flex items-center">
-                <mat-icon class="mr-2 text-indigo-600">science</mat-icon>
+                <span class="material-icons mr-2 text-indigo-600">science</span>
                 Ингредиенты
               </h2>
               <div class="overflow-x-auto">
@@ -52,7 +51,7 @@ import { IngredientService } from '@modules/formulation/services/ingredient.serv
             <!-- Steps -->
             <section class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
               <h2 class="text-xl font-semibold text-slate-900 mb-4 flex items-center">
-                <mat-icon class="mr-2 text-indigo-600">format_list_numbered</mat-icon>
+                <span class="material-icons mr-2 text-indigo-600">format_list_numbered</span>
                 Порядок действий
               </h2>
               <ol class="space-y-4">
@@ -72,13 +71,13 @@ import { IngredientService } from '@modules/formulation/services/ingredient.serv
             <!-- Safety -->
             <section class="bg-rose-50 rounded-2xl border border-rose-100 p-6">
               <h2 class="text-xl font-semibold text-rose-900 mb-4 flex items-center">
-                <mat-icon class="mr-2 text-rose-600">warning</mat-icon>
+                <span class="material-icons mr-2 text-rose-600">warning</span>
                 Меры предосторожности
               </h2>
               <ul class="space-y-3">
                 @for (warning of recipe()?.safetyWarnings; track $index) {
                   <li class="flex items-start gap-2 text-rose-800 text-sm">
-                    <mat-icon class="text-[18px] w-[18px] h-[18px] mt-0.5 flex-shrink-0">error_outline</mat-icon>
+                    <span class="material-icons text-[18px] w-[18px] h-[18px] mt-0.5 flex-shrink-0">error_outline</span>
                     <span>{{ warning }}</span>
                   </li>
                 }

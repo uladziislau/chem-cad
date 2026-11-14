@@ -1,6 +1,5 @@
 import { Component, signal, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { CovalentBond, Molecule, Reactor, HydrogenCombustionMechanism } from '@root-modules/architecture/models';
 import { ChemistryInventoryService } from '@modules/architecture/services/chemistry-inventory.service';
 import { SmilesParserService } from '@modules/architecture/services/smiles-parser.service';
@@ -10,7 +9,7 @@ import { runGraphAnalysis, runQuantumDemo, runMolecularDynamics } from './oop-sa
 @Component({
   selector: 'app-oop-sandbox',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   templateUrl: './oop-sandbox.component.html',
 })
 export class OopSandboxComponent implements OnDestroy {

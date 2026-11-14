@@ -1,11 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-engine.service';
 
 @Component({
   selector: 'app-reaction-predictor',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   template: `
     <div class="min-h-screen bg-slate-50 p-6">
       <div class="max-w-6xl mx-auto">
@@ -19,7 +18,7 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
           <div class="lg:col-span-2 space-y-6">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
               <h2 class="text-xl font-semibold mb-6 flex items-center gap-2">
-                <mat-icon class="text-indigo-600">functions</mat-icon>
+                <span class="material-icons text-indigo-600">functions</span>
                 Уравнение реакции
               </h2>
               
@@ -32,7 +31,7 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
                   @if (!$last) { <span class="text-slate-400">+</span> }
                 }
                 
-                <mat-icon class="text-slate-400 mx-4">arrow_forward</mat-icon>
+                <span class="material-icons text-slate-400 mx-4">arrow_forward</span>
                 
                 @for (p of products; track p.symbol) {
                   <div class="flex items-center gap-1">
@@ -69,7 +68,7 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
             <!-- Визуализация энергии (Упрощенно) -->
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
               <h2 class="text-xl font-semibold mb-6 flex items-center gap-2">
-                <mat-icon class="text-amber-600">bolt</mat-icon>
+                <span class="material-icons text-amber-600">bolt</span>
                 Энергетический профиль
               </h2>
               
@@ -83,9 +82,9 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
 
                 <!-- Стрелка перехода -->
                 <div class="flex flex-col items-center justify-center h-full">
-                  <mat-icon class="text-slate-300 text-4xl" [class.text-rose-400]="calc().deltaH < 0" [class.text-blue-400]="calc().deltaH > 0">
+                  <span class="material-icons text-slate-300 text-4xl" [class.text-rose-400]="calc().deltaH < 0" [class.text-blue-400]="calc().deltaH > 0">
                     {{ calc().deltaH < 0 ? 'trending_down' : 'trending_up' }}
-                  </mat-icon>
+                  </span>
                   <span class="text-xs font-mono font-bold" [class.text-rose-600]="calc().deltaH < 0" [class.text-blue-600]="calc().deltaH > 0">
                     ΔH = {{ calc().deltaH | number:'1.0-1' }} кДж
                   </span>
@@ -124,9 +123,9 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
                    [class.bg-emerald-500/20]="calc().isSpontaneous"
                    [class.bg-rose-500/20]="!calc().isSpontaneous">
                 <div class="flex items-center gap-3 mb-2">
-                  <mat-icon [class.text-emerald-400]="calc().isSpontaneous" [class.text-rose-400]="!calc().isSpontaneous">
+                  <span class="material-icons" [class.text-emerald-400]="calc().isSpontaneous" [class.text-rose-400]="!calc().isSpontaneous">
                     {{ calc().isSpontaneous ? 'check_circle' : 'cancel' }}
-                  </mat-icon>
+                  </span>
                   <span class="font-bold">
                     {{ calc().isSpontaneous ? 'РЕАКЦИЯ ИДЕТ' : 'РЕАКЦИЯ НЕ ИДЕТ' }}
                   </span>
@@ -159,7 +158,7 @@ import { ThermoEngineService } from '@modules/thermodynamics/services/thermo-eng
 
             <div class="p-6 bg-amber-50 rounded-2xl border border-amber-100">
               <div class="flex gap-3">
-                <mat-icon class="text-amber-600">lightbulb</mat-icon>
+                <span class="material-icons text-amber-600">lightbulb</span>
                 <div>
                   <h4 class="text-sm font-bold text-amber-900 mb-1">Совет Профессора</h4>
                   <p class="text-xs text-amber-800 leading-relaxed">

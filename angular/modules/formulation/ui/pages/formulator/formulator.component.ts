@@ -1,13 +1,12 @@
 import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
 import { Ingredient, FormulationItem } from '@root-modules/formulation/models/ingredient.model';
 
 @Component({
   selector: 'app-formulator',
   standalone: true,
-  imports: [FormsModule, MatIconModule],
+  imports: [FormsModule],
   template: `
     <div class="space-y-6">
       <div>
@@ -33,7 +32,7 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
                       <p class="text-xs text-slate-500 mt-1">{{ getTypeName(ingredient.type) }}</p>
                     </div>
                     <button class="text-indigo-600 hover:bg-indigo-50 p-1 rounded-md">
-                      <mat-icon class="text-[18px] w-[18px] h-[18px]">add</mat-icon>
+                      <span class="material-icons text-[18px] w-[18px] h-[18px]">add</span>
                     </button>
                   </div>
                 </div>
@@ -54,7 +53,7 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
 
             @if (formulation().length === 0) {
               <div class="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl">
-                <mat-icon class="text-slate-400 text-4xl mb-2">science</mat-icon>
+                <span class="material-icons text-slate-400 text-4xl mb-2">science</span>
                 <p class="text-slate-500">Добавьте компоненты из списка слева</p>
               </div>
             } @else {
@@ -74,7 +73,7 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
                       <span class="text-slate-500">%</span>
                     </div>
                     <button (click)="removeIngredient(i)" class="text-rose-500 hover:bg-rose-50 p-2 rounded-md transition-colors">
-                      <mat-icon class="text-[20px] w-[20px] h-[20px]">delete</mat-icon>
+                      <span class="material-icons text-[20px] w-[20px] h-[20px]">delete</span>
                     </button>
                   </div>
                 }
@@ -82,7 +81,7 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
 
               @if (totalPercentage() !== 100) {
                 <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-3">
-                  <mat-icon class="text-amber-600 mt-0.5">warning</mat-icon>
+                  <span class="material-icons text-amber-600 mt-0.5">warning</span>
                   <p class="text-sm text-amber-800">
                     Сумма всех компонентов должна составлять ровно 100%. Сейчас: {{ totalPercentage() }}%.
                   </p>

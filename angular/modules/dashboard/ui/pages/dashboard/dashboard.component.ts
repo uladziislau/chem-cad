@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink],
   template: `
     <div class="space-y-8">
       <header class="text-center py-12 bg-white rounded-2xl shadow-sm border border-slate-100">
@@ -20,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
         
         <a routerLink="/classroom" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-            <mat-icon>school</mat-icon>
+            <span class="material-icons">school</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Учебный класс</h2>
           <p class="text-slate-600">Интерактивные уроки и задания для изучения основ химии.</p>
@@ -28,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/quantum" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">
-            <mat-icon>blur_on</mat-icon>
+            <span class="material-icons">blur_on</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Квантовый уровень</h2>
           <p class="text-slate-600">Познайте природу атомов. Конструктор элементов и субатомных частиц.</p>
@@ -36,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/bonding" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-rose-600 group-hover:text-white transition-colors">
-            <mat-icon>compare_arrows</mat-icon>
+            <span class="material-icons">compare_arrows</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Арена связей</h2>
           <p class="text-slate-600">Посмотрите, как атомы делят электроны и образуют молекулы.</p>
@@ -44,7 +43,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/oop-chemistry" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-            <mat-icon>data_object</mat-icon>
+            <span class="material-icons">data_object</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">ООП-Химия</h2>
           <p class="text-slate-600">Эксперимент: программируем законы химии через классы и интерфейсы.</p>
@@ -52,7 +51,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/thermodynamics" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-rose-600 group-hover:text-white transition-colors">
-            <mat-icon>bolt</mat-icon>
+            <span class="material-icons">bolt</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Термодинамика</h2>
           <p class="text-slate-600">Узнайте, почему происходят реакции: энергия, энтропия и хаос.</p>
@@ -60,7 +59,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/lab" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-            <mat-icon>science</mat-icon>
+            <span class="material-icons">science</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Вирт. Лаборатория</h2>
           <p class="text-slate-600">Симулятор химических реакций в реальном времени с расчетом стехиометрии.</p>
@@ -68,7 +67,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/advanced" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-            <mat-icon>3d_rotation</mat-icon>
+            <span class="material-icons">3d_rotation</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">3D Моделирование</h2>
           <p class="text-slate-600">Передовые технологии: 2D/3D визуализация молекул и расчет свойств.</p>
@@ -76,7 +75,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/recipes" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-200 transition-all">
           <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-            <mat-icon>menu_book</mat-icon>
+            <span class="material-icons">menu_book</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">База рецептур</h2>
           <p class="text-slate-600">Проверенные и безопасные формулы для старта вашего производства.</p>
@@ -84,7 +83,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/formulator" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:teal-200 transition-all">
           <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-teal-600 group-hover:text-white transition-colors">
-            <mat-icon>biotech</mat-icon>
+            <span class="material-icons">biotech</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Формулатор</h2>
           <p class="text-slate-600">Интерактивный инструмент для создания собственных уникальных продуктов.</p>
@@ -92,7 +91,7 @@ import { MatIconModule } from '@angular/material/icon';
 
         <a routerLink="/safety" class="group block p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:rose-200 transition-all">
           <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-rose-600 group-hover:text-white transition-colors">
-            <mat-icon>warning</mat-icon>
+            <span class="material-icons">warning</span>
           </div>
           <h2 class="text-xl font-semibold text-slate-900 mb-2">Безопасность</h2>
           <p class="text-slate-600">Обязательные правила работы в промышленном и лабораторном помещении.</p>

@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, signal, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 type SmilesDrawerModule = typeof import('smiles-drawer');
 type ThreeDmolModule = typeof import('3dmol');
@@ -17,7 +16,7 @@ interface ChemProperties {
 @Component({
   selector: 'app-molecular-viewer',
   standalone: true,
-  imports: [FormsModule, MatIconModule],
+  imports: [FormsModule],
   template: `
     <div class="space-y-6">
       <div>
@@ -36,7 +35,7 @@ interface ChemProperties {
           </div>
           <button (click)="visualize()" 
                   class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2 whitespace-nowrap">
-            <mat-icon>science</mat-icon>
+            <span class="material-icons">science</span>
             Анализировать
           </button>
         </div>
@@ -54,13 +53,13 @@ interface ChemProperties {
 
       @if (isLoading()) {
         <div class="flex justify-center items-center py-12">
-          <mat-icon class="animate-spin text-indigo-600 text-4xl w-10 h-10">autorenew</mat-icon>
+          <span class="material-icons animate-spin text-indigo-600 text-4xl w-10 h-10">autorenew</span>
         </div>
       }
 
       @if (error()) {
         <div class="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-xl flex items-start gap-3">
-          <mat-icon class="mt-0.5">error_outline</mat-icon>
+          <span class="material-icons mt-0.5">error_outline</span>
           <p>{{ error() }}</p>
         </div>
       }
@@ -70,7 +69,7 @@ interface ChemProperties {
         <!-- 2D Viewer (SmilesDrawer) -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col items-center">
           <h2 class="text-lg font-semibold text-slate-900 mb-4 w-full flex items-center">
-            <mat-icon class="mr-2 text-indigo-600">architecture</mat-icon>
+            <span class="material-icons mr-2 text-indigo-600">architecture</span>
             2D Структура (SmilesDrawer)
           </h2>
           <div class="w-full aspect-square bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center overflow-hidden">
@@ -81,7 +80,7 @@ interface ChemProperties {
         <!-- 3D Viewer (3Dmol.js) -->
         <div class="bg-slate-900 rounded-2xl shadow-inner border border-slate-800 p-6 flex flex-col">
           <h2 class="text-lg font-semibold text-white mb-4 flex items-center">
-            <mat-icon class="mr-2 text-indigo-400">3d_rotation</mat-icon>
+            <span class="material-icons mr-2 text-indigo-400">3d_rotation</span>
             3D Модель (3Dmol.js)
           </h2>
           <div class="w-full aspect-square bg-black rounded-xl border border-slate-700 overflow-hidden relative">
@@ -97,7 +96,7 @@ interface ChemProperties {
         <!-- Properties (PubChem API) -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col">
           <h2 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-            <mat-icon class="mr-2 text-indigo-600">analytics</mat-icon>
+            <span class="material-icons mr-2 text-indigo-600">analytics</span>
             Свойства (PubChem)
           </h2>
           

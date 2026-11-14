@@ -1,20 +1,19 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
 import { ClassroomService } from '@modules/classroom/services/classroom.service';
 import { ReactionEngineService } from '@modules/laboratory/services/reaction-engine.service';
 
 @Component({
   selector: 'app-interactive-lesson',
   standalone: true,
-  imports: [MatIconModule, RouterLink],
+  imports: [RouterLink],
   template: `
     @if (lesson()) {
       <div class="space-y-6">
         <div class="flex items-center gap-4">
           <a routerLink="/classroom" class="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600">
-            <mat-icon>arrow_back</mat-icon>
+            <span class="material-icons">arrow_back</span>
           </a>
           <h1 class="text-3xl font-bold text-slate-900">{{ lesson()?.title }}</h1>
         </div>
@@ -50,7 +49,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
                          [class.border-slate-300]="i > currentStepIndex()"
                          [class.text-slate-400]="i > currentStepIndex()">
                       @if (i < currentStepIndex()) {
-                        <mat-icon class="text-[18px] w-[18px] h-[18px]">check</mat-icon>
+                        <span class="material-icons text-[18px] w-[18px] h-[18px]">check</span>
                       } @else {
                         <span class="text-sm font-bold">{{ i + 1 }}</span>
                       }
@@ -61,7 +60,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
 
                     @if (i === currentStepIndex() && step.requiredAction) {
                       <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 flex items-start gap-3">
-                        <mat-icon class="text-indigo-600 mt-0.5">science</mat-icon>
+                        <span class="material-icons text-indigo-600 mt-0.5">science</span>
                         <div>
                           <p class="text-sm font-medium text-indigo-900">Задание:</p>
                           <p class="text-sm text-indigo-800">Найдите нужный реактив на полке справа и добавьте его в колбу.</p>
@@ -70,13 +69,13 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
                     } @else if (i === currentStepIndex() && !step.requiredAction) {
                       <button (click)="nextStep()" class="mt-4 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
                         Понятно, дальше
-                        <mat-icon class="text-[18px] w-[18px] h-[18px]">arrow_forward</mat-icon>
+                        <span class="material-icons text-[18px] w-[18px] h-[18px]">arrow_forward</span>
                       </button>
                     }
 
                     @if (i < currentStepIndex() && step.successMessage) {
                       <div class="p-4 bg-green-50 rounded-xl border border-green-100 flex items-start gap-3">
-                        <mat-icon class="text-green-600 mt-0.5">check_circle</mat-icon>
+                        <span class="material-icons text-green-600 mt-0.5">check_circle</span>
                         <p class="text-sm text-green-800">{{ step.successMessage }}</p>
                       </div>
                     }
@@ -86,7 +85,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
                 @if (isLessonComplete()) {
                   <div class="relative pl-12">
                     <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-green-500 border-2 border-green-500 text-white flex items-center justify-center">
-                      <mat-icon class="text-[18px] w-[18px] h-[18px]">emoji_events</mat-icon>
+                      <span class="material-icons text-[18px] w-[18px] h-[18px]">emoji_events</span>
                     </div>
                     <h3 class="text-xl font-bold text-green-600 mb-2">Урок завершен!</h3>
                     <p class="text-slate-700">Вы успешно выполнили все шаги эксперимента.</p>
@@ -104,11 +103,11 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
             
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-white font-semibold flex items-center">
-                <mat-icon class="mr-2 text-indigo-400">science</mat-icon>
+                <span class="material-icons mr-2 text-indigo-400">science</span>
                 Лабораторный стол
               </h2>
               <div class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-1 flex items-center gap-2">
-                <mat-icon class="text-rose-500 text-[18px] w-[18px] h-[18px]">thermostat</mat-icon>
+                <span class="material-icons text-rose-500 text-[18px] w-[18px] h-[18px]">thermostat</span>
                 <span class="font-mono text-white text-sm">{{ flaskState().temperature }}°C</span>
               </div>
             </div>

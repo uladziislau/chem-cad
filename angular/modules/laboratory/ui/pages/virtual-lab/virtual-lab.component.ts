@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 import { ReactionEngineService } from '@modules/laboratory/services/reaction-engine.service';
 
 @Component({
   selector: 'app-virtual-lab',
   standalone: true,
-  imports: [MatIconModule, FormsModule],
+  imports: [FormsModule],
   template: `
     <div class="space-y-6">
       <div>
@@ -19,7 +18,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
         <!-- Reagents Shelf -->
         <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col h-[600px]">
           <h2 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-            <mat-icon class="mr-2 text-indigo-600">shelves</mat-icon>
+            <span class="material-icons mr-2 text-indigo-600">shelves</span>
             Реактивы
           </h2>
 
@@ -58,7 +57,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
           
           <!-- Temperature Gauge -->
           <div class="absolute top-6 right-6 bg-slate-800 border border-slate-700 rounded-xl p-3 flex items-center gap-3 shadow-lg">
-            <mat-icon class="text-rose-500">thermostat</mat-icon>
+            <span class="material-icons text-rose-500">thermostat</span>
             <div class="text-2xl font-mono text-white">{{ flaskState().temperature }}°C</div>
           </div>
 
@@ -71,7 +70,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
             @if (flaskState().isExploded) {
               <div class="absolute inset-0 flex items-center justify-center z-50">
                 <div class="w-64 h-64 bg-orange-500 rounded-full blur-3xl opacity-80 animate-ping"></div>
-                <mat-icon class="text-8xl text-yellow-300 absolute animate-bounce">local_fire_department</mat-icon>
+                <span class="material-icons text-8xl text-yellow-300 absolute animate-bounce">local_fire_department</span>
               </div>
             }
 
@@ -101,7 +100,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
           <div class="absolute bottom-6 flex gap-4">
             <button (click)="resetFlask()" 
                     class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-medium transition-colors border border-slate-600 flex items-center gap-2">
-              <mat-icon>delete_sweep</mat-icon>
+              <span class="material-icons">delete_sweep</span>
               Очистить колбу
             </button>
           </div>
@@ -110,7 +109,7 @@ import { ReactionEngineService } from '@modules/laboratory/services/reaction-eng
         <!-- Log Panel -->
         <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col h-[600px]">
           <h2 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-            <mat-icon class="mr-2 text-indigo-600">receipt_long</mat-icon>
+            <span class="material-icons mr-2 text-indigo-600">receipt_long</span>
             Журнал реакций
           </h2>
           <div class="overflow-y-auto flex-grow space-y-3 pr-2 font-mono text-sm">

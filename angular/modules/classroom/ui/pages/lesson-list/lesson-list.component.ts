@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { ClassroomService } from '@modules/classroom/services/classroom.service';
 
 @Component({
   selector: 'app-lesson-list',
   standalone: true,
-  imports: [MatIconModule, RouterLink],
+  imports: [RouterLink],
   template: `
     <div class="space-y-6">
       <div class="flex items-center justify-between">
@@ -21,7 +20,7 @@ import { ClassroomService } from '@modules/classroom/services/classroom.service'
           <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col hover:shadow-md transition-shadow">
             <div class="flex items-center justify-between mb-4">
               <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
-                <mat-icon>school</mat-icon>
+                <span class="material-icons">school</span>
               </div>
               <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
                 {{ lesson.difficulty === 'beginner' ? 'Начальный' : lesson.difficulty === 'intermediate' ? 'Средний' : 'Продвинутый' }}
@@ -33,7 +32,7 @@ import { ClassroomService } from '@modules/classroom/services/classroom.service'
             <a [routerLink]="['/classroom', lesson.id]" 
                class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium text-center transition-colors flex items-center justify-center gap-2">
               Начать урок
-              <mat-icon class="text-[18px] w-[18px] h-[18px]">play_arrow</mat-icon>
+              <span class="material-icons text-[18px] w-[18px] h-[18px]">play_arrow</span>
             </a>
           </div>
         }

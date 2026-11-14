@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-safety-guide',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [],
   template: `
     <div class="max-w-4xl mx-auto space-y-8">
       <div class="text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-100 text-rose-600 mb-4">
-          <mat-icon class="text-4xl w-10 h-10">warning</mat-icon>
+          <span class="material-icons text-4xl w-10 h-10">warning</span>
         </div>
         <h1 class="text-3xl font-bold text-slate-900">Техника безопасности</h1>
         <p class="text-slate-600 mt-2 text-lg">Обязательные правила при работе в химической лаборатории или на производстве.</p>
@@ -20,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
           
           <section>
             <h2 class="text-xl font-semibold text-slate-900 flex items-center mb-4">
-              <mat-icon class="text-indigo-600 mr-2">checkroom</mat-icon>
+              <span class="material-icons text-indigo-600 mr-2">checkroom</span>
               Средства индивидуальной защиты (СИЗ)
             </h2>
             <ul class="list-disc list-inside space-y-2 text-slate-700 ml-2">
@@ -33,7 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
 
           <section>
             <h2 class="text-xl font-semibold text-slate-900 flex items-center mb-4">
-              <mat-icon class="text-indigo-600 mr-2">air</mat-icon>
+              <span class="material-icons text-indigo-600 mr-2">air</span>
               Требования к помещению
             </h2>
             <ul class="list-disc list-inside space-y-2 text-slate-700 ml-2">
@@ -46,7 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
 
           <section>
             <h2 class="text-xl font-semibold text-slate-900 flex items-center mb-4">
-              <mat-icon class="text-indigo-600 mr-2">science</mat-icon>
+              <span class="material-icons text-indigo-600 mr-2">science</span>
               Правила работы с реактивами
             </h2>
             <ul class="list-disc list-inside space-y-2 text-slate-700 ml-2">

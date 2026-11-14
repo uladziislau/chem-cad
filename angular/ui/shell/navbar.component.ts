@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, MatIconModule],
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <nav class="bg-slate-950 text-white border-b border-white/5 backdrop-blur-xl sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-8">
             <a routerLink="/" class="flex items-center gap-2 text-xl font-bold tracking-tighter text-indigo-400">
-              <mat-icon class="text-indigo-500">layers</mat-icon>
+              <span class="material-icons text-indigo-500">layers</span>
               ХимСАПР
             </a>
             <div class="hidden md:block">
