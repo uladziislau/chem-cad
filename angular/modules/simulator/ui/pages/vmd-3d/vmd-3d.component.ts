@@ -20,6 +20,8 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
   fps = signal(0);
   temperature = signal(0);
   currentMoleculeName = signal<string>('');
+  particleCount = signal(0);
+  bondCount = signal(0);
 
   private renderer!: Vmd3dRenderer;
 
@@ -74,12 +76,19 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
   resetGas() {
     this.currentMoleculeName.set('Аргон (Газ)');
     this.renderer.resetGas();
+    this.syncCounts();
   }
 
   loadMolecule(molecule: Molecule, name: string) {
     this.currentMoleculeName.set(name);
     this.renderer.loadMolecule(molecule, name);
+    this.syncCounts();
     this.isRunning.set(true);
+  }
+
+  private syncCounts(): void {
+    this.particleCount.set(this.renderer.particleCount);
+    this.bondCount.set(this.renderer.bondCount);
   }
 
   toggleSimulation() {

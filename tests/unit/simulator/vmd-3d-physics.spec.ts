@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { computeRepulsion, applySprings, integrateParticles } from '@root-modules/simulator/vmd-3d.physics';
 
 describe('VMD-3D Physics (Минимизация энергии)', () => {
