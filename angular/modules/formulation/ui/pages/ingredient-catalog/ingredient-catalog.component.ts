@@ -2,6 +2,8 @@ import { Component, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
+import { RecipeService } from '@modules/recipe/services/recipe.service';
+import { recipesUsingIngredient } from '@root-modules/recipe/recipe-query';
 import { Ingredient } from '@root-modules/formulation/models/ingredient.model';
 import { downloadJson } from '../../../../download-json';
 
@@ -169,6 +171,20 @@ const EMPTY_DRAFT: Draft = { name: '', type: 'additive', description: '', safety
             @if (editingId() && !editingCustom()) {
               <p class="text-xs text-slate-400">Встроенный ингредиент — только просмотр. Скопируйте через «Экспорт» и импортируйте как свой для изменений.</p>
             }
+
+            @if (editingId() && usedInRecipes().length > 0) {
+              <div class="pt-4 border-t border-slate-200">
+                <h3 class="text-xs font-bold text-slate-500 uppercase mb-2">Используется в рецептах</h3>
+                <ul class="space-y-1">
+                  @for (recipe of usedInRecipes(); track recipe.id) {
+                    <li>
+                      <a [routerLink]="['/recipes', 'detail', recipe.id]"
+                         class="text-sm text-indigo-600 hover:underline">{{ recipe.name }}</a>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
           </div>
         </div>
       </div>
@@ -177,9 +193,11 @@ const EMPTY_DRAFT: Draft = { name: '', type: 'additive', description: '', safety
 })
 export class IngredientCatalogComponent {
   private ingredientService = inject(IngredientService);
+  private recipeService = inject(RecipeService);
 
   typeOptions = TYPE_OPTIONS;
   ingredients = this.ingredientService.getIngredients();
+  recipes = this.recipeService.getRecipes();
 
   searchText = signal('');
   typeFilter = signal('');
@@ -196,6 +214,12 @@ export class IngredientCatalogComponent {
     return this.ingredients().filter(i =>
       (!q || i.name.toLowerCase().includes(q) || i.id.toLowerCase().includes(q))
       && (!t || i.type === t));
+  });
+
+  /** Рецепты, в составе которых выбранный ингредиент. */
+  usedInRecipes = computed(() => {
+    const id = this.editingId();
+    return id ? recipesUsingIngredient(this.recipes(), id) : [];
   });
 
   canSave(): boolean {
