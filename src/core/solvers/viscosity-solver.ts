@@ -1,4 +1,5 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 /**
  * Решатель для расчета вязкости многофазных систем (эмульсий)
@@ -9,19 +10,10 @@ export class ViscositySolver {
      * Использует модель Тейлора для учета вязкости обеих фаз
      */
     static calculateEmulsionViscosity(system: IMultiphaseSystem): number {
-        if (system.phases.length < 2) return system.phases[0]?.getViscosity() || 0;
+        const roles = PhaseTopologyHelper.resolveEmulsionRoles(system);
+        if (!roles) return system.phases[0]?.getViscosity() || 0;
 
-        const emulsionType = system.getEmulsionType();
-        
-        // По умолчанию: 0 - вода, 1 - масло
-        let continuousPhase = system.phases[0];
-        let dispersedPhase = system.phases[1];
-
-        if (emulsionType === 'W/O') {
-            // Если вода в масле, то масло (индекс 1) становится сплошной фазой
-            continuousPhase = system.phases[1];
-            dispersedPhase = system.phases[0];
-        }
+        const { continuousPhase, dispersedPhase } = roles;
 
         const eta0 = continuousPhase.getViscosity() || 1.0;
         const etad = dispersedPhase.getViscosity() || 1.0;

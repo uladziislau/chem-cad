@@ -34,11 +34,20 @@ export class Mixture implements IChemicalEntity {
             const mass = new Mass(volumeMl * density, 'g');
             molesValue = entity.massToMoles(mass).to('mol');
         }
-        this.components.push({ entity, moles: molesValue });
+        if (molesValue <= 0) return;
+
+        const existing = this.components.find(c => c.entity === entity);
+        if (existing) {
+            existing.moles += molesValue;
+        } else {
+            this.components.push({ entity, moles: molesValue });
+        }
     }
 
     getMass(): number {
         const totalMoles = this.getTotalMoles();
+        if (totalMoles <= 0) return 0;
+
         // Средняя молярная масса смеси
         return this.components.reduce((sum, c) => {
             const moleFraction = c.moles / totalMoles;
@@ -48,23 +57,28 @@ export class Mixture implements IChemicalEntity {
 
     getDensity(temperatureCelsius?: number): number {
         const totalMoles = this.getTotalMoles();
+        if (totalMoles <= 0) return 1.0;
+
         let totalMass = 0;
         let totalVolume = 0;
 
         for (const c of this.components) {
             const moleFraction = c.moles / totalMoles;
             const mass = moleFraction * c.entity.getMass();
-            const density = c.entity.getDensity(temperatureCelsius);
-            
+            const rawDensity = c.entity.getDensity(temperatureCelsius);
+            const safeDensity = rawDensity > 0 ? rawDensity : 1.0;
+
             totalMass += mass;
-            totalVolume += mass / density;
+            totalVolume += mass / safeDensity;
         }
 
-        return totalVolume === 0 ? 1.0 : totalMass / totalVolume;
+        return totalVolume <= 0 ? 1.0 : totalMass / totalVolume;
     }
 
     getVaporPressure(temperatureCelsius: number): number {
         const totalMoles = this.getTotalMoles();
+        if (totalMoles <= 0) return 0;
+
         const componentsData = this.components.map(c => ({
             entity: c.entity,
             moleFraction: c.moles / totalMoles
@@ -128,12 +142,75 @@ export class Mixture implements IChemicalEntity {
     }
 
     getMeltingPoint(): number {
-        // Упрощение: точка плавления смеси определяется самым тугоплавким компонентом
-        // (если воск застыл, вся фаза теряет текучесть)
         if (this.components.length === 0) return -273.15;
-        let maxTm = -273.15;
+
+        const totalMass = this.getTotalMassGrams();
+        if (totalMass <= 0) return -273.15;
+
+        const dominant = this.findDominantComponent();
+        const isAqueousMatrix = this.isSolventWater(dominant);
+
+        // Если основная фаза — жидкий/водный раствор, растворенные соли и ионные полимеры
+        // не замораживают раствор до температуры плавления кристаллической соли (801°C),
+        // а понижают точку замерзания (криоскопия).
+        if (isAqueousMatrix) {
+            return this.calculateAqueousFreezingPoint(dominant, totalMass);
+        }
+
+        // Для неводных/жировых фаз кристаллизацию определяют структурообразующие
+        // нейтральные компоненты (воски, баттеры, жирные спирты) с долей >= 5% масс.
+        return this.calculateStructuringMeltingPoint(dominant, totalMass);
+    }
+
+    private getTotalMassGrams(): number {
+        return this.components.reduce((sum, c) => sum + c.moles * c.entity.getMass(), 0);
+    }
+
+    private findDominantComponent(): MixtureComponent {
+        let dominant = this.components[0];
+        let maxMass = -1;
         for (const c of this.components) {
-            maxTm = Math.max(maxTm, c.entity.getMeltingPoint());
+            const mass = c.moles * c.entity.getMass();
+            if (mass > maxMass) {
+                maxMass = mass;
+                dominant = c;
+            }
+        }
+        return dominant;
+    }
+
+    private isSolventWater(component: MixtureComponent): boolean {
+        const name = component.entity.getName().toLowerCase();
+        return name.includes('water') || name.includes('вода') || name.includes('aqua');
+    }
+
+    private calculateAqueousFreezingPoint(solvent: MixtureComponent, totalMass: number): number {
+        const baseTm = solvent.entity.getMeltingPoint();
+        let saltMoles = 0;
+        let maxNeutralStructuringTm = baseTm;
+
+        for (const c of this.components) {
+            const massFraction = (c.moles * c.entity.getMass()) / totalMass;
+            if (c.entity.getElectrolyteType() !== 'neutral' || c.entity.getIonicCharge() !== 0) {
+                saltMoles += c.moles;
+            } else if (massFraction >= 0.05) {
+                maxNeutralStructuringTm = Math.max(maxNeutralStructuringTm, c.entity.getMeltingPoint());
+            }
+        }
+
+        const waterMassKg = Math.max(1e-6, (solvent.moles * solvent.entity.getMass()) / 1000);
+        const cryoscopicDrop = Math.min(21.0, 1.86 * (saltMoles * 2) / waterMassKg);
+        return Math.max(maxNeutralStructuringTm, baseTm) === baseTm ? baseTm - cryoscopicDrop : maxNeutralStructuringTm;
+    }
+
+    private calculateStructuringMeltingPoint(dominant: MixtureComponent, totalMass: number): number {
+        let maxTm = dominant.entity.getMeltingPoint();
+        for (const c of this.components) {
+            const massFraction = (c.moles * c.entity.getMass()) / totalMass;
+            const isDissolvedElectrolyte = c.entity.getElectrolyteType() !== 'neutral' || c.entity.getIonicCharge() !== 0;
+            if (!isDissolvedElectrolyte && massFraction >= 0.05) {
+                maxTm = Math.max(maxTm, c.entity.getMeltingPoint());
+            }
         }
         return maxTm;
     }

@@ -1,12 +1,13 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
 import { PHSolver } from './ph-solver';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 /**
  * Решатель для расчета pH и ионной силы системы
  */
 export class IonicSolver {
     /**
-     * Рассчитывает pH водной фазы (первой фазы системы)
+     * Рассчитывает pH водной фазы системы
      */
     static calculatePH(system: IMultiphaseSystem): number {
         return PHSolver.calculatePH(system);
@@ -17,12 +18,13 @@ export class IonicSolver {
      * I = 0.5 * sum(c_i * z_i^2)
      */
     static calculateIonicStrength(system: IMultiphaseSystem): number {
-        if (system.phases.length === 0) return 0;
-        
-        const waterPhase = system.phases[0];
+        const waterPhase = PhaseTopologyHelper.findAqueousPhase(system);
+        if (!waterPhase) return 0;
+
         const components = waterPhase.composition.getComponents();
         const volumeL = waterPhase.getVolume().to('l');
-        
+        if (volumeL <= 0) return 0;
+
         let ionicStrength = 0;
         for (const c of components) {
             const charge = c.entity.getIonicCharge();

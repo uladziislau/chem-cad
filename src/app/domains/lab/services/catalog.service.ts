@@ -3,6 +3,27 @@ import { PureSubstance } from '../../../../core/entities/pure-substance';
 import { Oil } from '../../../../core/entities/oil';
 import { Surfactant } from '../../../../core/entities/surfactant';
 import { IChemicalEntity } from '../../../../core/entities/chemical-entity.interface';
+import { FormulationEntity } from '../../../../core/entities/formulation-entity';
+import { Phase } from '../../../../core/entities/phase';
+import { Mixture } from '../../../../core/entities/mixture';
+import { MultiphaseSystem } from '../../../../core/entities/multiphase-system';
+import { Mass } from '../../../../core/units/quantities';
+
+const CATALOG_WATER = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0, 0, 0.001, 1900).withHansen(15.6, 16.0, 42.3);
+const PURE_NAOH = new PureSubstance('Sodium Hydroxide', 40.0, 0, 0, 0, 2.13, 318, 0.001, 1800, 1).withElectrolyte('base', 13.8);
+const PURE_ACETIC_ACID = new PureSubstance('Acetic Acid', 60.05, 0, 0, 0, 1.049, 16.6, 0.001, 1500, 0).withHansen(14.5, 8.0, 13.5).withElectrolyte('acid', 4.76);
+
+function createAqueousSolution(name: string, solute: PureSubstance, percentSolute: number): FormulationEntity {
+  const waterMass = 100 - percentSolute;
+  const recipe = [
+    { entity: CATALOG_WATER, massGrams: waterMass, category: 'water' },
+    { entity: solute, massGrams: percentSolute, category: 'active' }
+  ];
+  const phase = new Phase(new Mixture(), new Mass(100, 'g'), 25);
+  phase.composition.addComponent(CATALOG_WATER, new Mass(waterMass, 'g'));
+  phase.composition.addComponent(solute, new Mass(percentSolute, 'g'));
+  return new FormulationEntity(name, recipe, new MultiphaseSystem([phase], []));
+}
 
 export type IngredientCategory = 'water' | 'oil' | 'surfactant' | 'active' | 'thickener' | 'solvent' | 'pigment';
 export type ProductSegment = 'cosmetics' | 'household' | 'coatings' | 'agro';
@@ -31,7 +52,7 @@ export class CatalogService {
       segments: ['cosmetics', 'household', 'coatings', 'agro'],
       pricePerKg: 0.1,
       description: 'Универсальный растворитель, основа большинства косметических средств.',
-      entity: new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0, 0, 0.001, 1900).withHansen(15.6, 16.0, 42.3)
+      entity: CATALOG_WATER
     },
     {
       id: 'ing_glycerin',
@@ -156,12 +177,12 @@ export class CatalogService {
     {
       id: 'ing_sodium_hydroxide',
       name: 'Натрия гидроксид (10%)',
-      inci: 'Sodium Hydroxide',
+      inci: 'Sodium Hydroxide (10% Aq.)',
       category: 'active',
       segments: ['cosmetics', 'household'],
       pricePerKg: 4.0,
-      description: 'Сильная щелочь для повышения pH.',
-      entity: new PureSubstance('Sodium Hydroxide', 40.0, 0, 0, 0, 1.1, 318, 0.001, 1800, 1).withElectrolyte('base', 13.8) // Сильное основание
+      description: '10% водный раствор щелочи для точного повышения pH.',
+      entity: createAqueousSolution('Sodium Hydroxide (10%)', PURE_NAOH, 10)
     },
     {
       id: 'ing_salt',
@@ -197,12 +218,12 @@ export class CatalogService {
     {
       id: 'ing_acetic_acid',
       name: 'Уксусная кислота (9%)',
-      inci: 'Acetic Acid',
+      inci: 'Acetic Acid (9% Aq.)',
       category: 'active',
       segments: ['household'],
       pricePerKg: 1.5,
-      description: 'Слабая кислота. Отличный очиститель поверхностей и кондиционер для белья.',
-      entity: new PureSubstance('Acetic Acid', 60.05, 0, 0, 0, 1.01, 16.6, 0.001, 1500, 0).withHansen(14.5, 8.0, 13.5).withElectrolyte('acid', 4.76)
+      description: '9% водный раствор слабой кислоты. Очиститель поверхностей и кондиционер.',
+      entity: createAqueousSolution('Acetic Acid (9%)', PURE_ACETIC_ACID, 9)
     },
     {
       id: 'ing_scs',

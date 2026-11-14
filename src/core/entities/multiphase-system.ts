@@ -18,6 +18,11 @@ export class MultiphaseSystem implements IMultiphaseSystem {
         for (const phase of this.phases) {
             totalGrams += phase.totalMass.to('g');
         }
+        for (const boundary of this.boundaries) {
+            for (const surf of boundary.surfactants) {
+                totalGrams += surf.moles * surf.entity.getMass();
+            }
+        }
         return new Mass(totalGrams, 'g');
     }
 
@@ -40,9 +45,13 @@ export class MultiphaseSystem implements IMultiphaseSystem {
     getGlobalComposition(): Mixture {
         const globalMix = new Mixture();
         for (const phase of this.phases) {
-            const phaseMix = phase.composition;
-            for (const comp of phaseMix.getComponents()) {
+            for (const comp of phase.composition.getComponents()) {
                 globalMix.addComponent(comp.entity, new Moles(comp.moles, 'mol'));
+            }
+        }
+        for (const boundary of this.boundaries) {
+            for (const surf of boundary.surfactants) {
+                globalMix.addComponent(surf.entity, new Moles(surf.moles, 'mol'));
             }
         }
         return globalMix;

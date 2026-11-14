@@ -66,33 +66,35 @@ export class ChemicalEngine {
       }
     }
 
-    // ШАГ 3: Кинетика и Процесс (Размер капель зависит от фаз и энергии перемешивания)
-    if (system.phases.length > 1 && context.mixingSpeedRpm > 0) {
-      const dropletSize = ProcessSolver.calculateDropletSize(system, context.mixingSpeedRpm, context.mixingTimeMinutes);
-      system.setDropletSize(dropletSize);
+    // ШАГ 3: Определение баланса ПАВ и типа эмульсии (ДО расчета процесса, вязкости и стабильности)
+    const actualHLB = FormulationSolver.calculateSystemHLB(system);
+    const hld = FormulationSolver.calculateHLD(system, context.temperatureCelsius);
+    const emulsionType = FormulationSolver.predictEmulsionType(system, context.temperatureCelsius);
+    system.setEmulsionType(emulsionType);
+
+    // ШАГ 4: Кинетика и Процесс (Размер капель зависит от сплошной фазы и энергии перемешивания)
+    if (system.phases.length > 1) {
+      if (context.mixingSpeedRpm > 0) {
+        const dropletSize = ProcessSolver.calculateDropletSize(system, context.mixingSpeedRpm, context.mixingTimeMinutes);
+        system.setDropletSize(dropletSize);
+      } else {
+        system.setDropletSize(200.0);
+      }
     }
 
-    // ШАГ 4: Ионные равновесия (pH, ионная сила - влияют на вязкость полимеров)
+    // ШАГ 5: Ионные равновесия (pH, ионная сила - влияют на вязкость полимеров)
     const ionicStrength = IonicSolver.calculateIonicStrength(system);
     const ph = IonicSolver.calculatePH(system);
 
-    // ШАГ 4.1: Проверка растворимости (зависит от ионной силы)
+    // ШАГ 5.1: Проверка растворимости (зависит от ионной силы)
     const solubilityIssues = SolubilitySolver.checkSaturation(system, ionicStrength);
 
-    // ШАГ 5: Физические макросвойства (Вязкость зависит от размера капель, ионной силы и температуры)
-    const viscosity = ViscositySolver.calculateEmulsionViscosity(system); // В будущем передавать context.temperature
+    // ШАГ 6: Физические макросвойства (Теперь учитывает корректный тип эмульсии O/W vs W/O)
+    const viscosity = ViscositySolver.calculateEmulsionViscosity(system);
 
-    // ШАГ 6: Стабильность (Зависит от вязкости, размера капель и разницы плотностей)
-    const hld = FormulationSolver.calculateHLD(system, context.temperatureCelsius);
+    // ШАГ 7: Стабильность и энергетика
     const stabilityDays = system.phases.length < 2 ? 730 : StabilitySolver.predictShelfLife(system, context.temperatureCelsius);
-
-    // ШАГ 7: Энергетика и HLB
     const enthalpy = system.phases.length > 0 ? ThermodynamicsSolver.calculateEnthalpy(system) : 0;
-    const actualHLB = FormulationSolver.calculateSystemHLB(system);
-    
-    // Определяем тип эмульсии
-    const emulsionType = FormulationSolver.predictEmulsionType(system, context.temperatureCelsius);
-    system.setEmulsionType(emulsionType);
 
     // ШАГ 8: Валидация безопасности (Финальная проверка всего состояния)
     const safetyIssues = SafetyValidator.validate(system, ph);
@@ -209,8 +211,17 @@ export class ChemicalEngine {
         boundary.addSurfactant(surf.entity as unknown as ISurfactant, moles);
       }
       boundaries.push(boundary);
-    } else if (surfactants.length > 0 && phases.length > 0) {
-      phases[0].composition.addComponent(surfactants[0].entity, new Mass(surfactants[0].massGrams, 'g'));
+    } else if (surfactants.length > 0) {
+      const targetPhase = phases[0] ?? waterPhase;
+      let extraMass = 0;
+      for (const surf of surfactants) {
+        targetPhase.composition.addComponent(surf.entity, new Mass(surf.massGrams, 'g'));
+        extraMass += surf.massGrams;
+      }
+      (targetPhase as { totalMass: Mass }).totalMass = new Mass(targetPhase.totalMass.to('g') + extraMass, 'g');
+      if (phases.length === 0) {
+        phases.push(targetPhase);
+      }
     }
 
     return new MultiphaseSystem(phases, boundaries);

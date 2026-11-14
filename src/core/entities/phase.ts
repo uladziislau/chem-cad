@@ -15,8 +15,9 @@ export class Phase implements IPhase {
 
     getVolume(): Volume {
         const density = this.getDensity(); // г/мл
+        const safeDensity = density > 0 ? density : 1.0;
         const massGrams = this.totalMass.to('g');
-        return new Volume(massGrams / density, 'ml');
+        return new Volume(massGrams / safeDensity, 'ml');
     }
 
     getViscosity(): number {

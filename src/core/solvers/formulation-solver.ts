@@ -1,6 +1,7 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
 import { ISurfactant } from '../entities/surfactant.interface';
 import { IOil } from '../entities/surfactant.interface';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 export class FormulationSolver {
     /**
@@ -112,7 +113,7 @@ export class FormulationSolver {
     }
 
     private static computeSalinity(system: IMultiphaseSystem): number {
-        const waterPhase = system.phases.find(p => p.composition.getComponents().some(c => c.entity.getName().toLowerCase().includes('water')));
+        const waterPhase = PhaseTopologyHelper.findAqueousPhase(system);
         if (!waterPhase) return 0;
         let saltMass = 0;
         for (const comp of waterPhase.composition.getComponents()) {
@@ -131,40 +132,35 @@ export class FormulationSolver {
     static predictEmulsionType(system: IMultiphaseSystem, temperatureCelsius = 25): 'O/W' | 'W/O' | 'Multiple' | 'Unknown' {
         if (system.phases.length < 2) return 'Unknown';
 
-        const hld = this.calculateHLD(system, temperatureCelsius);
-        const hlb = this.calculateSystemHLB(system);
-        
-        // Находим водную и масляную фазы (упрощенно: 0 - вода, 1 - масло)
-        const waterPhase = system.phases[0];
-        const oilPhase = system.phases[1];
-        
+        const waterPhase = PhaseTopologyHelper.findAqueousPhase(system) ?? system.phases[0];
+        const oilPhase = system.phases.find(p => p !== waterPhase) ?? system.phases[1];
+
         const volWater = waterPhase.getVolume().to('ml');
         const volOil = oilPhase.getVolume().to('ml');
         const totalVol = volWater + volOil;
-        
-        if (totalVol === 0) return 'Unknown';
-        
+        if (totalVol <= 0) return 'Unknown';
+
         const phiOil = volOil / totalVol;
         const phiWater = volWater / totalVol;
 
-        // 1. Приоритет HLD (если есть ПАВ)
-        let type: 'O/W' | 'W/O' = 'Unknown' as unknown as 'O/W' | 'W/O';
-        
+        // Катастрофическая инверсия фаз при плотной упаковке > 74%
+        if (phiOil > 0.74) return 'W/O';
+        if (phiWater > 0.74) return 'O/W';
+
+        return this.resolveEmulsionByBalance(system, temperatureCelsius, phiWater, phiOil);
+    }
+
+    private static resolveEmulsionByBalance(
+        system: IMultiphaseSystem,
+        temperatureCelsius: number,
+        phiWater: number,
+        phiOil: number
+    ): 'O/W' | 'W/O' {
+        const hlb = this.calculateSystemHLB(system);
         if (hlb > 0) {
-            // HLD < 0 -> O/W
-            // HLD > 0 -> W/O
-            // HLD ≈ 0 -> Нестабильная/Микроэмульсия (но для макро-эмульсий обычно O/W или W/O)
-            type = hld <= 0 ? 'O/W' : 'W/O';
-        } else {
-            // Если нет ПАВ, просто по объему
-            type = phiWater > phiOil ? 'O/W' : 'W/O';
+            const hld = this.calculateHLD(system, temperatureCelsius);
+            return hld <= 0 ? 'O/W' : 'W/O';
         }
-
-        // 2. Геометрические ограничения (Инверсия фаз)
-        // Если объем дисперсной фазы > 70%, она стремится стать сплошной
-        if (type === 'O/W' && phiOil > 0.74) return 'W/O';
-        if (type === 'W/O' && phiWater > 0.74) return 'O/W';
-
-        return type;
+        return phiWater > phiOil ? 'O/W' : 'W/O';
     }
 }

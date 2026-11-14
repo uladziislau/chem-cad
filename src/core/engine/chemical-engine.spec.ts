@@ -241,11 +241,11 @@ describe('ChemicalEngine Integration Tests (Scientific Calibration)', () => {
     // Let's check why it's 85.
     // Ah, surfactant is not added to waterPhase in buildBaseSystem!
     // It's added to `surfactants` array, and then distributed.
-    // Let's check the total mass of the water phase.
-    expect(waterPhase.totalMass.to('g')).toBeCloseTo(85, 1); 
-    
-    // В масляной фазе должно быть 10г масла
+    // Водная фаза (85г) + масляная фаза (10г) + адсорбированный на границе ПАВ (5г) = 100г
+    expect(waterPhase.totalMass.to('g')).toBeCloseTo(85, 1);
     expect(oilPhase.totalMass.to('g')).toBeCloseTo(10, 1);
+    expect(finalResult.system.getTotalMass().to('g')).toBeCloseTo(100, 1);
+    expect(finalResult.metrics.actualHLB).toBeGreaterThan(10);
 
     // Проверяем, что эмульсия все еще O/W
     expect(finalResult.system.getEmulsionType()).toBe('O/W');

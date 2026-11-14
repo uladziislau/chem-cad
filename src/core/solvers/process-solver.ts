@@ -1,10 +1,11 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 export class ProcessSolver {
     /**
      * Рассчитывает средний размер капель (Саутеровский диаметр, d32) в микрометрах
      * на основе параметров гомогенизации и физических свойств системы.
-     * 
+     *
      * @param system Многофазная система
      * @param rpm Скорость вращения ротора гомогенизатора (об/мин)
      * @param timeMinutes Время гомогенизации (мин)
@@ -14,14 +15,19 @@ export class ProcessSolver {
             return 0; // Нет капель в гомогенной системе
         }
 
-        const continuousPhase = system.phases[0];
+        if (rpm <= 0) {
+            return 200.0; // Без перемешивания капли остаются максимально крупными
+        }
+
+        const roles = PhaseTopologyHelper.resolveEmulsionRoles(system);
+        const continuousPhase = roles ? roles.continuousPhase : system.phases[0];
         const boundary = system.boundaries[0];
 
         const ift = boundary.getInterfacialTension(); // мН/м
         const eta_c = continuousPhase.getViscosity(); // cP
-        
+
         // Защита от деления на ноль
-        const safeRpm = Math.max(100, rpm);
+        const safeRpm = Math.max(10, rpm);
         const safeTime = Math.max(0.1, timeMinutes);
 
         // Эмпирическая модель:

@@ -45,6 +45,7 @@ export class Surfactant extends PureSubstance implements ISurfactant {
         this.pricePerKg = fallback(pricePerKg, 0);
         this.irritationIndex = fallback(irritationIndex, 0);
         this.isEcoCertified = fallback(isEcoCertified, false);
-        this.cc = fallback(cc, 0);
+        // Если характерная кривизна Cc явно не задана, оцениваем её из HLB (HLB < 10 -> Cc > 0 для W/O, HLB > 10 -> Cc < 0 для O/W)
+        this.cc = cc !== undefined ? cc : (10 - hlb) * 0.5;
     }
 }

@@ -1,5 +1,6 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
 import type { MixtureComponent } from '../entities/mixture';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 /**
  * Решатель для расчета pH системы на основе уравнения электронейтральности
@@ -9,16 +10,16 @@ export class PHSolver {
     private static readonly KW = 1e-14; // Ионное произведение воды при 25°C
 
     /**
-     * Рассчитывает pH водной фазы (первой фазы системы)
+     * Рассчитывает pH водной фазы системы
      */
     static calculatePH(system: IMultiphaseSystem): number {
-        if (system.phases.length === 0) return 7.0;
+        const waterPhase = PhaseTopologyHelper.findAqueousPhase(system);
+        if (!waterPhase) return 7.0;
 
-        const waterPhase = system.phases[0];
         const components = waterPhase.composition.getComponents();
         const volumeLiters = waterPhase.getVolume().to('l');
 
-        if (volumeLiters === 0 || components.length === 0) return 7.0;
+        if (volumeLiters <= 0 || components.length === 0) return 7.0;
 
         const electrolytes = this.collectElectrolytes(components, volumeLiters);
 

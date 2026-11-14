@@ -1,5 +1,6 @@
 import { IMultiphaseSystem } from '../entities/multiphase-system.interface';
 import { FormulationSolver } from './formulation-solver';
+import { PhaseTopologyHelper } from './phase-topology.helper';
 
 /**
  * Решатель для углубленного анализа стабильности эмульсий
@@ -7,16 +8,16 @@ import { FormulationSolver } from './formulation-solver';
 export class StabilitySolver {
     /**
      * Рассчитывает скорость седиментации или кремирования (мм/день)
-     * На основе закона Стокса
+     * На основе закона Стокса с учетом реальной сплошной и дисперсной фаз (O/W vs W/O).
      */
     static calculateSeparationRate(system: IMultiphaseSystem): number {
-        if (system.phases.length < 2) return 0;
+        const roles = PhaseTopologyHelper.resolveEmulsionRoles(system);
+        if (!roles) return 0;
 
         // Freeze Lock: если хотя бы одна фаза застыла, макроскопическое движение прекращается
         if (system.phases.some(p => p.isSolid())) return 0;
 
-        const continuousPhase = system.phases[0];
-        const dispersedPhase = system.phases[1];
+        const { continuousPhase, dispersedPhase } = roles;
 
         const rho_c = continuousPhase.getDensity(); // г/мл
         const rho_d = dispersedPhase.getDensity(); // г/мл

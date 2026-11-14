@@ -28,29 +28,24 @@ export class PhaseBoundary implements IPhaseBoundary {
     }
 
     getInterfacialTension(): number {
-        // Упрощенная модель снижения натяжения (модель Ленгмюра-Шишковского)
-        // γ = γ0 - Σ(Δγ_i)
-        // Для прототипа: каждый моль ПАВ на границе снижает натяжение 
-        // в зависимости от его эффективности (HLB).
-        
+        // Модель снижения натяжения на основе объемной концентрации (моль/л),
+        // что гарантирует масштабную инвариантность при изменении размера партии.
         let tensionReduction = 0;
         const totalMoles = this.surfactants.reduce((sum, s) => sum + s.moles, 0);
-        
+
         if (totalMoles === 0) return this.baseTension;
+
+        const volL = Math.max(0.001, this.phaseA.getVolume().to('l') + this.phaseB.getVolume().to('l'));
 
         for (const s of this.surfactants) {
             const surfactant = s.entity as ISurfactant;
-            // Коэффициент эффективности: ПАВ с HLB ближе к 10 (сбалансированные) 
-            // обычно лучше снижают натяжение на границе масло/вода.
             const efficiency = 1.0 / (1.0 + Math.abs(surfactant.hlb - 10) * 0.1);
-            
-            // Логарифмическая зависимость от концентрации (примерная)
-            tensionReduction += efficiency * Math.log1p(s.moles * 1000) * 10;
+            const molarity = s.moles / volL;
+
+            tensionReduction += efficiency * Math.log1p(molarity * 200) * 10;
         }
 
         const finalTension = this.baseTension - tensionReduction;
-        
-        // Натяжение не может быть отрицательным, минимум ~0.1 мН/м для сверхнизких систем
         return Math.max(0.1, finalTension);
     }
 }
