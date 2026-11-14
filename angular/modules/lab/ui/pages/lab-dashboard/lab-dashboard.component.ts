@@ -10,6 +10,7 @@ import { SafetyBannerComponent } from './safety-banner.component';
 import { VersionHistoryComponent } from './version-history.component';
 import { ReasoningPanelComponent } from './reasoning-panel.component';
 import { DetergencyPanelComponent } from './detergency-panel.component';
+import { DryingPanelComponent } from './drying-panel.component';
 import { RouterLink } from '@angular/router';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
@@ -17,7 +18,7 @@ import { formatReportText, formatReportCsv, downloadText } from '@adapters/repor
 @Component({
   selector: 'app-lab-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, MicroscopeViewComponent, TargetSpecsComponent, VersionHistoryComponent, SafetyBannerComponent, ReasoningPanelComponent, DetergencyPanelComponent, RouterLink],
+  imports: [CommonModule, FormsModule, MicroscopeViewComponent, TargetSpecsComponent, VersionHistoryComponent, SafetyBannerComponent, ReasoningPanelComponent, DetergencyPanelComponent, DryingPanelComponent, RouterLink],
   templateUrl: './lab-dashboard.component.html',
   styles: [`
     :host { display: block; }

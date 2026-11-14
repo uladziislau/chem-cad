@@ -5,6 +5,7 @@ import { ChemicalEngine, SimulationResult } from '@root-modules/engine/chemical-
 import { RawIngredientInput } from '@root-modules/engine/types';
 import { FormulationSolver } from '@root-modules/solvers/formulation-solver';
 import { DetergencySolver } from '@root-modules/solvers/detergency-solver';
+import { DryingSolver } from '@root-modules/solvers/drying-solver';
 import { FormulationEntity } from '@domain/entities/formulation-entity';
 
 export interface FormulationItem {
@@ -106,6 +107,13 @@ export class FormulationStateService {
     const sys = this.system();
     if (!sys) return null;
     return DetergencySolver.evaluate(sys);
+  });
+
+  /** Отчёт о времени высыхания (DryingSolver). */
+  public readonly dryingReport = computed(() => {
+    const sys = this.system();
+    if (!sys) return null;
+    return DryingSolver.evaluate(sys, this.targetTemperature());
   });
 
   // --- Actions ---
