@@ -1,11 +1,11 @@
-import { MultiphaseSystem } from '../../core/entities/multiphase-system';
-import { Phase } from '../../core/entities/phase';
-import { Mixture } from '../../core/entities/mixture';
-import { Mass } from '../../core/units/quantities';
-import { PureSubstance } from '../../core/entities/pure-substance';
-import { Surfactant } from '../../core/entities/surfactant';
-import { IonicSolver } from '../../core/solvers/ionic-solver';
-import { SafetyValidator } from '../../core/solvers/safety-validator';
+import { MultiphaseSystem } from '@domain/entities/multiphase-system';
+import { Phase } from '@domain/entities/phase';
+import { Mixture } from '@domain/entities/mixture';
+import { Mass } from '@root-modules/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Surfactant } from '@domain/entities/surfactant';
+import { IonicSolver } from '@root-modules/solvers/ionic-solver';
+import { SafetyValidator } from '@root-modules/solvers/safety-validator';
 
 describe('Safety & Integrity Integration Test', () => {
   

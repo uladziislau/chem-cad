@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalSpecies } from '../../core/domain/entities/chemical-species';
-import { DomainPhase } from '../../core/domain/entities/domain-phase';
-import { DomainPhaseBoundary } from '../../core/domain/entities/domain-phase-boundary';
-import { ColloidalSystem } from '../../core/domain/entities/colloidal-system';
-import { ElectrokineticAspect } from '../../core/domain/aspects/electrokinetic.aspect';
-import { DropletSpectrum } from '../../core/domain/values/droplet-spectrum';
-import { ColloidalStabilityService } from '../../core/domain/services/colloidal-stability.service';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
+import { DomainPhase } from '@domain/entities/domain-phase';
+import { DomainPhaseBoundary } from '@domain/entities/domain-phase-boundary';
+import { ColloidalSystem } from '@domain/entities/colloidal-system';
+import { ElectrokineticAspect } from '@domain/aspects/electrokinetic.aspect';
+import { DropletSpectrum } from '@domain/values/droplet-spectrum';
+import { ColloidalStabilityService } from '@domain/services/colloidal-stability.service';
 
 describe('Domain ColloidalStabilityService (Энергетические барьеры DLVO и дзета-потенциал)', () => {
   const water = new ChemicalSpecies('water', 'Вода', 'Aqua', 18.015, 1.0);

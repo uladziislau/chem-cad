@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild, AfterViewInit, OnChanges, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { IMultiphaseSystem } from '../../../../../core/entities/multiphase-system.interface';
-import { IPhase } from '../../../../../core/entities/phase.interface';
+import { IMultiphaseSystem } from '@domain/entities/multiphase-system.interface';
+import { IPhase } from '@domain/entities/phase.interface';
 
 @Component({
   selector: 'app-microscope-view',

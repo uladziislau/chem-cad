@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { PureSubstance } from '../../../../core/entities/pure-substance';
-import { Oil } from '../../../../core/entities/oil';
-import { Surfactant } from '../../../../core/entities/surfactant';
-import { IChemicalEntity } from '../../../../core/entities/chemical-entity.interface';
-import { FormulationEntity } from '../../../../core/entities/formulation-entity';
-import { Phase } from '../../../../core/entities/phase';
-import { Mixture } from '../../../../core/entities/mixture';
-import { MultiphaseSystem } from '../../../../core/entities/multiphase-system';
-import { Mass } from '../../../../core/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Oil } from '@domain/entities/oil';
+import { Surfactant } from '@domain/entities/surfactant';
+import { IChemicalEntity } from '@domain/entities/chemical-entity.interface';
+import { FormulationEntity } from '@domain/entities/formulation-entity';
+import { Phase } from '@domain/entities/phase';
+import { Mixture } from '@domain/entities/mixture';
+import { MultiphaseSystem } from '@domain/entities/multiphase-system';
+import { Mass } from '@root-modules/units/quantities';
 
 const CATALOG_WATER = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0, 0, 0.001, 1900).withHansen(15.6, 16.0, 42.3);
 const PURE_NAOH = new PureSubstance('Sodium Hydroxide', 40.0, 0, 0, 0, 2.13, 318, 0.001, 1800, 1).withElectrolyte('base', 13.8);

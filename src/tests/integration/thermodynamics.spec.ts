@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { PureSubstance } from '../../core/entities/pure-substance';
-import { Mixture } from '../../core/entities/mixture';
-import { Moles } from '../../core/units/quantities';
-import { IActivityModel } from '../../core/thermodynamics/activity-model.interface';
-import { MiscibilitySolver } from '../../core/solvers/miscibility-solver';
-import { HansenParameters } from '../../core/thermodynamics/hansen-parameters';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Mixture } from '@domain/entities/mixture';
+import { Moles } from '@root-modules/units/quantities';
+import { IActivityModel } from '@root-modules/thermodynamics/activity-model.interface';
+import { MiscibilitySolver } from '@root-modules/solvers/miscibility-solver';
+import { HansenParameters } from '@root-modules/thermodynamics/hansen-parameters';
 
 describe('Thermodynamics Integration (Неидеальные смеси и смешиваемость Хансена)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

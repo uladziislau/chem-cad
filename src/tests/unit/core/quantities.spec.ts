@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { PureSubstance } from '../../../core/entities/pure-substance';
-import { Mass, Volume } from '../../../core/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Mass, Volume } from '@root-modules/units/quantities';
 
 describe('Unit Safety (Физические размерности ChemCore)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

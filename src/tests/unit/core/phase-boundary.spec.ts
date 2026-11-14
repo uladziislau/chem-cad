@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { PureSubstance } from '../../../core/entities/pure-substance';
-import { Mixture } from '../../../core/entities/mixture';
-import { Phase } from '../../../core/entities/phase';
-import { PhaseBoundary } from '../../../core/entities/phase-boundary';
-import { Oil } from '../../../core/entities/oil';
-import { Surfactant } from '../../../core/entities/surfactant';
-import { Mass, Moles } from '../../../core/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Mixture } from '@domain/entities/mixture';
+import { Phase } from '@domain/entities/phase';
+import { PhaseBoundary } from '@domain/entities/phase-boundary';
+import { Oil } from '@domain/entities/oil';
+import { Surfactant } from '@domain/entities/surfactant';
+import { Mass, Moles } from '@root-modules/units/quantities';
 
 describe('PhaseBoundary (Поверхностные явления и адсорбция ПАВ)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

@@ -1,14 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { MultiphaseSystem } from '../../core/entities/multiphase-system';
-import { Phase } from '../../core/entities/phase';
-import { Mixture } from '../../core/entities/mixture';
-import { PhaseBoundary } from '../../core/entities/phase-boundary';
-import { Mass } from '../../core/units/quantities';
-import { ViscositySolver } from '../../core/solvers/viscosity-solver';
-import { StabilitySolver } from '../../core/solvers/stability-solver';
-import { PureSubstance } from '../../core/entities/pure-substance';
-import { Oil } from '../../core/entities/oil';
-import { ChemTelemetry } from '../../core/testing/test-telemetry';
+import { MultiphaseSystem } from '@domain/entities/multiphase-system';
+import { Phase } from '@domain/entities/phase';
+import { Mixture } from '@domain/entities/mixture';
+import { PhaseBoundary } from '@domain/entities/phase-boundary';
+import { Mass } from '@root-modules/units/quantities';
+import { ViscositySolver } from '@root-modules/solvers/viscosity-solver';
+import { StabilitySolver } from '@root-modules/solvers/stability-solver';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Oil } from '@domain/entities/oil';
+import { ChemTelemetry } from '@root-modules/testing/test-telemetry';
 
 describe('Physical Solvers Integration (Вязкость, седиментация Стокса и стабильность)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalEngine, RawIngredientInput } from '../../core/engine/chemical-engine';
-import { SimulationContext } from '../../core/engine/simulation-context';
-import { PureSubstance } from '../../core/entities/pure-substance';
-import { Oil } from '../../core/entities/oil';
-import { Surfactant } from '../../core/entities/surfactant';
+import { ChemicalEngine, RawIngredientInput } from '@root-modules/engine/chemical-engine';
+import { SimulationContext } from '@root-modules/engine/simulation-context';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Oil } from '@domain/entities/oil';
+import { Surfactant } from '@domain/entities/surfactant';
 import {
   ChemicalSpecies,
   DomainPhase,
@@ -17,7 +17,7 @@ import {
   PHEquilibriumService,
   NonNewtonianRheologyService,
   ColloidalStabilityService
-} from '../../core/domain';
+} from '@domain';
 
 describe('Audit Regression Suite (Верификация исправлений 11 выявленных дефектов)', () => {
   const WATER = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0, 0, 0.001, 1900).withHansen(15.6, 16.0, 42.3);

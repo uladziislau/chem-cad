@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { PureSubstance } from '../../../core/entities/pure-substance';
-import { Mixture } from '../../../core/entities/mixture';
-import { Phase } from '../../../core/entities/phase';
-import { Mass } from '../../../core/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { Mixture } from '@domain/entities/mixture';
+import { Phase } from '@domain/entities/phase';
+import { Mass } from '@root-modules/units/quantities';
 
 describe('Phase (Макроскопические свойства фаз)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

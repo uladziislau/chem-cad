@@ -1,7 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { ManufacturingProcess, ProcessStep, OperationType } from '../../../../core/engine/process-step.interface';
-import { ChemicalEngine, SimulationResult } from '../../../../core/engine/chemical-engine';
-import { RawIngredientInput } from '../../../../core/engine/types';
+import { ManufacturingProcess, ProcessStep, OperationType } from '@root-modules/engine/process-step.interface';
+import { ChemicalEngine, SimulationResult } from '@root-modules/engine/chemical-engine';
+import { RawIngredientInput } from '@root-modules/engine/types';
 
 @Injectable({
   providedIn: 'root'

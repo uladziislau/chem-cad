@@ -16,6 +16,7 @@
     "module": "preserve",
     "paths": {
       "@root-modules/*": ["./modules/*"],
+      "@domain": ["./domain/index.ts"],
       "@domain/*": ["./domain/*"],
       "@data/*": ["./data/*"],
       "@adapters/*": ["./angular/adapters/*"],

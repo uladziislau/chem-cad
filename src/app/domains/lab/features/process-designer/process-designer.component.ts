@@ -5,7 +5,7 @@ import { ProcessStateService } from '../../services/process-state.service';
 import { CatalogService, ICatalogIngredient } from '../../services/catalog.service';
 import { RouterLink } from '@angular/router';
 import { MicroscopeViewComponent } from '../lab-dashboard/microscope-view.component';
-import { OperationType } from '../../../../../core/engine/process-step.interface';
+import { OperationType } from '@root-modules/engine/process-step.interface';
 
 @Component({
   selector: 'app-process-designer',

@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalSpecies } from '../../core/domain/entities/chemical-species';
-import { DomainPhase } from '../../core/domain/entities/domain-phase';
-import { ColloidalSystem } from '../../core/domain/entities/colloidal-system';
-import { PolymericNetworkAspect } from '../../core/domain/aspects/polymeric-network.aspect';
-import { NonNewtonianRheologyService } from '../../core/domain/services/non-newtonian-rheology.service';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
+import { DomainPhase } from '@domain/entities/domain-phase';
+import { ColloidalSystem } from '@domain/entities/colloidal-system';
+import { PolymericNetworkAspect } from '@domain/aspects/polymeric-network.aspect';
+import { NonNewtonianRheologyService } from '@domain/services/non-newtonian-rheology.service';
 
 describe('Domain NonNewtonianRheologyService (Неньютоновская реология и разворачивание гелей)', () => {
   const water = new ChemicalSpecies('water', 'Вода', 'Aqua', 18.015, 1.0);

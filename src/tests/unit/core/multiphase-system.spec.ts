@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { MultiphaseSystem } from '../../../core/entities/multiphase-system';
-import { Phase } from '../../../core/entities/phase';
-import { Mixture } from '../../../core/entities/mixture';
-import { PhaseBoundary } from '../../../core/entities/phase-boundary';
-import { Mass } from '../../../core/units/quantities';
-import { ChemTelemetry } from '../../../core/testing/test-telemetry';
+import { MultiphaseSystem } from '@domain/entities/multiphase-system';
+import { Phase } from '@domain/entities/phase';
+import { Mixture } from '@domain/entities/mixture';
+import { PhaseBoundary } from '@domain/entities/phase-boundary';
+import { Mass } from '@root-modules/units/quantities';
+import { ChemTelemetry } from '@root-modules/testing/test-telemetry';
 
 describe('MultiphaseSystem (Эмульсионный контейнер и коалесценция)', () => {
   it('должен рассчитывать индекс стабильности', () => {

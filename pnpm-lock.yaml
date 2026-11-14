@@ -251,6 +251,9 @@ importers:
       '@types/three':
         specifier: ^0.183.1
         version: 0.183.1
+      '@webgpu/types':
+        specifier: ^0.1.74
+        version: 0.1.74
       angular-eslint:
         specifier: 21.1.0
         version: 21.1.0(@angular/cli@22.2.2(@types/node@20.19.43)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript-eslint@8.47.0(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(typescript@6.0.3)

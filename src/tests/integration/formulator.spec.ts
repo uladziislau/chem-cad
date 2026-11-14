@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { Oil } from '../../core/entities/oil';
-import { Surfactant } from '../../core/entities/surfactant';
-import { AutoFormulator } from '../../core/solvers/auto-formulator';
-import { Mass } from '../../core/units/quantities';
-import { PureSubstance } from '../../core/entities/pure-substance';
-import { ChemicalEngine } from '../../core/engine/chemical-engine';
-import { SimulationContext } from '../../core/engine/simulation-context';
-import { ChemTelemetry } from '../../core/testing/test-telemetry';
+import { Oil } from '@domain/entities/oil';
+import { Surfactant } from '@domain/entities/surfactant';
+import { AutoFormulator } from '@root-modules/solvers/auto-formulator';
+import { Mass } from '@root-modules/units/quantities';
+import { PureSubstance } from '@domain/entities/pure-substance';
+import { ChemicalEngine } from '@root-modules/engine/chemical-engine';
+import { SimulationContext } from '@root-modules/engine/simulation-context';
+import { ChemTelemetry } from '@root-modules/testing/test-telemetry';
 
 describe('AutoFormulator Integration (Автоматическая оптимизация рецептур и эмульсий)', () => {
   const water = new PureSubstance('Water', 18.015, 8.07131, 1730.63, 233.426, 1.0);

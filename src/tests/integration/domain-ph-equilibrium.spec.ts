@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalSpecies } from '../../core/domain/entities/chemical-species';
-import { DomainPhase } from '../../core/domain/entities/domain-phase';
-import { AcidBaseAspect } from '../../core/domain/aspects/acid-base.aspect';
-import { AcidBaseProfile } from '../../core/domain/values/acid-base-profile';
-import { PHEquilibriumService } from '../../core/domain/services/ph-equilibrium.service';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
+import { DomainPhase } from '@domain/entities/domain-phase';
+import { AcidBaseAspect } from '@domain/aspects/acid-base.aspect';
+import { AcidBaseProfile } from '@domain/values/acid-base-profile';
+import { PHEquilibriumService } from '@domain/services/ph-equilibrium.service';
 
 describe('Domain PHEquilibriumService (Строгий расчет кислотно-основного равновесия)', () => {
   const water = new ChemicalSpecies('water', 'Вода', 'Aqua', 18.015, 1.0);

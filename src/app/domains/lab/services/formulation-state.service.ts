@@ -1,10 +1,10 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { ICatalogIngredient, CatalogService } from './catalog.service';
-import { SimulationContext } from '../../../../core/engine/simulation-context';
-import { ChemicalEngine, SimulationResult } from '../../../../core/engine/chemical-engine';
-import { RawIngredientInput } from '../../../../core/engine/types';
-import { FormulationSolver } from '../../../../core/solvers/formulation-solver';
-import { FormulationEntity } from '../../../../core/entities/formulation-entity';
+import { SimulationContext } from '@root-modules/engine/simulation-context';
+import { ChemicalEngine, SimulationResult } from '@root-modules/engine/chemical-engine';
+import { RawIngredientInput } from '@root-modules/engine/types';
+import { FormulationSolver } from '@root-modules/solvers/formulation-solver';
+import { FormulationEntity } from '@domain/entities/formulation-entity';
 
 export interface FormulationItem {
   id: string;

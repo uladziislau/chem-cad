@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalSpecies } from '../../../core/domain/entities/chemical-species';
-import { AcidBaseAspect } from '../../../core/domain/aspects/acid-base.aspect';
-import { AcidBaseProfile } from '../../../core/domain/values/acid-base-profile';
-import { SurfaceActiveAspect } from '../../../core/domain/aspects/surface-active.aspect';
-import { VolatilityAspect } from '../../../core/domain/aspects/volatility.aspect';
-import { HansenSolubilityAspect } from '../../../core/domain/aspects/hansen-solubility.aspect';
-import { HansenVector } from '../../../core/domain/values/hansen-vector';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
+import { AcidBaseAspect } from '@domain/aspects/acid-base.aspect';
+import { AcidBaseProfile } from '@domain/values/acid-base-profile';
+import { SurfaceActiveAspect } from '@domain/aspects/surface-active.aspect';
+import { VolatilityAspect } from '@domain/aspects/volatility.aspect';
+import { HansenSolubilityAspect } from '@domain/aspects/hansen-solubility.aspect';
+import { HansenVector } from '@domain/values/hansen-vector';
 
 describe('Domain ChemicalSpecies (Компонентная модель полифункциональных молекул)', () => {
   it('должен моделировать Лимонную Кислоту (хелатор, буфер и растворитель)', () => {

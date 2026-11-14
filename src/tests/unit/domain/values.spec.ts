@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { Concentration } from '../../../core/domain/values/concentration';
-import { HansenVector } from '../../../core/domain/values/hansen-vector';
-import { AcidBaseProfile } from '../../../core/domain/values/acid-base-profile';
-import { DropletSpectrum } from '../../../core/domain/values/droplet-spectrum';
+import { Concentration } from '@domain/values/concentration';
+import { HansenVector } from '@domain/values/hansen-vector';
+import { AcidBaseProfile } from '@domain/values/acid-base-profile';
+import { DropletSpectrum } from '@domain/values/droplet-spectrum';
 
 describe('Domain Value Objects (Строгая типизация физико-химических величин)', () => {
   it('Concentration: должен корректно связывать молярность, массовую и мольную доли', () => {

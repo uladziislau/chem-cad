@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { ChemicalSpecies } from '../../../core/domain/entities/chemical-species';
-import { DomainPhase } from '../../../core/domain/entities/domain-phase';
-import { DomainPhaseBoundary } from '../../../core/domain/entities/domain-phase-boundary';
-import { ColloidalSystem } from '../../../core/domain/entities/colloidal-system';
-import { SurfaceActiveAspect } from '../../../core/domain/aspects/surface-active.aspect';
-import { DropletSpectrum } from '../../../core/domain/values/droplet-spectrum';
+import { ChemicalSpecies } from '@domain/entities/chemical-species';
+import { DomainPhase } from '@domain/entities/domain-phase';
+import { DomainPhaseBoundary } from '@domain/entities/domain-phase-boundary';
+import { ColloidalSystem } from '@domain/entities/colloidal-system';
+import { SurfaceActiveAspect } from '@domain/aspects/surface-active.aspect';
+import { DropletSpectrum } from '@domain/values/droplet-spectrum';
 
 describe('Domain ColloidalSystem Aggregate (Фазы, границы раздела и морфология)', () => {
   const water = new ChemicalSpecies('water', 'Вода', 'Aqua', 18.015, 1.0);
