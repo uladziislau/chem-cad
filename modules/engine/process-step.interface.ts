@@ -55,11 +55,10 @@ export function validateProcessStep(step: ProcessStep): string[] {
   if (step.rpm !== undefined && (!Number.isFinite(step.rpm) || step.rpm < 0)) {
     issues.push('Скорость вращения должна быть неотрицательным числом');
   }
-  for (const ing of step.ingredients ?? []) {
-    if (!Number.isFinite(ing.massGrams) || ing.massGrams <= 0) {
-      issues.push(`Некорректная масса компонента «${ing.entity?.getName?.() ?? 'ингредиент'}»`);
-      break;
-    }
+
+  const firstBad = (step.ingredients ?? []).find(i => !Number.isFinite(i.massGrams) || i.massGrams <= 0);
+  if (firstBad) {
+    issues.push(`Некорректная масса компонента «${firstBad.entity?.getName?.() ?? 'ингредиент'}»`);
   }
 
   return issues;

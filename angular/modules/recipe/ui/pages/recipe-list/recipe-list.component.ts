@@ -12,6 +12,11 @@ import { downloadJson } from '../../../../download-json';
       <div class="flex items-center justify-between">
         <h1 class="text-3xl font-bold text-slate-900">База рецептур</h1>
         <div class="flex items-center gap-2">
+          <a routerLink="/recipes/create"
+             class="inline-flex items-center gap-1 px-4 py-2 bg-indigo-600 rounded-lg text-sm font-medium text-white hover:bg-indigo-700">
+            <span class="material-icons text-[18px]">add</span>
+            Новая рецептура
+          </a>
           <button (click)="exportAll()" title="Экспорт всех рецептур в JSON"
                   class="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">
             <span class="material-icons text-[18px]">download</span>

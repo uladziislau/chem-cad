@@ -6,24 +6,34 @@ const STORAGE_KEY = 'chem-cad.recipes.v1';
 const VALID_CATEGORIES: Record<string, true> = { hygiene: true, perfume: true, cleaning: true };
 const VALID_DIFFICULTIES: Record<string, true> = { easy: true, medium: true, hard: true };
 
+function isStringArray(v: unknown): v is string[] {
+  return Array.isArray(v) && v.every(s => typeof s === 'string');
+}
+
+function isRecipeIngredient(v: unknown): boolean {
+  if (typeof v !== 'object' || v === null) return false;
+  const i = v as Record<string, unknown>;
+  return typeof i['ingredientId'] === 'string'
+    && typeof i['percentage'] === 'number'
+    && typeof i['purpose'] === 'string';
+}
+
+function isNonEmptyString(v: unknown): v is string {
+  return typeof v === 'string' && v.length > 0;
+}
+
 function isRecipe(value: unknown): value is Recipe {
   if (typeof value !== 'object' || value === null) return false;
   const r = value as Record<string, unknown>;
   const ingredients = r['ingredients'];
-  const steps = r['steps'];
-  const warnings = r['safetyWarnings'];
-  return typeof r['id'] === 'string' && (r['id'] as string).length > 0
-    && typeof r['name'] === 'string' && (r['name'] as string).length > 0
+  return isNonEmptyString(r['id'])
+    && isNonEmptyString(r['name'])
     && typeof r['category'] === 'string' && VALID_CATEGORIES[r['category'] as string] === true
     && typeof r['description'] === 'string'
     && typeof r['difficulty'] === 'string' && VALID_DIFFICULTIES[r['difficulty'] as string] === true
-    && Array.isArray(ingredients) && ingredients.every(i =>
-      typeof i === 'object' && i !== null
-      && typeof (i as Record<string, unknown>)['ingredientId'] === 'string'
-      && typeof (i as Record<string, unknown>)['percentage'] === 'number'
-      && typeof (i as Record<string, unknown>)['purpose'] === 'string')
-    && Array.isArray(steps) && steps.every(s => typeof s === 'string')
-    && Array.isArray(warnings) && warnings.every(s => typeof s === 'string');
+    && Array.isArray(ingredients) && ingredients.every(isRecipeIngredient)
+    && isStringArray(r['steps'])
+    && isStringArray(r['safetyWarnings']);
 }
 
 /**
