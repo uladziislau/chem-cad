@@ -7,6 +7,7 @@ import { FormulationSolver } from '@root-modules/solvers/formulation-solver';
 import { DetergencySolver } from '@root-modules/solvers/detergency-solver';
 import { DryingSolver } from '@root-modules/solvers/drying-solver';
 import { FormulationEntity } from '@domain/entities/formulation-entity';
+import { FormulationPersistenceService } from './formulation-persistence.service';
 
 export interface FormulationItem {
   id: string;
@@ -19,6 +20,7 @@ export interface FormulationItem {
 })
 export class FormulationStateService {
   private catalogService = inject(CatalogService);
+  private persistence = inject(FormulationPersistenceService);
 
   // --- Writable State ---
   public readonly items = signal<FormulationItem[]>([]);
@@ -28,6 +30,10 @@ export class FormulationStateService {
   public readonly mixerRpm = signal<number>(3000); // Обороты гомогенизатора
   public readonly mixingTimeMinutes = signal<number>(10); // Время смешивания
 
+  constructor() {
+    // Восстанавливаем сохранённую рецептуру и премиксы при старте
+    this.restorePersistedState();
+  }
   // --- Computed Properties ---
   
   public readonly totalMass = computed(() => {
@@ -122,26 +128,30 @@ export class FormulationStateService {
     this.items.update(items => {
       const existing = items.find(i => i.ingredient.id === ingredient.id);
       if (existing) {
-        return items.map(i => i.ingredient.id === ingredient.id 
-          ? { ...i, massGrams: i.massGrams + massGrams } 
+        return items.map(i => i.ingredient.id === ingredient.id
+          ? { ...i, massGrams: i.massGrams + massGrams }
           : i);
       }
       return [...items, { id: Math.random().toString(36).substr(2, 9), ingredient, massGrams }];
     });
+    this.persistItems();
   }
 
   updateMass(itemId: string, massGrams: number) {
-    this.items.update(items => 
+    this.items.update(items =>
       items.map(i => i.id === itemId ? { ...i, massGrams } : i)
     );
+    this.persistItems();
   }
 
   removeIngredient(itemId: string) {
     this.items.update(items => items.filter(i => i.id !== itemId));
+    this.persistItems();
   }
 
   clearItems() {
     this.items.set([]);
+    this.persistItems();
   }
 
   setTemperature(temp: number) {
@@ -172,5 +182,24 @@ export class FormulationStateService {
     };
 
     this.catalogService.addIngredient(newIngredient);
+    this.persistence.savePremixes();
+  }
+
+  private restorePersistedState() {
+    this.persistence.loadPremixes();
+    const stored = this.persistence.loadItems();
+    if (stored.length === 0) return;
+    const restored: FormulationItem[] = [];
+    for (const s of stored) {
+      const ing = this.catalogService.getIngredientById(s.ingredientId);
+      if (ing) {
+        restored.push({ id: Math.random().toString(36).substr(2, 9), ingredient: ing, massGrams: s.massGrams });
+      }
+    }
+    this.items.set(restored);
+  }
+
+  private persistItems() {
+    this.persistence.saveItems(this.items());
   }
 }
