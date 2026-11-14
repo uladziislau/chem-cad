@@ -58,4 +58,51 @@ test.describe('Lab Dashboard', () => {
     // Item should still be there
     await expect(page.locator('text=Добавьте ингредиенты')).not.toBeVisible();
   });
+
+  test('version history: save, restore, diff', async ({ page }) => {
+    const vh = page.locator('app-version-history');
+
+    // Add two ingredients
+    await page.locator('.group button').first().click();
+    await page.locator('.group button').nth(1).click();
+    await page.waitForTimeout(500);
+
+    // Open version history panel
+    await vh.locator('button').first().click();
+    await expect(vh.locator('input[placeholder="Название версии"]')).toBeVisible();
+
+    // Save v1
+    await vh.locator('input[placeholder="Название версии"]').fill('Версия А');
+    await vh.locator('button:has-text("Сохранить")').click();
+    await expect(vh.locator('span:has-text("v1 — Версия А")')).toBeVisible();
+
+    // Save v2 (same items)
+    await vh.locator('input[placeholder="Название версии"]').fill('Версия Б');
+    await vh.locator('button:has-text("Сохранить")').click();
+    await expect(vh.locator('span:has-text("v2 — Версия Б")')).toBeVisible();
+
+    // Compare v1 vs v2
+    await vh.locator('select').nth(0).selectOption({ index: 1 });
+    await vh.locator('select').nth(1).selectOption({ index: 2 });
+    await vh.locator('button:has-text("Показать diff")').click();
+    await page.waitForTimeout(300);
+    await expect(vh.locator('text=⬇ Скачать SDS')).toBeVisible();
+  });
+
+  test('version history: delete version', async ({ page }) => {
+    const vh = page.locator('app-version-history');
+
+    // Add ingredient and save version
+    await page.locator('.group button').first().click();
+    await page.waitForTimeout(500);
+
+    await vh.locator('button').first().click();
+    await vh.locator('input[placeholder="Название версии"]').fill('Тестовая');
+    await vh.locator('button:has-text("Сохранить")').click();
+    await expect(vh.locator('span:has-text("v1 — Тестовая")')).toBeVisible();
+
+    // Delete it
+    await vh.locator('button:has-text("×")').click();
+    await expect(vh.locator('text=Нет сохранённых версий')).toBeVisible();
+  });
 });
