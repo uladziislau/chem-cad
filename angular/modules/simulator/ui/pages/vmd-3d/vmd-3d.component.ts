@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { computeRepulsion, applySprings, integrateParticles } from '@root-modules/simulator/vmd-3d.physics';
 import { createVmdScene } from '@root-modules/simulator/vmd-3d.scene';
 import { ATOM_COLORS } from '@root-modules/simulator/vmd-3d.colors';
+import { BondRenderer, AtomLabelRenderer } from '@root-modules/simulator/vmd-3d.bonds';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas3d') canvasRef!: ElementRef<HTMLCanvasElement>;
   
   isRunning = signal(true);
+  renderMode = signal<'lines' | 'ball-stick' | 'space-fill'>('lines');
+  showLabels = signal(false);
   fps = signal(0);
   temperature = signal(0);
   currentMoleculeName = signal<string>('');
@@ -43,6 +46,9 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
   private bondsLines!: THREE.LineSegments;
   private dummy = new THREE.Object3D();
   private colorObj = new THREE.Color();
+  private bondRenderer: BondRenderer | null = null;
+  private labelRenderer: AtomLabelRenderer | null = null;
+  private currentSymbols: string[] = [];
   
   private animationFrameId = 0;
   private lastTime = 0;
@@ -77,6 +83,8 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
     this.subs.unsubscribe();
     if (this.isBrowser) {
       if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+      if (this.bondRenderer) this.bondRenderer.dispose();
+      if (this.labelRenderer) this.labelRenderer.dispose();
       if (this.renderer) this.renderer.dispose();
     }
   }
@@ -147,6 +155,7 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
     this.setupBuffers(500);
     this.setupBondsBuffer(0);
     this.bondPairs = [];
+    this.currentSymbols = new Array(500).fill('Ar');
 
     for (let i = 0; i < this.particleCount; i++) {
       this.positions[i * 3] = Math.random() * this.boxSize;
@@ -169,7 +178,7 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
     this.currentMoleculeName.set(name);
     const atoms = molecule.atoms;
     const bonds = molecule.bonds;
-    
+    this.currentSymbols = atoms.map(a => a.symbol);
     this.setupBuffers(atoms.length);
     this.setupBondsBuffer(bonds.length);
     this.bondPairs = [];
@@ -213,6 +222,73 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
 
   toggleSimulation() {
     this.isRunning.set(!this.isRunning());
+  }
+
+  setRenderMode(mode: 'lines' | 'ball-stick' | 'space-fill') {
+    this.renderMode.set(mode);
+    this.applyRenderMode();
+  }
+
+  toggleLabels() {
+    this.showLabels.set(!this.showLabels());
+    this.applyRenderMode();
+  }
+
+  private applyRenderMode() {
+    const mode = this.renderMode();
+    const showLabels = this.showLabels();
+
+    // Линии vs цилиндры
+    if (this.bondsLines) {
+      this.bondsLines.visible = mode === 'lines';
+    }
+    if (!this.bondRenderer && mode === 'ball-stick') {
+      this.bondRenderer = new BondRenderer(this.scene);
+    }
+    if (this.bondRenderer) {
+      if (mode === 'ball-stick') {
+        this.bondRenderer.update(this.positions, this.bondPairs, 0.15);
+      } else {
+        this.bondRenderer.clear();
+      }
+    }
+
+    // Подписи
+    if (!this.labelRenderer && showLabels) {
+      this.labelRenderer = new AtomLabelRenderer(this.scene);
+      this.labelRenderer.update(this.positions, this.currentSymbols);
+    }
+    if (this.labelRenderer) {
+      if (showLabels) {
+        this.labelRenderer.updatePositions(this.positions);
+      } else {
+        this.labelRenderer.clear();
+      }
+    }
+
+    // Space-fill: увеличить атомы до ван-дер-ваальсовых радиусов
+    this.applyAtomScaling(mode);
+  }
+
+  private applyAtomScaling(mode: 'lines' | 'ball-stick' | 'space-fill') {
+    if (!this.instancedMesh) return;
+    const vdwRadii: Record<string, number> = { H: 1.2, C: 1.7, O: 1.52, N: 1.55, S: 1.8, P: 1.8, Cl: 1.75, F: 1.47, Br: 1.85, I: 1.98 };
+    for (let i = 0; i < this.particleCount; i++) {
+      const symbol = this.currentSymbols[i] ?? 'C';
+      let scale: number;
+      if (mode === 'space-fill') {
+        scale = (vdwRadii[symbol] ?? 1.7) / 1.0;
+      } else if (symbol === 'H') {
+        scale = 0.6;
+      } else {
+        scale = 1.0;
+      }
+      this.dummy.position.set(this.positions[i * 3], this.positions[i * 3 + 1], this.positions[i * 3 + 2]);
+      this.dummy.scale.set(scale, scale, scale);
+      this.dummy.updateMatrix();
+      this.instancedMesh.setMatrixAt(i, this.dummy.matrix);
+    }
+    this.instancedMesh.instanceMatrix.needsUpdate = true;
   }
 
   private loop(timestamp: number) {
@@ -275,22 +351,33 @@ export class Vmd3dComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateBondsMesh() {
-    if (!this.bondsLines || this.bondPairs.length === 0) return;
-    
-    const positions = this.bondsLines.geometry.attributes['position'].array as Float32Array;
-    let idx = 0;
-    for (let b = 0; b < this.bondPairs.length; b += 2) {
-      const i = this.bondPairs[b] * 3;
-      const j = this.bondPairs[b + 1] * 3;
-      
-      positions[idx++] = this.positions[i];
-      positions[idx++] = this.positions[i+1];
-      positions[idx++] = this.positions[i+2];
-      
-      positions[idx++] = this.positions[j];
-      positions[idx++] = this.positions[j+1];
-      positions[idx++] = this.positions[j+2];
+    const mode = this.renderMode();
+
+    // Линии
+    if (mode === 'lines' && this.bondsLines && this.bondPairs.length > 0) {
+      const positions = this.bondsLines.geometry.attributes['position'].array as Float32Array;
+      let idx = 0;
+      for (let b = 0; b < this.bondPairs.length; b += 2) {
+        const i = this.bondPairs[b] * 3;
+        const j = this.bondPairs[b + 1] * 3;
+        positions[idx++] = this.positions[i];
+        positions[idx++] = this.positions[i+1];
+        positions[idx++] = this.positions[i+2];
+        positions[idx++] = this.positions[j];
+        positions[idx++] = this.positions[j+1];
+        positions[idx++] = this.positions[j+2];
+      }
+      this.bondsLines.geometry.attributes['position'].needsUpdate = true;
     }
-    this.bondsLines.geometry.attributes['position'].needsUpdate = true;
+
+    // Ball-and-stick: обновляем цилиндры
+    if (mode === 'ball-stick' && this.bondRenderer && this.bondPairs.length > 0) {
+      this.bondRenderer.update(this.positions, this.bondPairs, 0.15);
+    }
+
+    // Подписи
+    if (this.showLabels() && this.labelRenderer) {
+      this.labelRenderer.updatePositions(this.positions);
+    }
   }
 }

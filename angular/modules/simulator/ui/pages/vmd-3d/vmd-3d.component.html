@@ -10,7 +10,34 @@
           </p>
         </div>
         
-        <div class="flex gap-3">
+        <div class="flex gap-3 items-center">
+          <!-- Render Mode -->
+          <div class="flex bg-slate-800/80 border border-slate-700 rounded-lg overflow-hidden">
+            <button (click)="setRenderMode('lines')"
+                    [class]="renderMode() === 'lines' ? 'bg-indigo-500/30 text-indigo-300' : 'text-slate-400'"
+                    class="px-3 py-2 text-xs font-medium transition-colors hover:bg-slate-700">
+              Линии
+            </button>
+            <button (click)="setRenderMode('ball-stick')"
+                    [class]="renderMode() === 'ball-stick' ? 'bg-indigo-500/30 text-indigo-300' : 'text-slate-400'"
+                    class="px-3 py-2 text-xs font-medium transition-colors hover:bg-slate-700 border-l border-slate-700">
+              Ball-Stick
+            </button>
+            <button (click)="setRenderMode('space-fill')"
+                    [class]="renderMode() === 'space-fill' ? 'bg-indigo-500/30 text-indigo-300' : 'text-slate-400'"
+                    class="px-3 py-2 text-xs font-medium transition-colors hover:bg-slate-700 border-l border-slate-700">
+              Space Fill
+            </button>
+          </div>
+
+          <!-- Labels Toggle -->
+          <button (click)="toggleLabels()"
+                  [class]="showLabels() ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'"
+                  class="px-3 py-2 border rounded-lg text-xs font-medium transition-colors hover:bg-slate-700">
+            {{ showLabels() ? 'ABC' : 'Aa' }}
+          </button>
+
+          <!-- Simulation Controls -->
           <button 
             (click)="toggleSimulation()"
             [class]="isRunning() ? 'bg-rose-500/20 text-rose-400 border-rose-500/50' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'"
