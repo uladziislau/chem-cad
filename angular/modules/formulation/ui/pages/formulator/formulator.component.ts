@@ -1,8 +1,10 @@
 import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
 import { FormulationDraftService } from '@modules/formulation/services/formulation-draft.service';
+import { RecipeService } from '@modules/recipe/services/recipe.service';
+import { formulationToRecipe } from '@root-modules/recipe/formulation-export';
 import { Ingredient, FormulationItem } from '@root-modules/formulation/models/ingredient.model';
 
 @Component({
@@ -120,6 +122,38 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
                   </ul>
                 </div>
               }
+
+              <!-- Save as Recipe -->
+              <div class="mt-8 pt-6 border-t border-slate-200">
+                <h3 class="text-lg font-semibold text-slate-900 mb-4">Сохранить как рецепт</h3>
+                <div class="flex flex-wrap items-end gap-3">
+                  <label class="flex flex-col gap-1 text-xs font-medium text-slate-600">
+                    Название
+                    <input type="text" [(ngModel)]="recipeDraft.name"
+                           placeholder="Моя рецептура"
+                           class="px-3 py-2 border border-slate-300 rounded-lg text-sm w-56 focus:ring-indigo-500 focus:border-indigo-500">
+                  </label>
+                  <label class="flex flex-col gap-1 text-xs font-medium text-slate-600">
+                    Категория
+                    <select [(ngModel)]="recipeDraft.category"
+                            class="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                      <option value="hygiene">Гигиена</option>
+                      <option value="perfume">Парфюмерия</option>
+                      <option value="cleaning">Клининг</option>
+                    </select>
+                  </label>
+                  <button type="button" (click)="saveAsRecipe()"
+                          class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700">
+                    Сохранить рецепт
+                  </button>
+                </div>
+                @if (recipeSaved(); as savedId) {
+                  <p class="mt-3 text-sm text-green-700">
+                    Рецепт сохранён —
+                    <a [routerLink]="['/recipes', 'detail', savedId]" class="font-medium underline">открыть</a>
+                  </p>
+                }
+              </div>
             }
           </div>
         </div>
@@ -130,6 +164,13 @@ import { Ingredient, FormulationItem } from '@root-modules/formulation/models/in
 export class FormulatorComponent {
   private ingredientService = inject(IngredientService);
   private draftService = inject(FormulationDraftService);
+  private recipeService = inject(RecipeService);
+  private router = inject(Router);
+
+  /** Черновик экспорта в Recipe: имя + категория. */
+  recipeDraft = { name: '', category: 'hygiene' as 'hygiene' | 'perfume' | 'cleaning' };
+  /** id сохранённого рецепта для ссылки «открыть»; null — ещё не сохраняли. */
+  recipeSaved = signal<string | null>(null);
 
   availableIngredients = this.ingredientService.getIngredients();
   /** Рецептура автосохраняется в localStorage через FormulationDraftService. */
@@ -166,6 +207,23 @@ export class FormulatorComponent {
   private setFormulation(items: FormulationItem[]) {
     this.formulation.set(items);
     this.draftService.setItems(items);
+  }
+
+  /** Сохраняет текущую рецептуру как пользовательский Recipe и переходит к нему. */
+  saveAsRecipe() {
+    const items = this.formulation();
+    if (items.length === 0) return;
+    const draft = formulationToRecipe(items.map(i => ({
+      ingredientId: i.ingredient.id,
+      name: i.ingredient.name,
+      type: i.ingredient.type,
+      description: i.ingredient.description,
+      safety: i.ingredient.safety,
+      percentage: i.percentage,
+    })), this.recipeDraft);
+    const recipe = this.recipeService.addRecipe(draft);
+    this.recipeSaved.set(recipe.id);
+    this.router.navigate(['/recipes', 'detail', recipe.id]);
   }
 
   getTypeName(type: string): string {
