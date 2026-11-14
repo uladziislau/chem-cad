@@ -7,6 +7,7 @@ export * from './ph-solver';
 export * from './phase-topology.helper';
 export * from './process-solver';
 export * from './safety-validator';
+export * from './detergency-solver';
 export * from './solubility-solver';
 export * from './stability-solver';
 export * from './thermodynamics-solver';

@@ -4,6 +4,7 @@ import { SimulationContext } from '@root-modules/engine/simulation-context';
 import { ChemicalEngine, SimulationResult } from '@root-modules/engine/chemical-engine';
 import { RawIngredientInput } from '@root-modules/engine/types';
 import { FormulationSolver } from '@root-modules/solvers/formulation-solver';
+import { DetergencySolver } from '@root-modules/solvers/detergency-solver';
 import { FormulationEntity } from '@domain/entities/formulation-entity';
 
 export interface FormulationItem {
@@ -98,6 +99,13 @@ export class FormulationStateService {
     const sys = this.system();
     if (!sys) return 0;
     return FormulationSolver.calculateHLBMismatch(sys);
+  });
+
+  /** Отчёт о моющей способности (DetergencySolver). */
+  public readonly detergentReport = computed(() => {
+    const sys = this.system();
+    if (!sys) return null;
+    return DetergencySolver.evaluate(sys);
   });
 
   // --- Actions ---

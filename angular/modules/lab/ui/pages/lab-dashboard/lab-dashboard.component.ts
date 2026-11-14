@@ -9,6 +9,7 @@ import { TargetSpecsComponent } from './target-specs.component';
 import { SafetyBannerComponent } from './safety-banner.component';
 import { VersionHistoryComponent } from './version-history.component';
 import { ReasoningPanelComponent } from './reasoning-panel.component';
+import { DetergencyPanelComponent } from './detergency-panel.component';
 import { RouterLink } from '@angular/router';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
@@ -16,7 +17,7 @@ import { formatReportText, formatReportCsv, downloadText } from '@adapters/repor
 @Component({
   selector: 'app-lab-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, MicroscopeViewComponent, TargetSpecsComponent, VersionHistoryComponent, SafetyBannerComponent, ReasoningPanelComponent, RouterLink],
+  imports: [CommonModule, FormsModule, MicroscopeViewComponent, TargetSpecsComponent, VersionHistoryComponent, SafetyBannerComponent, ReasoningPanelComponent, DetergencyPanelComponent, RouterLink],
   templateUrl: './lab-dashboard.component.html',
   styles: [`
     :host { display: block; }
