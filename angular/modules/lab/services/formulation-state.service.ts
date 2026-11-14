@@ -124,6 +124,10 @@ export class FormulationStateService {
     this.items.update(items => items.filter(i => i.id !== itemId));
   }
 
+  clearItems() {
+    this.items.set([]);
+  }
+
   setTemperature(temp: number) {
     this.targetTemperature.set(temp);
   }

@@ -260,4 +260,8 @@ export class CatalogService {
   getIngredientById(id: string): ICatalogIngredient | undefined {
     return this.getAllIngredients().find(ing => ing.id === id);
   }
+
+  findByEntity(entity: IChemicalEntity): ICatalogIngredient | undefined {
+    return this.getAllIngredients().find(ing => ing.entity === entity);
+  }
 }
