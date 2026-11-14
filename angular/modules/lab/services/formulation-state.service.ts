@@ -45,7 +45,7 @@ export class FormulationStateService {
 
   // --- Core Engine Execution ---
   
-  private readonly simulationResult = computed<SimulationResult | null>(() => {
+  public readonly simulationResult = computed<SimulationResult | null>(() => {
     const currentItems = this.items();
     if (currentItems.length === 0) return null;
 
