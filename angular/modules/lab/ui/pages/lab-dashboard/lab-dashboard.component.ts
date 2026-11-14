@@ -15,6 +15,7 @@ import { FormulationOptimizerComponent } from './formulation-optimizer.component
 import { RouterLink } from '@angular/router';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
+import { FormulationReportService } from '@modules/lab/services/formulation-report.service';
 
 @Component({
   selector: 'app-lab-dashboard',
@@ -33,6 +34,7 @@ export class LabDashboardComponent {
   catalog = inject(CatalogService);
   state = inject(FormulationStateService);
   autarky = inject(AutarkyService);
+  private reportService = inject(FormulationReportService);
   Math = Math;
 
   searchQuery = signal('');
@@ -75,5 +77,10 @@ export class LabDashboardComponent {
     } else {
       downloadText(`chem-report-${stamp}.csv`, formatReportCsv(result), 'text/csv');
     }
+  }
+
+  /** Открыть печатный отчёт (HTML → PDF через браузер). */
+  printReport() {
+    this.reportService.printReport();
   }
 }

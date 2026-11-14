@@ -180,4 +180,34 @@ test.describe('Lab Dashboard', () => {
     await expect(banner.locator('text=Совместимость')).toBeVisible({ timeout: 5000 });
     await expect(banner.locator('text=Конфликт ПАВ')).toBeVisible();
   });
+  test('PDF export button opens print window', async ({ page }) => {
+    // Add ingredient first
+    await page.locator('.group button').first().click();
+    await page.waitForTimeout(500);
+
+    // Mock window.open and window.print
+    await page.evaluate(() => {
+      (window as any).__printCalled = false;
+      (window as any).__openedWindow = null;
+      window.open = (...args: any[]) => {
+        const mockWin: any = {
+          document: { write: () => {}, close: () => {} },
+          focus: () => {},
+          print: () => { (window as any).__printCalled = true; },
+          close: () => {}
+        };
+        (window as any).__openedWindow = mockWin;
+        return mockWin;
+      };
+      window.print = () => { (window as any).__printCalled = true; };
+    });
+
+    // Click PDF button
+    await page.locator('button[title="Печать / PDF отчёт"]').click();
+    await page.waitForTimeout(500);
+
+    // Verify print was called
+    const printCalled = await page.evaluate(() => (window as any).__printCalled);
+    expect(printCalled).toBe(true);
+  });
 });
