@@ -135,9 +135,11 @@ export class SdsService {
 
   /** Проверить, является ли ингредиент опасным. */
   private isHazardous(ing: ICatalogIngredient & { percent: number }): boolean {
+    if (ing.safetyLevel === 'danger' || ing.safetyLevel === 'hazardous') return true;
+    if (ing.safetyLevel === 'caution') return ing.percent > 5;
+    // Fallback для ингредиентов без явного уровня
     const name = ing.name.toLowerCase();
     const category = ing.category;
-    // Щелочи, кислоты, спирты, ПАВ с высоким содержанием
     return (
       category === 'active' && (name.includes('натрия') || name.includes('гидроксид') || name.includes('кислот')) ||
       name.includes('спирт') ||
@@ -146,16 +148,24 @@ export class SdsService {
     );
   }
 
-  /** Получить GHS-коды для ингредиента. */
+  /** GHS-эвристики по ключевым словам в названии. */
+  private static readonly GHS_RULES: { pattern: RegExp; codes: string[] }[] = [
+    { pattern: /натрия гидроксид|гидроксид/, codes: ['H314'] },
+    { pattern: /кислот/, codes: ['H315', 'H319'] },
+    { pattern: /спирт|isoprop/, codes: ['H225', 'H319'] },
+    { pattern: /sls|лаурет|кокосульфат/, codes: ['H315', 'H319'] },
+    { pattern: /хлорид/, codes: ['H315', 'H319'] }
+  ];
+
+  /** Получить GHS-коды для ингредиента — сначала из каталога, потом эвристика. */
   private getGhsFor(ing: ICatalogIngredient & { percent: number }): string[] {
+    if (ing.ghsCodes && ing.ghsCodes.length > 0) return ing.ghsCodes;
     const name = ing.name.toLowerCase();
-    const codes: string[] = [];
-    if (name.includes('натрия гидроксид') || name.includes('гидроксид')) codes.push('H314');
-    if (name.includes('кислот') && !name.includes('лимонная')) codes.push('H315', 'H319');
-    if (name.includes('спирт') || name.includes('isoprop')) codes.push('H225', 'H319');
-    if (name.includes('sls') || name.includes('лаурет') || name.includes('кокосульфат')) codes.push('H315', 'H319');
-    if (name.includes('хлорид')) codes.push('H315', 'H319');
-    return codes;
+    const codes = new Set<string>();
+    for (const rule of SdsService.GHS_RULES) {
+      if (rule.pattern.test(name)) rule.codes.forEach(c => codes.add(c));
+    }
+    return Array.from(codes);
   }
 
   /** Собрать все уникальные GHS-коды. */

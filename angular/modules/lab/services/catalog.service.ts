@@ -37,6 +37,12 @@ export interface ICatalogIngredient {
   pricePerKg: number;
   description: string;
   entity: IChemicalEntity;
+  /** GHS-коды опасности (H-коды). Пустой массив = не опасен. */
+  ghsCodes?: string[];
+  /** Уровень безопасности для домашнего использования. */
+  safetyLevel?: 'safe' | 'caution' | 'hazardous' | 'danger';
+  /** Рекомендации по СИЗ (средства индивидуальной защиты). */
+  ppe?: string[];
 }
 
 @Injectable({
@@ -52,7 +58,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household', 'coatings', 'agro'],
       pricePerKg: 0.1,
       description: 'Универсальный растворитель, основа большинства косметических средств.',
-      entity: CATALOG_WATER
+      entity: CATALOG_WATER,
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_glycerin',
@@ -62,7 +71,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 3.5,
       description: 'Мощный увлажнитель (хумектант), притягивает влагу.',
-      entity: new PureSubstance('Glycerin', 92.09, 0, 0, 0, 1.26, 18, 0.00001, 4000).withHansen(17.4, 11.3, 29.3)
+      entity: new PureSubstance('Glycerin', 92.09, 0, 0, 0, 1.26, 18, 0.00001, 4000).withHansen(17.4, 11.3, 29.3),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_almond_oil',
@@ -72,7 +84,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 12.0,
       description: 'Легкое питательное масло, богатое олеиновой кислотой.',
-      entity: new Oil('Almond Oil', 800, 6.0, 0, 0, false, 0, 0, 0, 0.9, -10, 0.0001, 3500, 0, 12).withHansen(16.0, 3.0, 4.0)
+      entity: new Oil('Almond Oil', 800, 6.0, 0, 0, false, 0, 0, 0, 0.9, -10, 0.0001, 3500, 0, 12).withHansen(16.0, 3.0, 4.0),
+      ghsCodes: ['H317'],
+      safetyLevel: 'safe',
+      ppe: ['Перчатки при склонности к аллергии']
     },
     {
       id: 'ing_shea_butter',
@@ -82,7 +97,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 15.0,
       description: 'Твердое масло (баттер), отличные защитные свойства.',
-      entity: new Oil('Shea Butter', 850, 8.0, 0, 0, false, 0, 0, 0, 0.92, 35, 0.0001, 4000, 0, 14).withHansen(16.0, 3.0, 4.0)
+      entity: new Oil('Shea Butter', 850, 8.0, 0, 0, false, 0, 0, 0, 0.92, 35, 0.0001, 4000, 0, 14).withHansen(16.0, 3.0, 4.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_polysorbate_20',
@@ -92,7 +110,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 8.0,
       description: 'Неионогенный ПАВ, солюбилизатор. HLB = 16.7.',
-      entity: new Surfactant('Polysorbate-20', 1228, 16.7, 0, 0, false, 0, 0, 0, 1.1, -5, 0.00005, 4500, 0, -2.0).withHansen(16.0, 8.0, 10.0)
+      entity: new Surfactant('Polysorbate-20', 1228, 16.7, 0, 0, false, 0, 0, 0, 1.1, -5, 0.00005, 4500, 0, -2.0).withHansen(16.0, 8.0, 10.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_cetyl_alcohol',
@@ -102,7 +123,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 6.5,
       description: 'Жирный спирт, соэмульгатор и загуститель для эмульсий.',
-      entity: new Oil('Cetyl Alcohol', 242.44, 15.5, 0, 0, false, 0, 0, 0, 0.81, 49, 0.0001, 3800, 0, 10).withHansen(16.2, 3.0, 9.0)
+      entity: new Oil('Cetyl Alcohol', 242.44, 15.5, 0, 0, false, 0, 0, 0, 0.81, 49, 0.0001, 3800, 0, 10).withHansen(16.2, 3.0, 9.0),
+      ghsCodes: ['H315', 'H319'],
+      safetyLevel: 'caution',
+      ppe: ['Перчатки', 'Очки']
     },
     {
       id: 'ing_jojoba_oil',
@@ -112,7 +136,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 45.0,
       description: 'Жидкий воск, по составу близок к себуму кожи. Очень стабильно.',
-      entity: new Oil('Jojoba Oil', 600, 6.5, 45, 0, true, 0, 0, 0, 0.86, 10, 0.0001, 3600, 0, 15).withHansen(16.0, 2.0, 3.0)
+      entity: new Oil('Jojoba Oil', 600, 6.5, 45, 0, true, 0, 0, 0, 0.86, 10, 0.0001, 3600, 0, 15).withHansen(16.0, 2.0, 3.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_caprylic',
@@ -122,7 +149,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 9.5,
       description: 'Фракционированное кокосовое масло. Легкий эмолент, не окисляется.',
-      entity: new Oil('Caprylic Triglycerides', 408, 5.0, 9.5, 0, false, 0, 0, 0, 0.95, -5, 0.0001, 3200, 0, 9).withHansen(16.0, 4.0, 5.0)
+      entity: new Oil('Caprylic Triglycerides', 408, 5.0, 9.5, 0, false, 0, 0, 0, 0.95, -5, 0.0001, 3200, 0, 9).withHansen(16.0, 4.0, 5.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_olivem_1000',
@@ -132,7 +162,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 35.0,
       description: 'Растительный эмульгатор из оливкового масла. Создает жидкокристаллические структуры.',
-      entity: new Surfactant('Olivem 1000', 500, 9.0, 35, 0, true, 0, 0, 0, 1.05, 65, 0.0001, 4200, 0, -0.5).withHansen(16.5, 5.0, 8.0)
+      entity: new Surfactant('Olivem 1000', 500, 9.0, 35, 0, true, 0, 0, 0, 1.05, 65, 0.0001, 4200, 0, -0.5).withHansen(16.5, 5.0, 8.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_glyceryl_stearate',
@@ -142,7 +175,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 7.0,
       description: 'Низко-HLB эмульгатор (HLB 3.8). Используется как со-эмульгатор.',
-      entity: new Surfactant('Glyceryl Stearate', 358.56, 3.8, 7, 0, false, 0, 0, 0, 0.97, 55, 0.0001, 4000, 0, 1.5).withHansen(16.0, 4.0, 6.0)
+      entity: new Surfactant('Glyceryl Stearate', 358.56, 3.8, 7, 0, false, 0, 0, 0, 0.97, 55, 0.0001, 4000, 0, 1.5).withHansen(16.0, 4.0, 6.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_panthenol',
@@ -152,7 +188,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 28.0,
       description: 'Провитамин B5. Заживляет, успокаивает и увлажняет кожу.',
-      entity: new PureSubstance('Panthenol', 205.25, 0, 0, 0, 1.2, -20, 0.00001, 5000).withHansen(17.0, 10.0, 25.0)
+      entity: new PureSubstance('Panthenol', 205.25, 0, 0, 0, 1.2, -20, 0.00001, 5000).withHansen(17.0, 10.0, 25.0),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     {
       id: 'ing_xanthan_gum',
@@ -162,7 +201,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household', 'coatings'],
       pricePerKg: 18.0,
       description: 'Натуральный гелеобразователь и стабилизатор эмульсий.',
-      entity: new PureSubstance('Xanthan Gum', 1000000, 0, 0, 0, 1.5, 300, 0.01, 1500, -1).withSolubility(1, 0.5)
+      entity: new PureSubstance('Xanthan Gum', 1000000, 0, 0, 0, 1.5, 300, 0.01, 1500, -1).withSolubility(1, 0.5),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: ['Респиратор при работе с порошком']
     },
     {
       id: 'ing_citric_acid',
@@ -172,7 +214,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 5.0,
       description: 'Регулятор pH, хелатирующий агент.',
-      entity: new PureSubstance('Citric Acid', 192.12, 0, 0, 0, 1.66, 153, 0.001, 2000, 0).withHansen(17.0, 12.0, 20.0).withElectrolyte('acid', [3.13, 4.76, 6.40])
+      entity: new PureSubstance('Citric Acid', 192.12, 0, 0, 0, 1.66, 153, 0.001, 2000, 0).withHansen(17.0, 12.0, 20.0).withElectrolyte('acid', [3.13, 4.76, 6.40]),
+      ghsCodes: ['H319'],
+      safetyLevel: 'caution',
+      ppe: ['Очки']
     },
     {
       id: 'ing_sodium_hydroxide',
@@ -182,7 +227,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 4.0,
       description: '10% водный раствор щелочи для точного повышения pH.',
-      entity: createAqueousSolution('Sodium Hydroxide (10%)', PURE_NAOH, 10)
+      entity: createAqueousSolution('Sodium Hydroxide (10%)', PURE_NAOH, 10),
+      ghsCodes: ['H314', 'H290'],
+      safetyLevel: 'danger',
+      ppe: ['Перчатки', 'Очки', 'Фартук', 'Вентиляция']
     },
     {
       id: 'ing_salt',
@@ -192,7 +240,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 2.0,
       description: 'Электролит, влияет на вязкость и стабильность.',
-      entity: new PureSubstance('Sodium Chloride', 58.44, 0, 0, 0, 2.16, 801, 0.001, 1500, 1).withElectrolyte('salt')
+      entity: new PureSubstance('Sodium Chloride', 58.44, 0, 0, 0, 2.16, 801, 0.001, 1500, 1).withElectrolyte('salt'),
+      ghsCodes: [],
+      safetyLevel: 'safe',
+      ppe: []
     },
     // --- НОВЫЕ ИНГРЕДИЕНТЫ ДЛЯ АВТАРКИИ ---
     {
@@ -203,7 +254,10 @@ export class CatalogService {
       segments: ['household', 'coatings'],
       pricePerKg: 6.0,
       description: 'Мощный растворитель. Быстро испаряется, не оставляет разводов (для стекол).',
-      entity: new PureSubstance('Isopropanol', 60.1, 0, 0, 0, 0.786, -89, 0.0005, 1200).withHansen(15.8, 6.1, 16.4)
+      entity: new PureSubstance('Isopropanol', 60.1, 0, 0, 0, 0.786, -89, 0.0005, 1200).withHansen(15.8, 6.1, 16.4),
+      ghsCodes: ['H225', 'H319', 'H336'],
+      safetyLevel: 'hazardous',
+      ppe: ['Перчатки', 'Очки', 'Вентиляция', 'Нет открытого огня']
     },
     {
       id: 'ing_linseed_oil',
@@ -213,7 +267,10 @@ export class CatalogService {
       segments: ['coatings'],
       pricePerKg: 8.0,
       description: 'Высыхающее масло. Полимеризуется на воздухе, образуя защитную пленку для дерева.',
-      entity: new Oil('Linseed Oil', 878, 0, 8, 0, false, 0, 0, 0, 0.93, -20, 0.0001, 3500, 0, 13).withHansen(16.0, 3.0, 4.0)
+      entity: new Oil('Linseed Oil', 878, 0, 8, 0, false, 0, 0, 0, 0.93, -20, 0.0001, 3500, 0, 13).withHansen(16.0, 3.0, 4.0),
+      ghsCodes: ['H317'],
+      safetyLevel: 'caution',
+      ppe: ['Перчатки']
     },
     {
       id: 'ing_acetic_acid',
@@ -223,7 +280,10 @@ export class CatalogService {
       segments: ['household'],
       pricePerKg: 1.5,
       description: '9% водный раствор слабой кислоты. Очиститель поверхностей и кондиционер.',
-      entity: createAqueousSolution('Acetic Acid (9%)', PURE_ACETIC_ACID, 9)
+      entity: createAqueousSolution('Acetic Acid (9%)', PURE_ACETIC_ACID, 9),
+      ghsCodes: ['H315', 'H319'],
+      safetyLevel: 'caution',
+      ppe: ['Очки', 'Перчатки']
     },
     {
       id: 'ing_scs',
@@ -233,7 +293,10 @@ export class CatalogService {
       segments: ['cosmetics', 'household'],
       pricePerKg: 12.0,
       description: 'Анионный ПАВ из кокосового масла. Дает обильную пену.',
-      entity: new Surfactant('Sodium Coco-Sulfate', 232, 40, 12, 5, false, 0, 0, 0, 1.1, 20, 0.0001, 3000, -1, -3.0).withHansen(16.0, 10.0, 12.0).withElectrolyte('salt')
+      entity: new Surfactant('Sodium Coco-Sulfate', 232, 40, 12, 5, false, 0, 0, 0, 1.1, 20, 0.0001, 3000, -1, -3.0).withHansen(16.0, 10.0, 12.0).withElectrolyte('salt'),
+      ghsCodes: ['H315', 'H319'],
+      safetyLevel: 'caution',
+      ppe: ['Перчатки', 'Очки']
     },
     {
       id: 'ing_cetrimonium',
@@ -243,7 +306,10 @@ export class CatalogService {
       segments: ['cosmetics'],
       pricePerKg: 18.0,
       description: 'Катионный ПАВ. Кондиционирующий агент, антистатик.',
-      entity: new Surfactant('Cetrimonium Chloride', 320, 15, 18, 3, false, 0, 0, 0, 0.9, 0, 0.0001, 2500, 1, -2.5).withHansen(16.0, 8.0, 10.0).withElectrolyte('salt')
+      entity: new Surfactant('Cetrimonium Chloride', 320, 15, 18, 3, false, 0, 0, 0, 0.9, 0, 0.0001, 2500, 1, -2.5).withHansen(16.0, 8.0, 10.0).withElectrolyte('salt'),
+      ghsCodes: ['H315', 'H318'],
+      safetyLevel: 'caution',
+      ppe: ['Перчатки', 'Очки']
     }
   ];
 
