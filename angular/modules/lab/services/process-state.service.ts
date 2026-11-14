@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { ManufacturingProcess, ProcessStep, OperationType } from '@root-modules/engine/process-step.interface';
+import { ManufacturingProcess, ProcessStep, OperationType, validateProcessStep } from '@root-modules/engine/process-step.interface';
 import { ChemicalEngine, SimulationResult } from '@root-modules/engine/chemical-engine';
 import { RawIngredientInput } from '@root-modules/engine/types';
 import { ProcessPersistenceService } from './process-persistence.service';
@@ -38,6 +38,16 @@ export class ProcessStateService {
     const results = this.simulationResults();
     const index = this.activeStepIndex();
     return results[index] || null;
+  });
+
+  /** Карта stepId → список ошибок валидации (только невалидные шаги). */
+  public readonly stepIssues = computed(() => {
+    const map = new Map<string, string[]>();
+    for (const step of this.currentProcess().steps) {
+      const issues = validateProcessStep(step);
+      if (issues.length > 0) map.set(step.id, issues);
+    }
+    return map;
   });
 
   // --- Actions ---

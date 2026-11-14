@@ -46,6 +46,25 @@ test.describe('Process Designer', () => {
     await expect(durationInput).toHaveValue('30');
   });
 
+  test('invalid duration shows validation error', async ({ page }) => {
+    await page.getByRole('button', { name: 'Нагреть' }).click();
+    await expect(page.getByText('Шаг 1')).toBeVisible();
+
+    // Сначала нет ошибок
+    await expect(page.getByText('Ошибки параметров')).not.toBeVisible();
+
+    // Обнуляем длительность — появляется ошибка
+    const durationInput = page.locator('input[type="number"]').first();
+    await durationInput.fill('0');
+    await expect(page.getByText('Ошибки параметров')).toBeVisible();
+    await expect(page.getByText('Ошибки валидации')).toBeVisible();
+    await expect(page.getByText(/Длительность должна быть положительным/)).toBeVisible();
+
+    // Возвращаем валидное значение — ошибка исчезает
+    await durationInput.fill('10');
+    await expect(page.getByText('Ошибки параметров')).not.toBeVisible();
+  });
+
   test('evolution panel shows metrics after steps', async ({ page }) => {
     // Add ADD step with ingredient, then MIX step
     await page.locator('button[title="Добавить компоненты"]').click();
