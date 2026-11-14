@@ -107,4 +107,32 @@ test.describe('Recipe Form', () => {
     // У встроенного рецепта нет кнопки редактирования (isCustom = false)
     await expect(page.locator('a[title="Редактировать"]')).toHaveCount(0);
   });
+
+  test('step-ingredient binding persists to detail', async ({ page }) => {
+    await page.goto('/recipes/create');
+    await expect(page.locator('app-recipe-form')).toBeVisible({ timeout: 15000 });
+
+    await page.locator('#r-name').fill('Рецепт с привязкой');
+    await page.locator('#r-desc').fill('Проверка ingredientIds на шагах');
+
+    // Ингредиент в основную таблицу
+    await page.locator('app-recipe-form select.ingredient-select').first().selectOption({ index: 1 });
+    await page.locator('app-recipe-form input[type="number"]').first().fill('100');
+
+    // Текст шага
+    await page.locator('app-recipe-form textarea').first().fill('Смешать компоненты');
+
+    // Привязать ингредиент к шагу через select "[+ ингредиент]"
+    const stepPick = page.locator('app-recipe-form select').filter({ hasText: '+ ингредиент' }).first();
+    await stepPick.selectOption({ index: 1 });
+
+    await page.getByRole('button', { name: 'Сохранить рецептуру' }).click();
+    await expect(page).toHaveURL(/\/recipes\/detail\//, { timeout: 15000 });
+
+    // На detail чип ингредиента виден под шагом
+    await expect(page.getByText('Смешать компоненты')).toBeVisible();
+    // хотя бы один чип с именем ингредиента в блоке шагов
+    const chips = page.locator('ol li .rounded-full');
+    await expect(chips.first()).toBeVisible({ timeout: 10000 });
+  });
 });

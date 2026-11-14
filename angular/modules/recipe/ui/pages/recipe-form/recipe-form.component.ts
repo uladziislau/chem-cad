@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
-import { Recipe, RecipeIngredient } from '@root-modules/recipe/models/recipe.model';
+import { Recipe, RecipeIngredient, RecipeStep } from '@root-modules/recipe/models/recipe.model';
 
 type Category = 'hygiene' | 'perfume' | 'cleaning';
 type Difficulty = 'easy' | 'medium' | 'hard';
@@ -25,13 +25,20 @@ interface DraftIngredient extends RecipeIngredient {
   rowId: number;
 }
 
+interface DraftStep extends RecipeStep {
+  /** ключ строки для trackBy */
+  rowId: number;
+  /** временный выбор ингредиента в UI (не сохраняется) */
+  pickIngredientId: string;
+}
+
 interface Draft {
   name: string;
   category: Category;
   difficulty: Difficulty;
   description: string;
   ingredients: DraftIngredient[];
-  steps: string[];
+  steps: DraftStep[];
   safetyWarnings: string[];
 }
 
@@ -39,6 +46,10 @@ let rowSeq = 0;
 
 function emptyIngredient(): DraftIngredient {
   return { rowId: ++rowSeq, ingredientId: '', percentage: 0, purpose: '' };
+}
+
+function emptyStep(): DraftStep {
+  return { rowId: ++rowSeq, text: '', ingredientIds: [], pickIngredientId: '', durationMinutes: undefined };
 }
 
 @Component({
@@ -137,16 +148,40 @@ function emptyIngredient(): DraftIngredient {
               + Добавить шаг
             </button>
           </div>
-          <div class="space-y-2">
-            @for (step of draft.steps; track $index) {
-              <div class="flex gap-2 items-start">
-                <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold shrink-0 mt-2">{{ $index + 1 }}</span>
-                <textarea [(ngModel)]="draft.steps[$index]" rows="1"
-                          class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                <button type="button" (click)="removeStep($index)"
-                        class="p-2 text-slate-400 hover:text-rose-600 mt-1" title="Убрать шаг">
-                  <span class="material-icons text-lg">close</span>
-                </button>
+          <div class="space-y-3">
+            @for (step of draft.steps; track step.rowId; let i = $index) {
+              <div class="border border-slate-200 rounded-lg p-3 space-y-2">
+                <div class="flex gap-2 items-start">
+                  <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold shrink-0 mt-2">{{ i + 1 }}</span>
+                  <textarea [(ngModel)]="step.text" rows="1" placeholder="Описание шага"
+                            class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                  <input type="number" [(ngModel)]="step.durationMinutes" min="0" step="1" placeholder="мин"
+                         title="Длительность, мин"
+                         class="w-20 px-2 py-2 border border-slate-300 rounded-lg text-sm text-center">
+                  <button type="button" (click)="removeStep(i)"
+                          class="p-2 text-slate-400 hover:text-rose-600 mt-1" title="Убрать шаг">
+                    <span class="material-icons text-lg">close</span>
+                  </button>
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5 pl-8">
+                  @for (ingId of step.ingredientIds; track ingId) {
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full text-xs">
+                      {{ ingredientName(ingId) }}
+                      <button type="button" (click)="removeStepIngredient(step, ingId)" class="text-indigo-400 hover:text-rose-600" title="Убрать">
+                        <span class="material-icons text-sm">close</span>
+                      </button>
+                    </span>
+                  }
+                  <select [(ngModel)]="step.pickIngredientId" (change)="addStepIngredient(step)"
+                          class="text-xs px-2 py-1 border border-slate-200 rounded-md bg-white text-slate-600">
+                    <option value="">+ ингредиент</option>
+                    @for (ing of ingredients(); track ing.id) {
+                      @if (!step.ingredientIds?.includes(ing.id)) {
+                        <option [value]="ing.id">{{ ing.name }}</option>
+                      }
+                    }
+                  </select>
+                </div>
               </div>
             }
           </div>
@@ -214,7 +249,7 @@ export class RecipeFormComponent {
     difficulty: 'easy',
     description: '',
     ingredients: [emptyIngredient()],
-    steps: [''],
+    steps: [emptyStep()],
     safetyWarnings: [''],
   };
 
@@ -239,7 +274,14 @@ export class RecipeFormComponent {
       difficulty: recipe.difficulty,
       description: recipe.description,
       ingredients: recipe.ingredients.map(i => ({ ...i, rowId: ++rowSeq })),
-      steps: recipe.steps.length ? [...recipe.steps] : [''],
+      steps: recipe.steps.length
+        ? recipe.steps.map(s => ({
+            ...s,
+            rowId: ++rowSeq,
+            ingredientIds: [...(s.ingredientIds ?? [])],
+            pickIngredientId: '',
+          }))
+        : [emptyStep()],
       safetyWarnings: recipe.safetyWarnings.length ? [...recipe.safetyWarnings] : [''],
     };
   }
@@ -253,7 +295,11 @@ export class RecipeFormComponent {
     return this.draft.name.trim().length > 0
       && this.draft.description.trim().length > 0
       && this.draft.ingredients.some(i => i.ingredientId)
-      && this.draft.steps.some(s => s.trim().length > 0);
+      && this.draft.steps.some(s => s.text.trim().length > 0);
+  }
+
+  ingredientName(id: string): string {
+    return this.ingredientService.getIngredientById(id)?.name ?? id;
   }
 
   addIngredient(): void {
@@ -265,11 +311,22 @@ export class RecipeFormComponent {
   }
 
   addStep(): void {
-    this.draft.steps.push('');
+    this.draft.steps.push(emptyStep());
   }
 
   removeStep(index: number): void {
     this.draft.steps.splice(index, 1);
+  }
+
+  addStepIngredient(step: DraftStep): void {
+    const id = step.pickIngredientId;
+    if (!id) return;
+    step.ingredientIds = [...(step.ingredientIds ?? []), id];
+    step.pickIngredientId = '';
+  }
+
+  removeStepIngredient(step: DraftStep, id: string): void {
+    step.ingredientIds = (step.ingredientIds ?? []).filter(x => x !== id);
   }
 
   addWarning(): void {
@@ -289,7 +346,16 @@ export class RecipeFormComponent {
         percentage: Number(i.percentage) || 0,
         purpose: i.purpose.trim(),
       }));
-    const steps = d.steps.map(s => s.trim()).filter(s => s.length > 0);
+    const steps: RecipeStep[] = d.steps
+      .filter(s => s.text.trim().length > 0)
+      .map(s => {
+        const step: RecipeStep = { text: s.text.trim() };
+        const ids = (s.ingredientIds ?? []).filter(Boolean);
+        if (ids.length) step.ingredientIds = ids;
+        const dur = Number(s.durationMinutes);
+        if (Number.isFinite(dur) && dur > 0) step.durationMinutes = dur;
+        return step;
+      });
     const safetyWarnings = d.safetyWarnings.map(s => s.trim()).filter(s => s.length > 0);
 
     if (!d.name.trim() || !d.description.trim()) {

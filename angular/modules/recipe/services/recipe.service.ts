@@ -22,17 +22,31 @@ function isNonEmptyString(v: unknown): v is string {
   return typeof v === 'string' && v.length > 0;
 }
 
+function isRecipeStep(v: unknown): boolean {
+  if (typeof v === 'string') return true; // legacy: plain-text step
+  if (typeof v !== 'object' || v === null) return false;
+  const s = v as Record<string, unknown>;
+  if (typeof s['text'] !== 'string') return false;
+  if (s['ingredientIds'] !== undefined && !isStringArray(s['ingredientIds'])) return false;
+  if (s['durationMinutes'] !== undefined
+    && (typeof s['durationMinutes'] !== 'number' || s['durationMinutes'] < 0)) return false;
+  return true;
+}
+
 function isRecipe(value: unknown): value is Recipe {
   if (typeof value !== 'object' || value === null) return false;
   const r = value as Record<string, unknown>;
   const ingredients = r['ingredients'];
+  const steps = r['steps'];
+  if (!Array.isArray(steps) || !steps.every(isRecipeStep)) return false;
+  // Нормализуем legacy string[] → RecipeStep[] на месте
+  r['steps'] = steps.map(s => typeof s === 'string' ? { text: s } : s);
   return isNonEmptyString(r['id'])
     && isNonEmptyString(r['name'])
     && typeof r['category'] === 'string' && VALID_CATEGORIES[r['category'] as string] === true
     && typeof r['description'] === 'string'
     && typeof r['difficulty'] === 'string' && VALID_DIFFICULTIES[r['difficulty'] as string] === true
     && Array.isArray(ingredients) && ingredients.every(isRecipeIngredient)
-    && isStringArray(r['steps'])
     && isStringArray(r['safetyWarnings']);
 }
 

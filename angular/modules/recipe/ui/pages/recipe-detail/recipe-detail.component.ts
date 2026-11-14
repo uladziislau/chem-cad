@@ -79,7 +79,21 @@ import { downloadJson } from '../../../../download-json';
                     <span class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">
                       {{ $index + 1 }}
                     </span>
-                    <p class="text-slate-700 mt-1">{{ step }}</p>
+                    <div class="flex-1 mt-1">
+                      <p class="text-slate-700">{{ step.text }}</p>
+                      <div class="flex flex-wrap items-center gap-2 mt-2">
+                        @if (step.durationMinutes) {
+                          <span class="inline-flex items-center gap-1 text-xs text-slate-500">
+                            <span class="material-icons text-sm">schedule</span>{{ step.durationMinutes }} мин
+                          </span>
+                        }
+                        @for (ingId of step.ingredientIds ?? []; track ingId) {
+                          <span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full text-xs">
+                            {{ getIngredientName(ingId) }}
+                          </span>
+                        }
+                      </div>
+                    </div>
                   </li>
                 }
               </ol>
