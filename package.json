@@ -5,7 +5,7 @@
     "audit:arch": "tsx agentica/tools/cli.ts audit",
     "audit:arch:strict": "tsx agentica/tools/cli.ts audit --strict",
     "build": "ng build",
-    "dev": "cross-env ng serve --port=3000 --host=0.0.0.0 ${DISABLE_HMR:+--live-reload=false}",
+    "dev": "cross-env ng serve --port=4307 --host=0.0.0.0 ${DISABLE_HMR:+--live-reload=false}",
     "lint": "pnpm run lint:ts && pnpm run lint:html",
     "lint:fix": "oxlint --fix",
     "lint:html": "ng lint",

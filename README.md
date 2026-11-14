@@ -31,7 +31,7 @@
 
 ```bash
 pnpm install          # зависимости
-pnpm dev              # dev-сервер на :3000
+pnpm dev              # dev-сервер на :4307
 pnpm build            # production build
 pnpm test             # тесты
 pnpm lint             # oxlint + angular-eslint
