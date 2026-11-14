@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AutarkyService, ISegmentInfo } from '../../services/autarky.service';
+import { AutarkyService, ISegmentInfo } from '@adapters/autarky.service';
 
 @Component({
   selector: 'app-entry',
