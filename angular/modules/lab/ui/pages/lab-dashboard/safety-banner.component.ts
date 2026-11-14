@@ -10,6 +10,13 @@ interface SafetyItem {
   ghsCodes: string[];
 }
 
+interface CompatibilityWarning {
+  level: 'error' | 'warning';
+  title: string;
+  message: string;
+  ingredientNames: string[];
+}
+
 /**
  * Баннер безопасности: показывает опасные ингредиенты в текущей рецептуре.
  */
@@ -68,6 +75,35 @@ interface SafetyItem {
             </div>
           }
         </div>
+        <!-- Compatibility Warnings -->
+        @if (compatibilityWarnings().length > 0) {
+          <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Совместимость</div>
+            @for (warn of compatibilityWarnings(); track warn.title) {
+              <div class="p-2 rounded-lg text-xs border"
+                   [class.bg-red-950/40]="warn.level === 'error'"
+                   [class.border-red-500/20]="warn.level === 'error'"
+                   [class.bg-amber-950/30]="warn.level === 'warning'"
+                   [class.border-amber-500/20]="warn.level === 'warning'">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full shrink-0"
+                        [class.bg-red-500]="warn.level === 'error'"
+                        [class.bg-amber-500]="warn.level === 'warning'"></span>
+                  <span class="font-bold"
+                        [class.text-red-300]="warn.level === 'error'"
+                        [class.text-amber-300]="warn.level === 'warning'">
+                    {{ warn.title }}
+                  </span>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-1 leading-tight">{{ warn.message }}</p>
+                <div class="text-[10px] text-slate-500 font-mono mt-0.5">
+                  {{ warn.ingredientNames.join(' + ') }}
+                </div>
+              </div>
+            }
+          </div>
+        }
+
       </div>
     }
   `,
@@ -98,6 +134,77 @@ export class SafetyBannerComponent {
 
   hasDanger = computed(() => this.hazards().some(h => h.level === 'danger'));
   hasHazardous = computed(() => this.hazards().some(h => h.level === 'hazardous'));
+
+  /** Предупреждения о химической несовместимости ингредиентов. */
+  compatibilityWarnings = computed<CompatibilityWarning[]>(() => {
+    const items = this.state.items();
+    const total = this.state.totalMass();
+    if (total <= 0 || items.length < 2) return [];
+
+    const warnings: CompatibilityWarning[] = [];
+
+    // 1. Конфликт анионных и катионных ПАВ (>1% каждый)
+    const anionics = items.filter(i => {
+      const charge = i.ingredient.entity.getIonicCharge();
+      const pct = (i.massGrams / total) * 100;
+      return charge < 0 && pct > 1;
+    });
+    const cationics = items.filter(i => {
+      const charge = i.ingredient.entity.getIonicCharge();
+      const pct = (i.massGrams / total) * 100;
+      return charge > 0 && pct > 1;
+    });
+
+    if (anionics.length > 0 && cationics.length > 0) {
+      warnings.push({
+        level: 'error',
+        title: 'Конфликт ПАВ',
+        message: 'Анионные и катионные ПАВ образуют нерастворимый комплекс. Система будет нестабильна, пена разрушится.',
+        ingredientNames: [...anionics, ...cationics].map(i => i.ingredient.name)
+      });
+    }
+
+    // 2. Экстремальный pH
+    const ph = this.state.ph();
+    if (ph < 3) {
+      warnings.push({
+        level: 'error',
+        title: 'Опасно низкий pH',
+        message: `pH = ${ph.toFixed(1)}. Сильнокислотная среда — риск химического ожога. Требуются перчатки и очки.`,
+        ingredientNames: []
+      });
+    } else if (ph > 11) {
+      warnings.push({
+        level: 'error',
+        title: 'Опасно высокий pH',
+        message: `pH = ${ph.toFixed(1)}. Сильнощелочная среда — риск ожога и коррозии. Избегайте контакта с кожей.`,
+        ingredientNames: []
+      });
+    } else if (ph < 4 || ph > 10) {
+      warnings.push({
+        level: 'warning',
+        title: 'Экстремальный pH',
+        message: `pH = ${ph.toFixed(1)}. Нестандартная кислотность — проверьте стабильность активных компонентов.`,
+        ingredientNames: []
+      });
+    }
+
+    // 3. Высокая концентрация легковоспламеняющихся растворителей (>20%)
+    const flammables = items.filter(i => {
+      const pct = (i.massGrams / total) * 100;
+      return pct > 20 && i.ingredient.ghsCodes?.some(c => c.startsWith('H22'));
+    });
+    if (flammables.length > 0) {
+      warnings.push({
+        level: 'warning',
+        title: 'Легковоспламеняющиеся компоненты',
+        message: 'Высокая концентрация воспламеняющихся веществ. Хранить вдали от огня и источников тепла.',
+        ingredientNames: flammables.map(i => i.ingredient.name)
+      });
+    }
+
+    return warnings;
+  });
 
   private getLevel(ing: ICatalogIngredient, percent: number): SafetyItem['level'] | null {
     if (ing.safetyLevel === 'danger' || ing.safetyLevel === 'hazardous') return ing.safetyLevel;
