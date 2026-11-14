@@ -83,6 +83,9 @@ export class FormulationStateService {
   public readonly safetyIssues = computed(() => this.simulationResult()?.safety.issues || []);
   public readonly isSafe = computed(() => this.simulationResult()?.safety.isSafe ?? true);
 
+  /** Полный результат для экспорта отчётов */
+  public readonly report = computed(() => this.simulationResult());
+
   // --- Legacy UI Helpers ---
 
   public readonly requiredHLB = computed(() => {
