@@ -105,4 +105,33 @@ test.describe('Lab Dashboard', () => {
     await vh.locator('button:has-text("×")').click();
     await expect(vh.locator('text=Нет сохранённых версий')).toBeVisible();
   });
+
+  test('target specs: constraint solver optimization', async ({ page }) => {
+    const specs = page.locator('app-target-specs');
+
+    // Add ingredients first
+    await page.locator('.group button').first().click();
+    await page.locator('.group button').nth(1).click();
+    await page.waitForTimeout(500);
+
+    // Open target specs panel
+    await specs.locator('button').first().click();
+    await expect(specs.locator('text=Целевые свойства')).toBeVisible();
+
+    // Enable pH spec
+    await specs.locator('input[type="checkbox"]').first().check();
+    await specs.locator('input[type="number"]').first().fill('5.0');
+    await specs.locator('input[type="number"]').nth(1).fill('7.0');
+
+    // Run optimization
+    await specs.locator('button:has-text("Подобрать состав")').click();
+
+    // Wait for result (converged or not)
+    await expect(
+      specs.getByText(/Сошлось|Не сошлось/)
+    ).toBeVisible({ timeout: 10000 });
+
+    // Recipe breakdown should show
+    await expect(specs.locator('div.uppercase:has-text("Состав")')).toBeVisible();
+  });
 });
