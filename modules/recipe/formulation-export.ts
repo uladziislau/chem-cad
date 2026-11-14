@@ -74,3 +74,64 @@ export function formulationToRecipe(
     safetyWarnings,
   };
 }
+
+/** Минимум полей каталога ингредиентов формулятора для резолва ссылок. */
+export interface CatalogIngredientRef {
+  id: string;
+  name: string;
+}
+
+/**
+ * Резолвит id ингредиента lab-контура (ing_*) в id каталога формулятора.
+ * Порядок: точный id → совпадение имени → strip префикса ing_.
+ */
+export function resolveCatalogIngredientId(
+  labIngredient: { id: string; name: string },
+  catalog: CatalogIngredientRef[],
+): string | null {
+  const exact = catalog.find(c => c.id === labIngredient.id);
+  if (exact) return exact.id;
+  const byName = catalog.find(c => c.name.toLowerCase() === labIngredient.name.toLowerCase());
+  if (byName) return byName.id;
+  const stripped = labIngredient.id.replace(/^ing_/, '');
+  const byStripped = catalog.find(c => c.id === stripped);
+  return byStripped ? byStripped.id : null;
+}
+
+/** Строка lab-рецептуры (масса в граммах) для экспорта. */
+export interface LabFormulationItem {
+  ingredient: { id: string; name: string; description: string; category?: string; safetyLevel?: string; ppe?: string[] };
+  massGrams: number;
+}
+
+/**
+ * Конвертирует lab-рецептуру (массы) в FormulationExportItem[] с процентами.
+ * Ингредиенты без соответствия в каталоге формулятора пропускаются;
+ * проценты пересчитываются от суммы замапленных масс.
+ * Возвращает items и список пропущенных имён.
+ */
+export function labItemsToFormulationExport(
+  items: LabFormulationItem[],
+  catalog: CatalogIngredientRef[],
+): { items: FormulationExportItem[]; skipped: string[] } {
+  const resolved: { item: LabFormulationItem; catalogId: string }[] = [];
+  const skipped: string[] = [];
+  for (const item of items) {
+    if (item.massGrams <= 0) continue;
+    const catalogId = resolveCatalogIngredientId(item.ingredient, catalog);
+    if (catalogId) resolved.push({ item, catalogId });
+    else skipped.push(item.ingredient.name);
+  }
+  const total = resolved.reduce((s, r) => s + r.item.massGrams, 0);
+  if (total <= 0) return { items: [], skipped };
+  const exportItems = resolved.map(({ item, catalogId }) => ({
+    ingredientId: catalogId,
+    name: item.ingredient.name,
+    type: item.ingredient.category ?? 'additive',
+    description: item.ingredient.description,
+    safety: [item.ingredient.safetyLevel, ...(item.ingredient.ppe ?? [])]
+      .filter(Boolean).join('; ') || 'Безопасность не указана.',
+    percentage: Number(((item.massGrams / total) * 100).toFixed(2)),
+  }));
+  return { items: exportItems, skipped };
+}

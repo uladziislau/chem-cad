@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { formulationToRecipe, FormulationExportItem } from '@root-modules/recipe/formulation-export';
+import { recipesUsingIngredient } from '@root-modules/recipe/recipe-query';
 
 const water: FormulationExportItem = {
   ingredientId: 'water', name: 'Вода', type: 'base',
@@ -65,5 +66,25 @@ describe('formulationToRecipe', () => {
   it('кастомное описание сохраняется', () => {
     const r = formulationToRecipe([water], { name: 'N', category: 'hygiene', description: 'Моё описание' });
     expect(r.description).toBe('Моё описание');
+  });
+});
+
+describe('recipesUsingIngredient', () => {
+  const recipes = [
+    { id: 'a', ingredients: [{ ingredientId: 'water' }, { ingredientId: 'sls' }] },
+    { id: 'b', ingredients: [{ ingredientId: 'glycerin' }] },
+    { id: 'c', ingredients: [{ ingredientId: 'water' }] },
+  ];
+
+  it('находит все рецепты с ингредиентом', () => {
+    expect(recipesUsingIngredient(recipes, 'water').map(r => r.id)).toEqual(['a', 'c']);
+  });
+
+  it('пусто когда ингредиента нет', () => {
+    expect(recipesUsingIngredient(recipes, 'missing')).toEqual([]);
+  });
+
+  it('пусто на пустой коллекции', () => {
+    expect(recipesUsingIngredient([], 'water')).toEqual([]);
   });
 });

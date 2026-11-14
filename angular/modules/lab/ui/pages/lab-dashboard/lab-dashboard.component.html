@@ -78,6 +78,17 @@
               В каталог
             </button>
 
+            <!-- Save as Recipe Button -->
+            <button (click)="saveAsRecipe()"
+                    [disabled]="state.items().length === 0"
+                    class="flex items-center gap-2 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-lg transition-all"
+                    title="Сохранить как рецепт в каталоге рецептов">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              В рецепт
+            </button>
+
             <!-- Export Report Buttons -->
             <div class="flex items-center gap-1 bg-slate-950/50 px-2 py-1.5 rounded-lg border border-white/5">
               <button (click)="exportReport('txt')" [disabled]="!state.report()"

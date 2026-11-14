@@ -12,7 +12,10 @@ import { ReasoningPanelComponent } from './reasoning-panel.component';
 import { DetergencyPanelComponent } from './detergency-panel.component';
 import { DryingPanelComponent } from './drying-panel.component';
 import { FormulationOptimizerComponent } from './formulation-optimizer.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { RecipeService } from '@modules/recipe/services/recipe.service';
+import { IngredientService } from '@modules/formulation/services/ingredient.service';
+import { formulationToRecipe, labItemsToFormulationExport } from '@root-modules/recipe/formulation-export';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
 import { FormulationReportService } from '@modules/lab/services/formulation-report.service';
@@ -35,6 +38,9 @@ export class LabDashboardComponent {
   state = inject(FormulationStateService);
   autarky = inject(AutarkyService);
   private reportService = inject(FormulationReportService);
+  private recipeService = inject(RecipeService);
+  private ingredientService = inject(IngredientService);
+  private router = inject(Router);
   Math = Math;
 
   searchQuery = signal('');
@@ -65,6 +71,30 @@ export class LabDashboardComponent {
     if (name) {
       this.state.saveAsPremix(name);
     }
+  }
+
+  /** Сохраняет текущую lab-рецептуру (массы) как Recipe в каталоге рецептов. */
+  saveAsRecipe() {
+    const items = this.state.items();
+    if (items.length === 0) return;
+    const name = prompt('Название рецепта:', 'Моя рецептура');
+    if (!name) return;
+    const rawCategory = prompt('Категория (hygiene / perfume / cleaning):', 'hygiene') || 'hygiene';
+    const validCategory: 'hygiene' | 'perfume' | 'cleaning' =
+      rawCategory === 'perfume' || rawCategory === 'cleaning' ? rawCategory : 'hygiene';
+
+    const catalog = this.ingredientService.getIngredients()();
+    const { items: exportItems, skipped } = labItemsToFormulationExport(items, catalog);
+    if (exportItems.length === 0) {
+      alert('Ни один ингредиент не найден в каталоге рецептур — сохранить нельзя.');
+      return;
+    }
+    const draft = formulationToRecipe(exportItems, { name, category: validCategory });
+    const recipe = this.recipeService.addRecipe(draft);
+    if (skipped.length > 0) {
+      alert(`Рецепт сохранён. Пропущены ингредиенты без соответствия в каталоге: ${skipped.join(', ')}`);
+    }
+    this.router.navigate(['/recipes', 'detail', recipe.id]);
   }
 
   exportReport(format: 'txt' | 'csv') {
