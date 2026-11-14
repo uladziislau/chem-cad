@@ -45,6 +45,35 @@ describe('AutoFormulator (Оптимизация рецептуры)', () => {
       new Mass(5, 'g')
     )).toThrow();
   });
+  it('optimizeEmulsion: targets заполняют detergencyScore и drying time', () => {
+    const report = AutoFormulator.optimizeEmulsion(
+      oil, new Mass(50, 'g'),
+      water, new Mass(50, 'g'),
+      [surfLow, surfHigh],
+      new Mass(5, 'g'),
+      { minDetergencyScore: 30, maxTouchDryTimeMin: 500 },
+      25
+    );
+    expect(report.detergencyScore).toBeDefined();
+    expect(report.touchDryTimeMin).toBeDefined();
+    expect(report.fullDryTimeMin).toBeDefined();
+    expect(report.dryingMechanism).toBeDefined();
+    expect(report.detergencyScore!).toBeGreaterThanOrEqual(0);
+    expect(report.detergencyScore!).toBeLessThanOrEqual(100);
+  });
+
+  it('optimizeEmulsion: невыполнимый minDetergencyScore не ломает выбор', () => {
+    const report = AutoFormulator.optimizeEmulsion(
+      oil, new Mass(50, 'g'),
+      water, new Mass(50, 'g'),
+      [surfLow, surfHigh],
+      new Mass(5, 'g'),
+      { minDetergencyScore: 100 },
+      25
+    );
+    expect(report.mixture).toBeDefined();
+    expect(report.detergencyScore).toBeLessThan(100);
+  });
 
   it('createStableEmulsion: возвращает Mixture', () => {
     const mix = AutoFormulator.createStableEmulsion(
