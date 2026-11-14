@@ -61,8 +61,8 @@
           <div class="text-slate-400 mb-2 border-b border-slate-700 pb-2">Телеметрия</div>
           <div class="grid grid-cols-2 gap-x-4 gap-y-2">
             <span>FPS:</span> <span [class]="fps() > 30 ? 'text-emerald-400' : 'text-rose-400'">{{ fps() }}</span>
-            <span>Атомов:</span> <span class="text-indigo-400">{{ particleCount }}</span>
-            <span>Связей:</span> <span class="text-fuchsia-400">{{ bondCount }}</span>
+            <span>Атомов:</span> <span class="text-indigo-400">{{ particleCount() }}</span>
+            <span>Связей:</span> <span class="text-fuchsia-400">{{ bondCount() }}</span>
             <span>Температура:</span> <span class="text-orange-400">{{ temperature().toFixed(1) }} K</span>
           </div>
           @if (currentMoleculeName()) {
