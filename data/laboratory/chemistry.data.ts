@@ -42,6 +42,7 @@ export const REAGENTS: Reagent[] = [
   // ПАВ (для лаборатории мыла)
   { id: 'sls', name: 'Лаурилсульфат натрия', formula: 'C₁₂H₂₅NaO₄S', molarMass: 288.38, state: 'solid', color: 'rgba(255, 255, 255, 0.7)', description: 'Анионное ПАВ, пенообразователь.' },
   { id: 'coco_glucoside', name: 'Коко-глюкозид', formula: 'Mix', molarMass: 300.0, state: 'liquid', color: 'rgba(255, 255, 255, 0.3)', description: 'Неионогенное ПАВ из кокосового масла.' },
+  { id: 'mineral_oil', name: 'Минеральное масло', formula: 'Mix', molarMass: 300.0, state: 'liquid', color: 'rgba(200, 200, 180, 0.3)', description: 'Гидрофобная масляная фаза для эмульсий.' },
 
   // Эфирные масла (упрощённо)
   { id: 'lavender_oil', name: 'Масло лаванды', formula: 'Mix', molarMass: 200.0, state: 'liquid', color: 'rgba(180, 160, 255, 0.4)', description: 'Эфирное масло с успокаивающим ароматом.' },

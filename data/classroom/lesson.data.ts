@@ -149,4 +149,85 @@ export const LESSONS: Lesson[] = [
       }
     ]
   }
+  ,
+  {
+    id: 'l3',
+    title: 'pH и индикаторы: Кислотность на пальцах',
+    description: 'Научитесь определять кислотность раствора с помощью pH и индикаторов. Узнайте, почему уксус кислый, а мыло щелочное.',
+    difficulty: 'beginner',
+    steps: [
+      {
+        id: 's1',
+        title: 'Шаг 1: Чистая вода',
+        content: 'Начнем с чистой дистиллированной воды. Это нейтральная среда. pH чистой воды равен 7.',
+        requiredAction: { type: 'add_reagent', reagentId: 'water' },
+        successMessage: 'Вода добавлена. pH = 7.0 — нейтрально.'
+      },
+      {
+        id: 's2',
+        title: 'Шаг 2: Кислота',
+        content: 'Теперь добавьте уксусную кислоту (CH₃COOH). Это слабая кислота, но она всё равно понижает pH.',
+        requiredAction: { type: 'add_reagent', reagentId: 'acetic_acid' },
+        successMessage: 'Кислота добавлена. pH упал ниже 7 — раствор стал кислым.'
+      },
+      {
+        id: 's3',
+        title: 'Шаг 3: Щелочь',
+        content: 'Добавьте нашатырный спирт (NH₄OH). Это основание, оно повышает pH.',
+        requiredAction: { type: 'add_reagent', reagentId: 'nh3' },
+        successMessage: 'Щелочь добавлена. pH вырос выше 7 — раствор стал щелочным.'
+      }
+    ]
+  },
+  {
+    id: 'l4',
+    title: 'Стехиометрия: Точный расчёт реакций',
+    description: 'Почему для реакции нужно точное количество веществ? Научитесь рассчитывать моли и массы для идеальной реакции.',
+    difficulty: 'intermediate',
+    steps: [
+      {
+        id: 's1',
+        title: 'Шаг 1: Вода',
+        content: 'Для электролиза воды нам понадобится дистиллированная вода. Добавьте её в колбу.',
+        requiredAction: { type: 'add_reagent', reagentId: 'water' },
+        successMessage: 'Вода добавлена. Теперь добавьте электролит для проводимости.'
+      },
+      {
+        id: 's2',
+        title: 'Шаг 2: Электролит',
+        content: 'Добавьте серную кислоту (H₂SO₄). Она не участвует в реакции напрямую, но проводит ток и ускоряет электролиз.',
+        requiredAction: { type: 'add_reagent', reagentId: 'sulfuric_acid' },
+        successMessage: 'Электролит добавлен. Цепь готова к электролизу.'
+      }
+    ]
+  },
+  {
+    id: 'l5',
+    title: 'Эмульсии: Масло и вода',
+    description: 'Почему масло не смешивается с водой? Как ПАВ помогают создать стабильную эмульсию.',
+    difficulty: 'advanced',
+    steps: [
+      {
+        id: 's1',
+        title: 'Шаг 1: Вода',
+        content: 'Начнем с водной фазы. Добавьте дистиллированную воду.',
+        requiredAction: { type: 'add_reagent', reagentId: 'water' },
+        successMessage: 'Вода добавлена.'
+      },
+      {
+        id: 's2',
+        title: 'Шаг 2: Масло',
+        content: 'Добавьте растительное масло. Попробуйте перемешать — оно сразу разделится на фазы.',
+        requiredAction: { type: 'add_reagent', reagentId: 'mineral_oil' },
+        successMessage: 'Масло добавлено. Слои разделены — это нормально!'
+      },
+      {
+        id: 's3',
+        title: 'Шаг 3: ПАВ',
+        content: 'Теперь добавьте ПАВ (поверхностно-активное вещество). Оно снижает поверхностное натяжение и стабилизирует эмульсию.',
+        requiredAction: { type: 'add_reagent', reagentId: 'sls' },
+        successMessage: 'ПАВ добавлено. Эмульсия стала стабильнее!'
+      }
+    ]
+  }
 ];

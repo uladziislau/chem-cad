@@ -31,6 +31,46 @@ test.describe('Lab Dashboard', () => {
     const txtBtn = page.locator('button:has-text("TXT")');
     await expect(txtBtn).toBeEnabled();
   });
+
+  test('download TXT report after adding ingredient', async ({ page }) => {
+    await page.goto('/lab/dashboard');
+    await expect(page.locator('app-root')).toBeVisible({ timeout: 15000 });
+
+    // Add first ingredient
+    const addBtn = page.locator('button:has(svg path[d*="M10 3a1"])').first();
+    await addBtn.click();
+    await page.waitForTimeout(500);
+
+    // Wait for report to be ready and click TXT
+    const txtBtn = page.locator('button:has-text("TXT")');
+    await expect(txtBtn).toBeEnabled();
+
+    const downloadPromise = page.waitForEvent('download');
+    await txtBtn.click();
+    const download = await downloadPromise;
+
+    expect(download.suggestedFilename()).toMatch(/\.txt$/);
+    const path = await download.path();
+    expect(path).toBeTruthy();
+  });
+
+  test('download CSV report after adding ingredient', async ({ page }) => {
+    await page.goto('/lab/dashboard');
+    await expect(page.locator('app-root')).toBeVisible({ timeout: 15000 });
+
+    const addBtn = page.locator('button:has(svg path[d*="M10 3a1"])').first();
+    await addBtn.click();
+    await page.waitForTimeout(500);
+
+    const csvBtn = page.locator('button:has-text("CSV")');
+    await expect(csvBtn).toBeEnabled();
+
+    const downloadPromise = page.waitForEvent('download');
+    await csvBtn.click();
+    const download = await downloadPromise;
+
+    expect(download.suggestedFilename()).toMatch(/\.csv$/);
+  });
 });
 
 test.describe('Process Designer', () => {
