@@ -187,19 +187,20 @@ test.describe('Lab Dashboard', () => {
 
     // Mock window.open and window.print
     await page.evaluate(() => {
-      (window as any).__printCalled = false;
-      (window as any).__openedWindow = null;
-      window.open = (...args: any[]) => {
-        const mockWin: any = {
-          document: { write: () => {}, close: () => {} },
-          focus: () => {},
-          print: () => { (window as any).__printCalled = true; },
-          close: () => {}
+      const w = window as unknown as { __printCalled: boolean; __openedWindow: unknown };
+      w.__printCalled = false;
+      w.__openedWindow = null;
+      window.open = () => {
+        const mockWin = {
+          document: { write: () => undefined, close: () => undefined },
+          focus: () => undefined,
+          print: () => { w.__printCalled = true; },
+          close: () => undefined
         };
-        (window as any).__openedWindow = mockWin;
-        return mockWin;
+        w.__openedWindow = mockWin;
+        return mockWin as unknown as Window;
       };
-      window.print = () => { (window as any).__printCalled = true; };
+      window.print = () => { w.__printCalled = true; };
     });
 
     // Click PDF button
@@ -207,7 +208,7 @@ test.describe('Lab Dashboard', () => {
     await page.waitForTimeout(500);
 
     // Verify print was called
-    const printCalled = await page.evaluate(() => (window as any).__printCalled);
+    const printCalled = await page.evaluate(() => (window as unknown as { __printCalled: boolean }).__printCalled);
     expect(printCalled).toBe(true);
   });
 });
