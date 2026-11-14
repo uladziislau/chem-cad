@@ -160,4 +160,24 @@ test.describe('Lab Dashboard', () => {
     expect(waterCount).toBeGreaterThan(0);
     expect(waterCount).toBeLessThan(totalCount);
   });
+  test('safety banner: surfactant conflict warning', async ({ page }) => {
+    // Search and add anionic surfactant (SCS)
+    await page.locator('input[placeholder="Поиск ингредиента..."]').fill('coco-sulfate');
+    await page.waitForTimeout(300);
+    await page.locator('.group button').first().click();
+
+    // Search and add cationic surfactant (Cetrimonium)
+    await page.locator('input[placeholder="Поиск ингредиента..."]').fill('cetrimonium');
+    await page.waitForTimeout(300);
+    await page.locator('.group button').first().click();
+
+    // Clear search to see full catalog
+    await page.locator('input[placeholder="Поиск ингредиента..."]').fill('');
+    await page.waitForTimeout(300);
+
+    // Safety banner should show compatibility warning
+    const banner = page.locator('app-safety-banner');
+    await expect(banner.locator('text=Совместимость')).toBeVisible({ timeout: 5000 });
+    await expect(banner.locator('text=Конфликт ПАВ')).toBeVisible();
+  });
 });
