@@ -161,12 +161,12 @@ export const DEV_EPICS: DevelopmentEpic[] = [
       {
         id: 'PRO-3',
         title: 'ELN (Электронный лабораторный журнал)',
-        status: 'pending',
+        status: 'done',
         priority: 'medium',
         description: 'Версионирование формул, сравнение батчей и строгий Audit Trail.',
         subtasks: [
-          { id: 'P3.1', title: 'Система версионирования рецептур (v1.0, v1.1)', status: 'pending' },
-          { id: 'P3.2', title: 'Экспорт паспортов безопасности (SDS/GHS)', status: 'pending' }
+          { id: 'P3.1', title: 'Система версионирования рецептур (v1.0, v1.1)', status: 'done' },
+          { id: 'P3.2', title: 'Экспорт паспортов безопасности (SDS/GHS)', status: 'done' }
         ]
       },
       {
