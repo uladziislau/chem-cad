@@ -59,6 +59,16 @@ test.describe('Process Designer', () => {
     await expect(page.getByText('Прогноз стабильности')).toBeVisible();
   });
 
+  test('process persists after reload', async ({ page }) => {
+    // Add a step
+    await page.getByRole('button', { name: 'Перемешать' }).click();
+    await expect(page.getByText('Шаг 1')).toBeVisible();
+    // Reload and verify step is restored
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await expect(page.locator('app-process-designer')).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('Шаг 1')).toBeVisible();
+  });
+
   test('navigates back to dashboard', async ({ page }) => {
     await page.getByText('Вернуться в Лабораторию').click();
     await expect(page).toHaveURL('/lab/dashboard');

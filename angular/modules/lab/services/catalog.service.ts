@@ -330,4 +330,12 @@ export class CatalogService {
   findByEntity(entity: IChemicalEntity): ICatalogIngredient | undefined {
     return this.getAllIngredients().find(ing => ing.entity === entity);
   }
+
+  /** Поиск ингредиента по имени entity (для десериализации процессов). */
+  findByEntityName(name: string): ICatalogIngredient | undefined {
+    const lower = name.toLowerCase();
+    return this.getAllIngredients().find(ing =>
+      ing.entity.getName().toLowerCase() === lower || ing.name.toLowerCase() === lower
+    );
+  }
 }
