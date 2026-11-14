@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DEV_EPICS, DevelopmentEpic } from '../../../../../modules/development';
+import { DEV_EPICS, DevelopmentEpic } from '@root-modules/development';
 
 @Component({
   selector: 'app-development-board',

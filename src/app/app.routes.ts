@@ -23,8 +23,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'dev',
-    loadChildren: () => import('./modules/development/development.routes').then(m => m.DEVELOPMENT_ROUTES)
+    path: 'development',
+    loadChildren: () => import('@modules/development').then(m => m.DEVELOPMENT_ROUTES)
   },
   {
     path: '**',

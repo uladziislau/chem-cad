@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DevelopmentNavigationComponent } from './components/development-navigation/development-navigation.component';
+import { DevelopmentNavigationComponent } from './ui/components/development-navigation/development-navigation.component';
 
 export const DEVELOPMENT_ROUTES: Routes = [
   {
@@ -10,12 +10,12 @@ export const DEVELOPMENT_ROUTES: Routes = [
       {
         path: 'board',
         title: 'Управление разработкой',
-        loadComponent: () => import('./pages/development-board/development-board.component').then(m => m.DevelopmentBoardComponent)
+        loadComponent: () => import('./ui/pages/development-board/development-board.component').then(m => m.DevelopmentBoardComponent)
       },
       {
         path: 'specs',
         title: 'Спецификации разработки',
-        loadComponent: () => import('./pages/development-specs/development-specs.component').then(m => m.DevelopmentSpecsComponent)
+        loadComponent: () => import('./ui/pages/development-specs/development-specs.component').then(m => m.DevelopmentSpecsComponent)
       }
     ]
   }

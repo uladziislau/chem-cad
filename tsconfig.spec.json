@@ -6,5 +6,5 @@
     "outDir": "./out-tsc/spec",
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*.d.ts", "src/**/*.spec.ts", "agentica/**/*.ts"]
+  "include": ["src/**/*.d.ts", "src/**/*.spec.ts", "agentica/**/*.ts", "angular/**/*.ts", "modules/**/*.ts", "domain/**/*.ts", "tests/**/*.ts"]
 }
