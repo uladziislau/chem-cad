@@ -135,3 +135,27 @@ export function labItemsToFormulationExport(
   }));
   return { items: exportItems, skipped };
 }
+
+/** Категории lab-каталога → тип Recipe. Совпадение по сегментам продукта. */
+const LAB_CATEGORY_TO_RECIPE: Record<string, Recipe['category']> = {
+  water: 'hygiene', oil: 'hygiene', surfactant: 'hygiene',
+  solvent: 'cleaning', pigment: 'cleaning', thickener: 'cleaning',
+};
+
+/**
+ * Предлагает категорию рецепта по составу lab-формуляции:
+ * берёт категорию самого массового ингредиента; при неоднозначности — 'hygiene'.
+ */
+export function suggestRecipeCategory(items: LabFormulationItem[]): Recipe['category'] {
+  let best: Recipe['category'] | null = null;
+  let bestMass = 0;
+  for (const item of items) {
+    if (item.massGrams <= 0) continue;
+    const cat = LAB_CATEGORY_TO_RECIPE[item.ingredient.category ?? ''] ?? null;
+    if (cat && item.massGrams > bestMass) {
+      bestMass = item.massGrams;
+      best = cat;
+    }
+  }
+  return best ?? 'hygiene';
+}

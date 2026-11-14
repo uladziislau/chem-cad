@@ -15,7 +15,7 @@ import { FormulationOptimizerComponent } from './formulation-optimizer.component
 import { Router, RouterLink } from '@angular/router';
 import { RecipeService } from '@modules/recipe/services/recipe.service';
 import { IngredientService } from '@modules/formulation/services/ingredient.service';
-import { formulationToRecipe, labItemsToFormulationExport } from '@root-modules/recipe/formulation-export';
+import { formulationToRecipe, labItemsToFormulationExport, suggestRecipeCategory } from '@root-modules/recipe/formulation-export';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
 import { FormulationReportService } from '@modules/lab/services/formulation-report.service';
@@ -79,7 +79,8 @@ export class LabDashboardComponent {
     if (items.length === 0) return;
     const name = prompt('Название рецепта:', 'Моя рецептура');
     if (!name) return;
-    const rawCategory = prompt('Категория (hygiene / perfume / cleaning):', 'hygiene') || 'hygiene';
+    const suggested = suggestRecipeCategory(items);
+    const rawCategory = prompt('Категория (hygiene / perfume / cleaning):', suggested) || suggested;
     const validCategory: 'hygiene' | 'perfume' | 'cleaning' =
       rawCategory === 'perfume' || rawCategory === 'cleaning' ? rawCategory : 'hygiene';
 

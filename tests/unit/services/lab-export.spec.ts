@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   resolveCatalogIngredientId,
-  labItemsToFormulationExport,
+  labItemsToFormulationExport, suggestRecipeCategory,
   LabFormulationItem,
 } from '@root-modules/recipe/formulation-export';
 
@@ -74,5 +74,38 @@ describe('labItemsToFormulationExport', () => {
 
   it('пустой вход → пустой выход', () => {
     expect(labItemsToFormulationExport([], catalog)).toEqual({ items: [], skipped: [] });
+  });
+});
+
+describe('suggestRecipeCategory', () => {
+  it('выбирает категорию самого массового ингредиента', () => {
+    expect(suggestRecipeCategory([
+      labItem('a', 'А', 10, { category: 'solvent' }),
+      labItem('b', 'Б', 90, { category: 'surfactant' }),
+    ])).toBe('hygiene');
+    expect(suggestRecipeCategory([
+      labItem('a', 'А', 90, { category: 'solvent' }),
+      labItem('b', 'Б', 10, { category: 'surfactant' }),
+    ])).toBe('cleaning');
+  });
+
+  it('неизвестная/отсутствующая категория пропускается', () => {
+    expect(suggestRecipeCategory([
+      labItem('a', 'А', 100, { category: 'mystery' }),
+    ])).toBe('hygiene');
+    expect(suggestRecipeCategory([
+      labItem('a', 'А', 100),
+    ])).toBe('hygiene');
+  });
+
+  it('нулевые массы игнорируются', () => {
+    expect(suggestRecipeCategory([
+      labItem('a', 'А', 0, { category: 'solvent' }),
+      labItem('b', 'Б', 5, { category: 'pigment' }),
+    ])).toBe('cleaning');
+  });
+
+  it('пустой список → hygiene', () => {
+    expect(suggestRecipeCategory([])).toBe('hygiene');
   });
 });
