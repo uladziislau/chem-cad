@@ -58,7 +58,7 @@ export const DEV_EPICS: DevelopmentEpic[] = [
     id: 'E03',
     title: 'Бытовая химия и Безопасность (Household & Safety)',
     description: 'Инженерия знаний: перенос эвристик моющей способности и химической безопасности в математические модели.',
-    status: 'active',
+    status: 'completed',
     tasks: [
       {
         id: '021',
@@ -75,12 +75,12 @@ export const DEV_EPICS: DevelopmentEpic[] = [
       {
         id: '020',
         title: 'Решатель моющей способности (DetergencySolver)',
-        status: 'pending',
+        status: 'done',
         priority: 'high',
         description: 'Оценка эффективности удаления жира и известкового налета.',
         subtasks: [
-          { id: '20.1', title: 'Математическая модель Degreasing (pH + HLB)', status: 'pending' },
-          { id: '20.2', title: 'Математическая модель Descaling (Кислотность)', status: 'pending' }
+          { id: '20.1', title: 'Математическая модель Degreasing (pH + HLB)', status: 'done' },
+          { id: '20.2', title: 'Математическая модель Descaling (Кислотность)', status: 'done' }
         ]
       }
     ]
@@ -89,17 +89,17 @@ export const DEV_EPICS: DevelopmentEpic[] = [
     id: 'E04',
     title: 'Лакокрасочные материалы (Coatings & DIY)',
     description: 'Моделирование процессов высыхания, полимеризации и адгезии.',
-    status: 'planned',
+    status: 'active',
     tasks: [
       {
         id: '022',
         title: 'Решатель высыхания (DryingSolver)',
-        status: 'backlog',
+        status: 'done',
         priority: 'medium',
         description: 'Расчет времени испарения растворителей и полимеризации масел.',
         subtasks: [
-          { id: '22.1', title: 'Модель испарения (по уравнению Антуана)', status: 'pending' },
-          { id: '22.2', title: 'Модель полимеризации (Йодное число)', status: 'pending' }
+          { id: '22.1', title: 'Модель испарения (по уравнению Антуана)', status: 'done' },
+          { id: '22.2', title: 'Модель полимеризации (Йодное число)', status: 'done' }
         ]
       }
     ]
