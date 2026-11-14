@@ -117,7 +117,20 @@ interface SpecRange {
                 <div class="text-slate-400">Стаб: <span class="text-white">{{ optimizationResult()!.metrics.stabilityDays | number:'1.0-0' }}</span></div>
                 <div class="text-slate-400">HLB: <span class="text-white">{{ optimizationResult()!.metrics.hlb | number:'1.1-1' }}</span></div>
               </div>
-              <div class="text-[10px] text-slate-500">Итераций: {{ optimizationResult()!.iterations }}</div>
+              <div class="text-[10px] text-slate-500">Итераций: {{ optimizationResult()!.iterations }} · Loss: {{ optimizationResult()!.totalLoss | number:'1.2-2' }}</div>
+
+              <!-- Recipe breakdown -->
+              <div class="pt-2 border-t border-white/5 space-y-1">
+                <div class="text-[10px] text-slate-500 uppercase font-bold">Состав</div>
+                @for (input of optimizationResult()!.recipe; track input.entity.getName()) {
+                  @if (catalog.findByEntity(input.entity); as ing) {
+                    <div class="flex justify-between text-[10px] font-mono">
+                      <span class="text-slate-400 truncate">{{ ing.name }}</span>
+                      <span class="text-white">{{ input.massGrams | number:'1.1-1' }} г ({{ (input.massGrams / state.totalMass() * 100) | number:'1.1-1' }}%)</span>
+                    </div>
+                  }
+                }
+              </div>
             </div>
           }
         </div>
