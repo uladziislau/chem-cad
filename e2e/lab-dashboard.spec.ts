@@ -134,4 +134,30 @@ test.describe('Lab Dashboard', () => {
     // Recipe breakdown should show
     await expect(specs.locator('div.uppercase:has-text("Состав")')).toBeVisible();
   });
+
+  test('catalog: search and category filter', async ({ page }) => {
+    // Get initial count
+    const allCards = page.locator('div.group');
+    const totalCount = await allCards.count();
+    expect(totalCount).toBeGreaterThan(0);
+
+    // Search for "aqua" (INCI of water)
+    await page.locator('input[placeholder="Поиск ингредиента..."]').fill('aqua');
+    await page.waitForTimeout(300);
+    const filteredCount = await allCards.count();
+    expect(filteredCount).toBeLessThan(totalCount);
+    expect(filteredCount).toBeGreaterThan(0);
+
+    // Clear search
+    await page.locator('input[placeholder="Поиск ингредиента..."]').fill('');
+    await page.waitForTimeout(300);
+    expect(await allCards.count()).toBe(totalCount);
+
+    // Filter by water category
+    await page.locator('button:has-text("water")').first().click();
+    await page.waitForTimeout(300);
+    const waterCount = await allCards.count();
+    expect(waterCount).toBeGreaterThan(0);
+    expect(waterCount).toBeLessThan(totalCount);
+  });
 });

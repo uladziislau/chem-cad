@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CatalogService } from '@modules/lab/services/catalog.service';
@@ -35,11 +35,27 @@ export class LabDashboardComponent {
   autarky = inject(AutarkyService);
   Math = Math;
 
+  searchQuery = signal('');
+  categoryFilter = signal<string>('all');
+
   filteredIngredients = computed(() => {
     const segment = this.autarky.selectedSegment();
-    const all = this.catalog.getAllIngredients();
-    if (!segment) return all;
-    return all.filter(ing => ing.segments.includes(segment));
+    const query = this.searchQuery().toLowerCase().trim();
+    const cat = this.categoryFilter();
+    let all = this.catalog.getAllIngredients();
+    if (segment) {
+      all = all.filter(ing => ing.segments.includes(segment));
+    }
+    if (cat !== 'all') {
+      all = all.filter(ing => ing.category === cat);
+    }
+    if (query) {
+      all = all.filter(ing =>
+        ing.name.toLowerCase().includes(query) ||
+        ing.inci.toLowerCase().includes(query)
+      );
+    }
+    return all;
   });
 
   savePremix() {
