@@ -8,6 +8,7 @@
 - **TypeScript** strict mode
 - **pnpm** package manager
 - **Vitest** + `ng test` для unit/integration тестов
+- **Playwright** для E2E тестов
 - **oxlint** + `angular-eslint` для линтинга
 
 ## Структура
@@ -21,7 +22,8 @@
 │   ├── ui/          # App shell, entry page
 │   ├── adapters/    # DI-мосты и кросс-доменные сервисы
 │   └── initialization/ # Bootstrap-сервисы
-├── tests/           # Unit и integration тесты
+├── tests/           # Unit и integration тесты (127 тестов)
+├── e2e/             # Playwright E2E тесты (7 тестов)
 └── agentica/        # Инструментарий аудита и рефакторинга
 ```
 
@@ -34,6 +36,7 @@ pnpm build            # production build
 pnpm test             # тесты
 pnpm lint             # oxlint + angular-eslint
 pnpm typecheck        # tsc --noEmit
+pnpm test:e2e         # Playwright E2E
 pnpm audit:arch       # архитектурный аудит (agentica/tools)
 ```
 
