@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AutarkyService, ISegmentInfo } from '../../../shared/services/autarky.service';
+import { AutarkyService, ISegmentInfo } from '../../../src/app/domains/shared/services/autarky.service';
 
 @Component({
-  selector: 'app-autarky-hub',
+  selector: 'app-entry',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -60,7 +60,7 @@ import { AutarkyService, ISegmentInfo } from '../../../shared/services/autarky.s
     :host { display: block; }
   `]
 })
-export class AutarkyHubComponent {
+export class AppEntryPageComponent {
   autarky = inject(AutarkyService);
   router = inject(Router);
 

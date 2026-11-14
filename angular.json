@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm",
+    "packageManager": "pnpm",
     "schematicCollections": [
       "angular-eslint"
     ]
@@ -13,7 +13,7 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "./",
       "prefix": "app",
       "architect": {
         "build": {
@@ -22,7 +22,7 @@
             "define": {
               "GEMINI_API_KEY": "'YOUR_GEMINI_API_KEY'"
             },
-            "browser": "src/main.ts",
+            "browser": "angular/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -31,12 +31,13 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "angular/styles.css"
             ],
-            "server": "src/main.server.ts",
+            "index": "angular/index.html",
+            "server": "angular/main.server.ts",
             "outputMode": "server",
             "ssr": {
-              "entry": "src/server.ts"
+              "entry": "angular/server.ts"
             }
           },
           "configurations": {
@@ -76,14 +77,32 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "runnerConfig": "vitest.config.ts",
+            "include": [
+              "src/**/*.spec.ts",
+              "src/**/*.test.ts",
+              "angular/**/*.spec.ts",
+              "angular/**/*.test.ts",
+              "modules/**/*.spec.ts",
+              "domain/**/*.spec.ts",
+              "tests/**/*.spec.ts"
+            ],
+            "watch": false
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
               "src/**/*.ts",
-              "src/**/*.html"
+              "src/**/*.html",
+              "angular/**/*.ts",
+              "angular/**/*.html",
+              "modules/**/*.ts",
+              "domain/**/*.ts"
             ]
           }
         }

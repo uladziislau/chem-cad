@@ -19,8 +19,6 @@
       "@domain/*": ["./domain/*"],
       "@data/*": ["./data/*"],
       "@adapters/*": ["./angular/adapters/*"],
-      "@modules/development/data/*": ["./modules/development/data/*"],
-      "@modules/development/*": ["./modules/development/*"],
       "@modules/*": ["./angular/modules/*"],
       "@ui/*": ["./angular/ui/*"]
     }
