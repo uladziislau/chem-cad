@@ -26,8 +26,9 @@ export interface IDryingStage {
 }
 
 /** Константы для модели полимеризации масел. */
-const OXIDATION_RATE = 0.15; // Константа скорости окислительной полимеризации
-const EVAPORATION_FACTOR = 0.8; // Эмпирический коэффициент испарения
+const OXIDATION_RATE = 0.05; // Константа скорости окислительной полимеризации
+const EVAPORATION_FACTOR = 10.0; // Эмпирический коэффициент испарения
+const BASE_POLYMERIZATION_MIN = 5000; // Базовое время полимеризации при IV=180, 25°C
 
 /**
  * Решатель для расчёта времени высыхания покрытий и лаков.
@@ -57,7 +58,12 @@ export class DryingSolver {
     const evaporationTime = this.calculateEvaporationTime(volatileComponents, volatileMass, temperatureCelsius);
     const polymerizationTime = this.calculatePolymerizationTime(oilComponents, totalMass, temperatureCelsius);
 
-    const touchDryTimeMin = Math.round(Math.min(evaporationTime, polymerizationTime));
+    // "Сухой на отлип" = min(время испарения, время полимеризации), но не 0 если один процесс отсутствует
+    const touchDryTimeMin = Math.round(
+      evaporationTime > 0 && polymerizationTime > 0
+        ? Math.min(evaporationTime, polymerizationTime)
+        : Math.max(evaporationTime, polymerizationTime)
+    );
     const fullDryTimeMin = Math.round(Math.max(evaporationTime, polymerizationTime));
 
     const stages = this.buildStages(evaporationTime, polymerizationTime, mechanism);
@@ -171,8 +177,7 @@ export class DryingSolver {
     avgIodineValue = totalOilMass > 0 ? avgIodineValue / totalOilMass : 120;
 
     // Время полимеризации: пропорционально йодному числу и обратной температуре
-    const basePolymerization = 480; // 8 часов при 25°C для IV=150
-    const ivFactor = basePolymerization / (avgIodineValue * OXIDATION_RATE);
+    const ivFactor = BASE_POLYMERIZATION_MIN / (avgIodineValue * OXIDATION_RATE);
     const tempFactor = Math.pow(0.92, temperatureCelsius - 25); // медленнее при низкой T
     const oilFactor = 1 / Math.max(oilFraction, 0.1); // больше масла — дольше
 

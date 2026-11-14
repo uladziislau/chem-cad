@@ -37,7 +37,7 @@ export const DEV_EPICS: DevelopmentEpic[] = [
     id: 'E02',
     title: 'Центр Автаркии (Autarky Hub)',
     description: 'Пользовательский интерфейс и архитектура для разделения продуктов по сегментам применения.',
-    status: 'active',
+    status: 'completed',
     tasks: [
       {
         id: '019',
@@ -89,7 +89,7 @@ export const DEV_EPICS: DevelopmentEpic[] = [
     id: 'E04',
     title: 'Лакокрасочные материалы (Coatings & DIY)',
     description: 'Моделирование процессов высыхания, полимеризации и адгезии.',
-    status: 'active',
+    status: 'completed',
     tasks: [
       {
         id: '022',
@@ -108,7 +108,7 @@ export const DEV_EPICS: DevelopmentEpic[] = [
     id: 'E-PRO',
     title: 'Профессиональная Лаборатория (R&D Edition)',
     description: 'Трансформация продукта в B2B SaaS для научных и R&D лабораторий (Predictive Formulation, DoE, ELN).',
-    status: 'active',
+    status: 'completed',
     tasks: [
       {
         id: 'PRO-1',
