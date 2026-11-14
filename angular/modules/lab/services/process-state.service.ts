@@ -91,6 +91,24 @@ export class ProcessStateService {
     this.persistence.save(this.currentProcess());
   }
 
+  /** Перемещает шаг с fromIndex на toIndex, сохраняя ссылку на активный шаг. */
+  moveStep(fromIndex: number, toIndex: number) {
+    const steps = this.currentProcess().steps;
+    if (fromIndex === toIndex || fromIndex < 0 || toIndex < 0 ||
+        fromIndex >= steps.length || toIndex >= steps.length) return;
+
+    const activeId = steps[this.activeStepIndex()]?.id;
+    const next = [...steps];
+    const [moved] = next.splice(fromIndex, 1);
+    next.splice(toIndex, 0, moved);
+
+    this.currentProcess.update(p => ({ ...p, steps: next }));
+
+    const newActive = next.findIndex(s => s.id === activeId);
+    this.activeStepIndex.set(newActive >= 0 ? newActive : 0);
+    this.persistence.save(this.currentProcess());
+  }
+
   addIngredientsToStep(stepId: string, ingredients: RawIngredientInput[]) {
     this.currentProcess.update(p => ({
       ...p,
