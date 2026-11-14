@@ -22,8 +22,8 @@
 │   ├── ui/          # App shell, entry page
 │   ├── adapters/    # DI-мосты и кросс-доменные сервисы
 │   └── initialization/ # Bootstrap-сервисы
-├── tests/           # Unit и integration тесты (127 тестов)
-├── e2e/             # Playwright E2E тесты (7 тестов)
+├── tests/           # Unit и integration тесты (337 тестов)
+├── e2e/             # Playwright E2E тесты (58 тестов)
 └── agentica/        # Инструментарий аудита и рефакторинга
 ```
 
