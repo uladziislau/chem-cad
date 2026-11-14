@@ -223,36 +223,9 @@ export class FormulationOptimizerComponent {
     this.isOptimizing.set(true);
 
     try {
-      const oil = this.catalog.getIngredientById(this.selectedOilId);
-      const water = this.catalog.getIngredientById(this.selectedWaterId);
-      if (!oil || !water) throw new Error('Не выбраны фазы');
+      const { oilEntity, waterEntity, surfactants } = this.validateAndCollect();
+      const targets = this.buildTargets();
 
-      const oilEntity = oil.entity as unknown as IOil;
-      const waterEntity = water.entity as PureSubstance;
-      if (typeof oilEntity?.requiredHlb !== 'number') {
-        throw new Error('У выбранной масляной фазы нет requiredHlb');
-      }
-
-      const surfactants = this.surfactantPicks()
-        .filter(p => p.checked)
-        .map(p => p.ingredient.entity as unknown as ISurfactant);
-      if (surfactants.length < 2) {
-        throw new Error('Нужно минимум 2 ПАВ (один с HLB ниже, один выше целевого)');
-      }
-
-      const t: IFormulationTargets = {};
-      if (this.targets.minDetergencyScore !== undefined && this.targets.minDetergencyScore !== null) {
-        t.minDetergencyScore = this.targets.minDetergencyScore;
-      }
-      if (this.targets.maxTouchDryTimeMin !== undefined && this.targets.maxTouchDryTimeMin !== null) {
-        t.maxTouchDryTimeMin = this.targets.maxTouchDryTimeMin;
-      }
-      if (this.targets.maxFullDryTimeMin !== undefined && this.targets.maxFullDryTimeMin !== null) {
-        t.maxFullDryTimeMin = this.targets.maxFullDryTimeMin;
-      }
-
-      // targets передаём только если задано хотя бы одно поле
-      const hasTargets = Object.keys(t).length > 0;
       const result = AutoFormulator.optimizeEmulsion(
         oilEntity,
         new Mass(this.oilMassG, 'g'),
@@ -260,7 +233,7 @@ export class FormulationOptimizerComponent {
         new Mass(this.waterMassG, 'g'),
         surfactants,
         new Mass(this.surfactantMassG, 'g'),
-        hasTargets ? t : undefined,
+        targets,
         25
       );
 
@@ -270,6 +243,45 @@ export class FormulationOptimizerComponent {
     } finally {
       this.isOptimizing.set(false);
     }
+  }
+
+  private validateAndCollect(): {
+    oilEntity: IOil;
+    waterEntity: PureSubstance;
+    surfactants: ISurfactant[];
+  } {
+    const oil = this.catalog.getIngredientById(this.selectedOilId);
+    const water = this.catalog.getIngredientById(this.selectedWaterId);
+    if (!oil || !water) throw new Error('Не выбраны фазы');
+
+    const oilEntity = oil.entity as unknown as IOil;
+    const waterEntity = water.entity as PureSubstance;
+    if (typeof oilEntity?.requiredHlb !== 'number') {
+      throw new Error('У выбранной масляной фазы нет requiredHlb');
+    }
+
+    const surfactants = this.surfactantPicks()
+      .filter(p => p.checked)
+      .map(p => p.ingredient.entity as unknown as ISurfactant);
+    if (surfactants.length < 2) {
+      throw new Error('Нужно минимум 2 ПАВ (один с HLB ниже, один выше целевого)');
+    }
+
+    return { oilEntity, waterEntity, surfactants };
+  }
+
+  private buildTargets(): IFormulationTargets | undefined {
+    const t: IFormulationTargets = {};
+    if (this.targets.minDetergencyScore !== undefined && this.targets.minDetergencyScore !== null) {
+      t.minDetergencyScore = this.targets.minDetergencyScore;
+    }
+    if (this.targets.maxTouchDryTimeMin !== undefined && this.targets.maxTouchDryTimeMin !== null) {
+      t.maxTouchDryTimeMin = this.targets.maxTouchDryTimeMin;
+    }
+    if (this.targets.maxFullDryTimeMin !== undefined && this.targets.maxFullDryTimeMin !== null) {
+      t.maxFullDryTimeMin = this.targets.maxFullDryTimeMin;
+    }
+    return Object.keys(t).length > 0 ? t : undefined;
   }
 
   addToFormulation(r: FormulationReport) {
