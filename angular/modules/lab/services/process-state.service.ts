@@ -44,7 +44,7 @@ export class ProcessStateService {
 
   addStep(operation: OperationType) {
     const newStep: ProcessStep = {
-      id: `step_${Date.now()}`,
+      id: crypto.randomUUID(),
       name: this.getDefaultStepName(operation),
       operation,
       durationMinutes: 10,
