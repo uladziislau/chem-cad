@@ -1,0 +1,14 @@
+{
+  "name": "chem-cad",
+  "roots": ["src", "modules", "tests", "agentica"],
+  "extensions": [".ts", ".tsx"],
+  "skipDirs": ["node_modules", "dist", ".angular", "out-tsc", "build", ".git", "public", "documentation"],
+  "aliases": {
+    "@modules": "angular/modules",
+    "@root-modules": "modules",
+    "@domain": "domain",
+    "@data": "data",
+    "@adapters": "angular/adapters",
+    "@ui": "angular/ui"
+  }
+}

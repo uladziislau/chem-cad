@@ -1,0 +1,6 @@
+{
+  "name": "project-name",
+  "roots": ["angular", "core", "tests", "agentica"],
+  "extensions": [".ts", ".tsx"],
+  "skipDirs": ["node_modules", "dist", ".angular", "out-tsc", "build"]
+}

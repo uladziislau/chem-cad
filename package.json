@@ -2,6 +2,8 @@
   "name": "ai-studio-angular-app",
   "version": "0.0.0",
   "scripts": {
+    "audit:arch": "tsx agentica/tools/cli.ts audit",
+    "audit:arch:strict": "tsx agentica/tools/cli.ts audit --strict",
     "build": "ng build",
     "dev": "cross-env ng serve --port=3000 --host=0.0.0.0 --define=\"GEMINI_API_KEY=\\'${GEMINI_API_KEY}\\'\" ${DISABLE_HMR:+--live-reload=false}",
     "lint": "pnpm run lint:ts && pnpm run lint:html",
@@ -54,6 +56,7 @@
     "oxlint": "^1.87.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.12",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "typescript-eslint": "8.47.0",
     "vitest": "^4.0.0"
