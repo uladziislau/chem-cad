@@ -20,7 +20,8 @@
                  [class.bg-indigo-500/10]="process.activeStepIndex() === i"
                  [class.border-indigo-500/50]="process.activeStepIndex() === i"
                  [class.bg-slate-950/50]="process.activeStepIndex() !== i"
-                 [class.border-white/5]="process.activeStepIndex() !== i">
+                 [class.border-white/5]="process.activeStepIndex() !== i && !process.stepIssues().has(step.id)"
+                 [class.border-rose-500/60]="process.stepIssues().has(step.id)">
 
               <div class="flex justify-between items-start mb-1">
                 <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Шаг {{ i + 1 }}</span>
@@ -40,6 +41,13 @@
                 <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 uppercase">{{ step.operation }}</span>
                 <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">{{ step.durationMinutes }} мин</span>
               </div>
+
+              @if (process.stepIssues().has(step.id)) {
+                <div class="mt-1 text-[10px] text-rose-400 font-bold flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Ошибки параметров
+                </div>
+              }
             </div>
           }
 
@@ -66,8 +74,10 @@
                <div class="text-right">
                  <div class="text-[10px] text-slate-500 uppercase font-bold">Длительность</div>
                  <div class="flex items-center gap-2">
-                   <input type="number" [ngModel]="step.durationMinutes" (ngModelChange)="process.updateStep(step.id, {durationMinutes: $event})"
-                          class="w-12 bg-slate-950 border border-white/5 rounded px-2 py-1 text-white text-sm font-mono outline-none">
+                  <input type="number" min="0.1" step="0.1" [ngModel]="step.durationMinutes" (ngModelChange)="process.updateStep(step.id, {durationMinutes: $event})"
+                         class="w-12 bg-slate-950 border rounded px-2 py-1 text-white text-sm font-mono outline-none"
+                         [class.border-rose-500/70]="!step.durationMinutes || step.durationMinutes <= 0"
+                         [class.border-white/5]="step.durationMinutes > 0">
                    <span class="text-xs text-slate-500">мин</span>
                  </div>
                </div>
@@ -75,8 +85,10 @@
                  <div class="text-right">
                    <div class="text-[10px] text-slate-500 uppercase font-bold">Скорость</div>
                    <div class="flex items-center gap-2">
-                     <input type="number" [ngModel]="step.rpm" (ngModelChange)="process.updateStep(step.id, {rpm: $event})"
-                            class="w-16 bg-slate-950 border border-white/5 rounded px-2 py-1 text-white text-sm font-mono outline-none">
+                    <input type="number" min="0" [ngModel]="step.rpm" (ngModelChange)="process.updateStep(step.id, {rpm: $event})"
+                           class="w-16 bg-slate-950 border rounded px-2 py-1 text-white text-sm font-mono outline-none"
+                           [class.border-rose-500/70]="step.rpm !== undefined && step.rpm < 0"
+                           [class.border-white/5]="step.rpm === undefined || step.rpm >= 0">
                      <span class="text-xs text-slate-500">RPM</span>
                    </div>
                  </div>
@@ -84,13 +96,24 @@
                <div class="text-right">
                  <div class="text-[10px] text-slate-500 uppercase font-bold">Температура</div>
                  <div class="flex items-center gap-2">
-                   <input type="number" [ngModel]="step.targetTemperature" (ngModelChange)="process.updateStep(step.id, {targetTemperature: $event})"
-                          class="w-12 bg-slate-950 border border-white/5 rounded px-2 py-1 text-white text-sm font-mono outline-none">
+                  <input type="number" [ngModel]="step.targetTemperature" (ngModelChange)="process.updateStep(step.id, {targetTemperature: $event})"
+                         class="w-12 bg-slate-950 border rounded px-2 py-1 text-white text-sm font-mono outline-none"
+                         [class.border-rose-500/70]="step.targetTemperature !== undefined && !Number.isFinite(step.targetTemperature)"
+                         [class.border-white/5]="step.targetTemperature === undefined || Number.isFinite(step.targetTemperature)">
                    <span class="text-xs text-slate-500">°C</span>
                  </div>
                </div>
             </div>
           </div>
+
+            @if (process.stepIssues().get(step.id); as stepErrs) {
+              <div class="p-3 bg-rose-950/30 border border-rose-500/30 rounded-xl space-y-1">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Ошибки валидации</div>
+                @for (err of stepErrs; track err) {
+                  <div class="text-xs text-rose-300">• {{ err }}</div>
+                }
+              </div>
+            }
 
           <!-- Step Content -->
           <div class="flex-1 overflow-y-auto space-y-6 pr-2 custom-scrollbar">
@@ -125,9 +148,11 @@
                         <div class="text-[10px] text-slate-500">{{ ingInput.category }}</div>
                       </div>
                       <div class="flex items-center gap-2">
-                        <input type="number" [ngModel]="ingInput.massGrams"
+                        <input type="number" min="0.01" step="0.01" [ngModel]="ingInput.massGrams"
                                (ngModelChange)="updateIngredientMass(step.id, $index, $event)"
-                               class="w-16 bg-slate-950 border border-white/10 rounded px-2 py-1 text-white text-sm font-mono text-right outline-none">
+                               class="w-16 bg-slate-950 border rounded px-2 py-1 text-white text-sm font-mono text-right outline-none"
+                               [class.border-rose-500/70]="!ingInput.massGrams || ingInput.massGrams <= 0"
+                               [class.border-white/10]="ingInput.massGrams > 0">
                         <span class="text-xs text-slate-500">г</span>
                       </div>
                     </div>
