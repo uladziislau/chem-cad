@@ -5,6 +5,10 @@ import { CatalogService } from '@modules/lab/services/catalog.service';
 import { FormulationStateService } from '@modules/lab/services/formulation-state.service';
 import { AutarkyService } from '@adapters/autarky.service';
 import { MicroscopeViewComponent } from './microscope-view.component';
+import { TargetSpecsComponent } from './target-specs.component';
+import { SafetyBannerComponent } from './safety-banner.component';
+import { VersionHistoryComponent } from './version-history.component';
+import { ReasoningPanelComponent } from './reasoning-panel.component';
 import { RouterLink } from '@angular/router';
 
 import { formatReportText, formatReportCsv, downloadText } from '@adapters/report.service';
@@ -12,7 +16,7 @@ import { formatReportText, formatReportCsv, downloadText } from '@adapters/repor
 @Component({
   selector: 'app-lab-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, MicroscopeViewComponent, RouterLink],
+  imports: [CommonModule, FormsModule, MicroscopeViewComponent, TargetSpecsComponent, VersionHistoryComponent, SafetyBannerComponent, ReasoningPanelComponent, RouterLink],
   templateUrl: './lab-dashboard.component.html',
   styles: [`
     :host { display: block; }
