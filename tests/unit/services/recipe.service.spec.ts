@@ -11,7 +11,7 @@ const customRecipe: Omit<Recipe, 'id' | 'isCustom'> = {
   description: 'Проверка',
   difficulty: 'easy',
   ingredients: [{ ingredientId: 'water', percentage: 100, purpose: 'Основа' }],
-  steps: ['Смешать'],
+  steps: [{ text: 'Смешать' }],
   safetyWarnings: [],
 };
 
@@ -93,5 +93,55 @@ describe('RecipeService', () => {
   it('importRecipes возвращает 0 на битом JSON', () => {
     expect(service.importRecipes('not json')).toBe(0);
     expect(service.importRecipes('{"foo": 1}')).toBe(0);
+  });
+
+  it('importRecipes нормализует legacy string[] steps → RecipeStep[]', () => {
+    const payload = JSON.stringify([
+      { ...customRecipe, id: 'norm1', steps: ['Шаг текстом', { text: 'Шаг объектом', durationMinutes: 5 }] },
+    ]);
+    expect(service.importRecipes(payload)).toBe(1);
+    const imported = service.getRecipeById('norm1')!;
+    expect(imported.steps[0]).toEqual({ text: 'Шаг текстом' });
+    expect(imported.steps[1]).toEqual({ text: 'Шаг объектом', durationMinutes: 5 });
+  });
+
+  it('importRecipes отклоняет невалидные steps (без text, отрицательная duration)', () => {
+    const bad1 = JSON.stringify([{ ...customRecipe, id: 'bad1', steps: [{ durationMinutes: 5 }] }]);
+    const bad2 = JSON.stringify([{ ...customRecipe, id: 'bad2', steps: [{ text: 'ok', durationMinutes: -1 }] }]);
+    const bad3 = JSON.stringify([{ ...customRecipe, id: 'bad3', steps: [{ text: 'ok', ingredientIds: 'not-array' }] }]);
+    expect(service.importRecipes(bad1)).toBe(0);
+    expect(service.importRecipes(bad2)).toBe(0);
+    expect(service.importRecipes(bad3)).toBe(0);
+  });
+
+  it('importRecipes принимает пустой объект {} как невалидный (нет обязательных полей)', () => {
+    expect(service.importRecipes('[{}]')).toBe(0);
+    expect(service.importRecipes('[]')).toBe(0);
+  });
+
+  it('updateRecipe обновляет только кастомные рецепты', () => {
+    // Встроенный — нельзя
+    expect(service.updateRecipe('r1', { ...customRecipe, name: 'Взлом' })).toBeUndefined();
+    expect(service.getRecipeById('r1')!.name).not.toBe('Взлом');
+
+    // Кастомный — можно
+    const custom = service.addRecipe(customRecipe);
+    const updated = service.updateRecipe(custom.id, { ...customRecipe, name: 'Новое имя' });
+    expect(updated?.name).toBe('Новое имя');
+    expect(service.getRecipeById(custom.id)!.name).toBe('Новое имя');
+    expect(updated!.id).toBe(custom.id);
+    expect(updated!.isCustom).toBe(true);
+  });
+
+  it('updateRecipe персистит изменения', () => {
+    const custom = service.addRecipe(customRecipe);
+    service.updateRecipe(custom.id, { ...customRecipe, name: 'Сохранённое' });
+    const injector2 = createEnvironmentInjector([RecipeService], null as unknown as EnvironmentInjector);
+    const service2 = injector2.get(RecipeService);
+    expect(service2.getRecipeById(custom.id)!.name).toBe('Сохранённое');
+  });
+
+  it('updateRecipe возвращает undefined для несуществующего id', () => {
+    expect(service.updateRecipe('no_such_id', customRecipe)).toBeUndefined();
   });
 });
