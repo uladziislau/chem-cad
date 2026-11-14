@@ -113,13 +113,13 @@ export const DEV_EPICS: DevelopmentEpic[] = [
       {
         id: 'PRO-1',
         title: 'Декларативное проектирование (Constraint-Based Solver)',
-        status: 'implementation',
+        status: 'done',
         priority: 'high',
         description: 'Переход от императивного смешивания к декларативному: пользователь задает целевые свойства (pH, вязкость), а математический решатель подбирает состав.',
         subtasks: [
           { id: 'P1.1', title: 'Математическая модель целевой функции (Loss function)', status: 'done' },
           { id: 'P1.2', title: 'Алгоритм подбора концентраций (Градиентный спуск / Симплекс)', status: 'done' },
-          { id: 'P1.3', title: 'UI для задания декларативных ограничений (Target Specs)', status: 'pending' }
+          { id: 'P1.3', title: 'UI для задания декларативных ограничений (Target Specs)', status: 'done' }
         ]
       },
       {
