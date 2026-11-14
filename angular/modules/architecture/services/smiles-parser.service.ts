@@ -48,7 +48,7 @@ export class SmilesParserService {
       // Чтение символа элемента (учитываем двухбуквенные, например Cl, Br)
       let symbol = cleanSmiles[startIndex];
       let i = startIndex;
-      if (i + 1 < cleanSmiles.length && /[a-z]/.test(cleanSmiles[i + 1])) {
+      if (i + 1 < cleanSmiles.length && /[A-Z]/.test(symbol) && /[a-z]/.test(cleanSmiles[i + 1])) {
         symbol += cleanSmiles[i + 1];
         i++;
       }
