@@ -1,10 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { DomainPhase } from '@domain/entities/domain-phase';
-import { DomainPhaseBoundary } from '@domain/entities/domain-phase-boundary';
 import { ChemicalSpecies } from '@domain/entities/chemical-species';
 import { HansenSolubilityAspect } from '@domain/aspects/hansen-solubility.aspect';
-import { SurfaceActiveAspect } from '@domain/aspects/surface-active.aspect';
 import { HansenVector } from '@domain/values/hansen-vector';
+
 
 describe('DomainPhase', () => {
   const water = new ChemicalSpecies('water', 'Вода', 'Aqua', 18.015, 1.0);
