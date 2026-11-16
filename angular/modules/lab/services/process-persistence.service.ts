@@ -93,20 +93,9 @@ export class ProcessPersistenceService {
     };
   }
 
-  /** Возвращает null для шага, который нельзя безопасно восстановить. */
-  private deserializeStep(stored: StoredStep | null | undefined): ProcessStep | null {
-    if (!stored || typeof stored !== 'object') return null;
-
-    const id = typeof stored.id === 'string' && stored.id.trim() ? stored.id : crypto.randomUUID();
-    if (!isOperationType(stored.operation)) return null;
-    if (!Number.isFinite(stored.durationMinutes) || stored.durationMinutes <= 0) return null;
-
-    const name = typeof stored.name === 'string' && stored.name.trim()
-      ? stored.name
-      : 'Этап без названия';
-
+  private parseIngredients(stored: unknown): RawIngredientInput[] {
     const ingredients: RawIngredientInput[] = [];
-    for (const ing of Array.isArray(stored.ingredients) ? stored.ingredients : []) {
+    for (const ing of Array.isArray(stored) ? stored : []) {
       if (!ing || typeof ing.entityName !== 'string') continue;
       if (!Number.isFinite(ing.massGrams) || ing.massGrams <= 0) continue;
       const found = this.catalog.findByEntityName(ing.entityName);
@@ -114,6 +103,21 @@ export class ProcessPersistenceService {
         ingredients.push({ entity: found.entity, massGrams: ing.massGrams, category: ing.category });
       }
     }
+    return ingredients;
+  }
+
+  /** Возвращает null для шага, который нельзя безопасно восстановить. */
+  private deserializeStep(stored: StoredStep | null | undefined): ProcessStep | null {
+    if (!stored || typeof stored !== 'object') return null;
+    if (!isOperationType(stored.operation)) return null;
+    if (!Number.isFinite(stored.durationMinutes) || stored.durationMinutes <= 0) return null;
+
+    const id = typeof stored.id === 'string' && stored.id.trim() ? stored.id : crypto.randomUUID();
+    const name = typeof stored.name === 'string' && stored.name.trim()
+      ? stored.name
+      : 'Этап без названия';
+
+    const ingredients = this.parseIngredients(stored.ingredients);
 
     return {
       id,
