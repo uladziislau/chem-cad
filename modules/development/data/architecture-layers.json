@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Презентационный слой (UI)",
+    "role": "Отображение данных и взаимодействие с пользователем",
+    "technologies": ["Angular Components", "Tailwind CSS", "Signals", "D3.js", "ECharts"]
+  },
+  {
+    "name": "Прикладной слой (Application)",
+    "role": "Управление состоянием и бизнес-сценарии",
+    "technologies": ["Angular Services", "Signals", "Dependency Injection"]
+  },
+  {
+    "name": "Доменный слой (Domain)",
+    "role": "Бизнес-модели и правила, без зависимости от фреймворка",
+    "technologies": ["TypeScript Interfaces", "Pure Functions", "Ontology"]
+  },
+  {
+    "name": "Инфраструктурный слой",
+    "role": "Хранение и чтение данных",
+    "technologies": ["JSON data", "UserDataProvider", "Markdown renderer"]
+  }
+]

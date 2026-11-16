@@ -1,0 +1,175 @@
+import type { ArchitectureModule } from '../domain';
+
+/**
+ * Архитектурные модули medicina — реестр bounded contexts.
+ * id совпадает с CompositionEntry.id при kind='module'.
+ * Ведётся вручную по фактической структуре modules/ (срез 2026-11-16).
+ */
+export const ARCHITECTURE_MODULES: ArchitectureModule[] = [
+  {
+    id: 'mod-user-data',
+    slug: 'user-data',
+    name: 'User Data',
+    category: 'data',
+    status: 'completed',
+    license: 'proprietary',
+    summary:
+      'Провайдер пользовательских медицинских данных: UserDataProvider, ' +
+      'типы UserData/UserHelix/UserHealthData, реестр пользователей.',
+    techStack: ['TypeScript', 'JSON runtime assets'],
+    pureCorePath: 'modules/user-data',
+    angularPath: 'angular/modules/medical-card',
+    keyCapabilities: [
+      'Единая точка чтения пользовательских данных',
+      'Медицинские данные как runtime-ассеты вне бандла',
+    ],
+    specIds: ['id.spec.global-error-handler'],
+    relatedTaskIds: ['id.task.data-normalization', 'id.task.global-search'],
+  },
+  {
+    id: 'mod-calendar',
+    slug: 'calendar',
+    name: 'Calendar',
+    category: 'feature',
+    status: 'in_progress',
+    license: 'proprietary',
+    summary:
+      'Логика медицинского календаря: события приёмов, анализов и процедур, ' +
+      'миграция планировщика в хронологический календарь.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/calendar',
+    angularPath: 'angular/modules/calendar',
+    keyCapabilities: ['События по точным датам', 'Группировка Месяц+Год'],
+    specIds: [],
+    relatedTaskIds: ['id.task.calendar-revamp'],
+  },
+  {
+    id: 'mod-development',
+    slug: 'development',
+    name: 'Development',
+    category: 'meta',
+    status: 'in_progress',
+    license: 'proprietary',
+    summary:
+      'Встроенный task-manager проекта: каноническая доменная модель ' +
+      '(направления, эпики, задачи, спецификации, состав, слабые места, аудит), ' +
+      'данные и pure-TS сервисы.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/development',
+    angularPath: 'angular/modules/development',
+    keyCapabilities: [
+      'Каноническая DevTask (6-стадийный конвейер)',
+      'Реестр состава проекта (CompositionEntry)',
+    ],
+    specIds: ['id.spec.weakest-link'],
+    relatedTaskIds: [],
+  },
+  {
+    id: 'mod-medications',
+    slug: 'medications',
+    name: 'Medications',
+    category: 'feature',
+    status: 'completed',
+    license: 'proprietary',
+    summary: 'Логика приёма лекарств: расписание, дозировки, привязка к событиям.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/medications',
+    angularPath: 'angular/modules/medications',
+    keyCapabilities: ['Medication intake logic'],
+    specIds: [],
+    relatedTaskIds: [],
+  },
+  {
+    id: 'mod-biomechanics',
+    slug: 'biomechanics',
+    name: 'Biomechanics',
+    category: 'feature',
+    status: 'in_progress',
+    license: 'proprietary',
+    summary:
+      'Биомеханика: ортопедические тесты, симметрия, pain mapping, ' +
+      'тенсегрити-моделирование.',
+    techStack: ['TypeScript', 'Three.js', 'Rapier3D'],
+    pureCorePath: 'modules/biomechanics',
+    angularPath: 'angular/modules/biomechanics',
+    keyCapabilities: ['Biomechanics logic'],
+    specIds: [],
+    relatedTaskIds: ['id.task.biomechanics-init'],
+  },
+  {
+    id: 'mod-pharmacokinetics',
+    slug: 'pharmacokinetics',
+    name: 'Pharmacokinetics',
+    category: 'feature',
+    status: 'completed',
+    license: 'proprietary',
+    summary: 'Фармакокинетика: расчёты концентраций, дозировок, выведения.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/pharmacokinetics',
+    keyCapabilities: ['Pharmacokinetics logic'],
+    specIds: [],
+    relatedTaskIds: [],
+  },
+  {
+    id: 'mod-research',
+    slug: 'research',
+    name: 'Research',
+    category: 'feature',
+    status: 'in_progress',
+    license: 'proprietary',
+    summary:
+      'Исследовательский контур: итерации, клинические испытания, ' +
+      'сообщество, причины, pain-logic.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/research',
+    angularPath: 'angular/modules/research',
+    keyCapabilities: ['Research logic', 'Pain logic'],
+    specIds: [],
+    relatedTaskIds: ['id.task.global-search'],
+  },
+  {
+    id: 'mod-global-error-handler',
+    slug: 'global-error-handler',
+    name: 'Global Error Handler',
+    category: 'infrastructure',
+    status: 'completed',
+    license: 'proprietary',
+    summary:
+      'Централизованный перехват и классификация ошибок: UX вместо ' +
+      'белого экрана, структурированные логи для DX.',
+    techStack: ['TypeScript', 'Angular'],
+    pureCorePath: 'modules/global-error-handler',
+    keyCapabilities: ['Global error handling'],
+    specIds: ['id.spec.global-error-handler'],
+    relatedTaskIds: [],
+  },
+  {
+    id: 'mod-documentation',
+    slug: 'documentation',
+    name: 'Documentation',
+    category: 'infrastructure',
+    status: 'completed',
+    license: 'proprietary',
+    summary: 'Группировка и загрузка документации проекта (viewer-логика).',
+    techStack: ['TypeScript', 'Markdown'],
+    pureCorePath: 'modules/documentation',
+    angularPath: 'angular/modules/documentation',
+    keyCapabilities: ['Group docs'],
+    specIds: [],
+    relatedTaskIds: [],
+  },
+  {
+    id: 'mod-body-composition',
+    slug: 'body-composition',
+    name: 'Body Composition',
+    category: 'feature',
+    status: 'in_progress',
+    license: 'proprietary',
+    summary: 'Состав тела: метрики, визуализация, динамика.',
+    techStack: ['TypeScript'],
+    pureCorePath: 'modules/body-composition',
+    keyCapabilities: ['Body composition logic'],
+    specIds: [],
+    relatedTaskIds: [],
+  },
+];

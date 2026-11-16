@@ -1,0 +1,2096 @@
+[
+  {
+    "id": "mod-archive",
+    "kind": "module",
+    "name": "archive",
+    "path": "modules/archive",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-biomechanics",
+    "kind": "module",
+    "name": "biomechanics",
+    "path": "modules/biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-body-composition",
+    "kind": "module",
+    "name": "body-composition",
+    "path": "modules/body-composition",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-calendar",
+    "kind": "module",
+    "name": "calendar",
+    "path": "modules/calendar",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-contacts",
+    "kind": "module",
+    "name": "contacts",
+    "path": "modules/contacts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-development",
+    "kind": "module",
+    "name": "development",
+    "path": "modules/development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-diagnostics",
+    "kind": "module",
+    "name": "diagnostics",
+    "path": "modules/diagnostics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-digitization",
+    "kind": "module",
+    "name": "digitization",
+    "path": "modules/digitization",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-documentation",
+    "kind": "module",
+    "name": "documentation",
+    "path": "modules/documentation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-global-error-handler",
+    "kind": "module",
+    "name": "global-error-handler",
+    "path": "modules/global-error-handler",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-human",
+    "kind": "module",
+    "name": "human",
+    "path": "modules/human",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-medications",
+    "kind": "module",
+    "name": "medications",
+    "path": "modules/medications",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-pharmacokinetics",
+    "kind": "module",
+    "name": "pharmacokinetics",
+    "path": "modules/pharmacokinetics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-physiotherapy",
+    "kind": "module",
+    "name": "physiotherapy",
+    "path": "modules/physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-recovery",
+    "kind": "module",
+    "name": "recovery",
+    "path": "modules/recovery",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-research",
+    "kind": "module",
+    "name": "research",
+    "path": "modules/research",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-sport",
+    "kind": "module",
+    "name": "sport",
+    "path": "modules/sport",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-user-data",
+    "kind": "module",
+    "name": "user-data",
+    "path": "modules/user-data",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-analysis",
+    "kind": "angular-module",
+    "name": "analysis",
+    "path": "angular/modules/analysis",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-archive",
+    "kind": "angular-module",
+    "name": "archive",
+    "path": "angular/modules/archive",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-archive-2"
+  },
+  {
+    "id": "ang-biomechanics",
+    "kind": "angular-module",
+    "name": "biomechanics",
+    "path": "angular/modules/biomechanics",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-biomechanics-2"
+  },
+  {
+    "id": "ang-calendar",
+    "kind": "angular-module",
+    "name": "calendar",
+    "path": "angular/modules/calendar",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-calendar-2"
+  },
+  {
+    "id": "ang-contacts",
+    "kind": "angular-module",
+    "name": "contacts",
+    "path": "angular/modules/contacts",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-contacts-2"
+  },
+  {
+    "id": "ang-dashboard",
+    "kind": "angular-module",
+    "name": "dashboard",
+    "path": "angular/modules/dashboard",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-development",
+    "kind": "angular-module",
+    "name": "development",
+    "path": "angular/modules/development",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-development-2"
+  },
+  {
+    "id": "ang-diagnostics",
+    "kind": "angular-module",
+    "name": "diagnostics",
+    "path": "angular/modules/diagnostics",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-diagnostics-2"
+  },
+  {
+    "id": "ang-digital-twin",
+    "kind": "angular-module",
+    "name": "digital-twin",
+    "path": "angular/modules/digital-twin",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-digitization",
+    "kind": "angular-module",
+    "name": "digitization",
+    "path": "angular/modules/digitization",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-digitization-2"
+  },
+  {
+    "id": "ang-documentation",
+    "kind": "angular-module",
+    "name": "documentation",
+    "path": "angular/modules/documentation",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-documentation-2"
+  },
+  {
+    "id": "ang-drug-reference",
+    "kind": "angular-module",
+    "name": "drug-reference",
+    "path": "angular/modules/drug-reference",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-dynamics",
+    "kind": "angular-module",
+    "name": "dynamics",
+    "path": "angular/modules/dynamics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-health-analytics",
+    "kind": "angular-module",
+    "name": "health-analytics",
+    "path": "angular/modules/health-analytics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-health-systems",
+    "kind": "angular-module",
+    "name": "health-systems",
+    "path": "angular/modules/health-systems",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-import-area",
+    "kind": "angular-module",
+    "name": "import-area",
+    "path": "angular/modules/import-area",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-incidents",
+    "kind": "angular-module",
+    "name": "incidents",
+    "path": "angular/modules/incidents",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-inventory",
+    "kind": "angular-module",
+    "name": "inventory",
+    "path": "angular/modules/inventory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-live-visit",
+    "kind": "angular-module",
+    "name": "live-visit",
+    "path": "angular/modules/live-visit",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-medical-card",
+    "kind": "angular-module",
+    "name": "medical-card",
+    "path": "angular/modules/medical-card",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-medical-documents",
+    "kind": "angular-module",
+    "name": "medical-documents",
+    "path": "angular/modules/medical-documents",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-medical-timeline",
+    "kind": "angular-module",
+    "name": "medical-timeline",
+    "path": "angular/modules/medical-timeline",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-medications",
+    "kind": "angular-module",
+    "name": "medications",
+    "path": "angular/modules/medications",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-medications-2"
+  },
+  {
+    "id": "ang-organs-atlas",
+    "kind": "angular-module",
+    "name": "organs-atlas",
+    "path": "angular/modules/organs-atlas",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-physiotherapy",
+    "kind": "angular-module",
+    "name": "physiotherapy",
+    "path": "angular/modules/physiotherapy",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-physiotherapy-2"
+  },
+  {
+    "id": "ang-planner",
+    "kind": "angular-module",
+    "name": "planner",
+    "path": "angular/modules/planner",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-recovery",
+    "kind": "angular-module",
+    "name": "recovery",
+    "path": "angular/modules/recovery",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-recovery-2"
+  },
+  {
+    "id": "ang-recovery-biomechanics",
+    "kind": "angular-module",
+    "name": "recovery-biomechanics",
+    "path": "angular/modules/recovery-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-research",
+    "kind": "angular-module",
+    "name": "research",
+    "path": "angular/modules/research",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-research-2"
+  },
+  {
+    "id": "ang-sections",
+    "kind": "angular-module",
+    "name": "sections",
+    "path": "angular/modules/sections",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-sport",
+    "kind": "angular-module",
+    "name": "sport",
+    "path": "angular/modules/sport",
+    "lastSeenAt": "2026-11-16",
+    "ownerModule": "mod-sport-2"
+  },
+  {
+    "id": "ang-strategy",
+    "kind": "angular-module",
+    "name": "strategy",
+    "path": "angular/modules/strategy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-symptom-journal",
+    "kind": "angular-module",
+    "name": "symptom-journal",
+    "path": "angular/modules/symptom-journal",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "ang-wiki",
+    "kind": "angular-module",
+    "name": "wiki",
+    "path": "angular/modules/wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-analysis",
+    "kind": "page",
+    "name": "analysis.component",
+    "path": "angular/modules/analysis/ui/pages/analysis.component.ts",
+    "ownerModule": "amod-analysis",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-archive",
+    "kind": "page",
+    "name": "archive.component",
+    "path": "angular/modules/archive/ui/pages/archive.component.ts",
+    "ownerModule": "amod-archive",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-archive-types",
+    "kind": "page",
+    "name": "archive.types",
+    "path": "angular/modules/archive/ui/pages/archive.types.ts",
+    "ownerModule": "amod-archive",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-biomechanics",
+    "kind": "page",
+    "name": "biomechanics.component",
+    "path": "angular/modules/biomechanics/ui/pages/biomechanics.component.ts",
+    "ownerModule": "amod-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-personal-diagnostic",
+    "kind": "page",
+    "name": "personal-diagnostic.component",
+    "path": "angular/modules/biomechanics/ui/pages/personal-diagnostic.component.ts",
+    "ownerModule": "amod-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-calendar",
+    "kind": "page",
+    "name": "calendar.component",
+    "path": "angular/modules/calendar/ui/pages/calendar.component.ts",
+    "ownerModule": "amod-calendar",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-contacts",
+    "kind": "page",
+    "name": "contacts.component",
+    "path": "angular/modules/contacts/ui/pages/contacts.component.ts",
+    "ownerModule": "amod-contacts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dashboard",
+    "kind": "page",
+    "name": "dashboard.component",
+    "path": "angular/modules/dashboard/ui/pages/dashboard.component.ts",
+    "ownerModule": "amod-dashboard",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-arch",
+    "kind": "page",
+    "name": "dev-arch.component",
+    "path": "angular/modules/development/ui/pages/architecture/dev-arch.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-audit",
+    "kind": "page",
+    "name": "dev-audit.component",
+    "path": "angular/modules/development/ui/pages/audit/dev-audit.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-audit-pages",
+    "kind": "page",
+    "name": "dev-audit-pages.component",
+    "path": "angular/modules/development/ui/pages/audit/pages/dev-audit-pages.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-development",
+    "kind": "page",
+    "name": "development.component",
+    "path": "angular/modules/development/ui/pages/development.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-epics",
+    "kind": "page",
+    "name": "dev-epics.component",
+    "path": "angular/modules/development/ui/pages/epics/dev-epics.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-features",
+    "kind": "page",
+    "name": "dev-features.component",
+    "path": "angular/modules/development/ui/pages/features/dev-features.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-specs",
+    "kind": "page",
+    "name": "dev-specs.component",
+    "path": "angular/modules/development/ui/pages/specifications/dev-specs.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-stack",
+    "kind": "page",
+    "name": "dev-stack.component",
+    "path": "angular/modules/development/ui/pages/stack/dev-stack.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-tasks",
+    "kind": "page",
+    "name": "dev-tasks.component",
+    "path": "angular/modules/development/ui/pages/tasks/dev-tasks.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-components-data",
+    "kind": "page",
+    "name": "components-data",
+    "path": "angular/modules/development/ui/pages/ui-components/components-data.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dev-ui",
+    "kind": "page",
+    "name": "dev-ui.component",
+    "path": "angular/modules/development/ui/pages/ui-components/dev-ui.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-safe-outlet-directive",
+    "kind": "page",
+    "name": "safe-outlet.directive",
+    "path": "angular/modules/development/ui/pages/ui-components/safe-outlet.directive.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-diagnostics",
+    "kind": "page",
+    "name": "diagnostics.component",
+    "path": "angular/modules/diagnostics/ui/pages/diagnostics.component.ts",
+    "ownerModule": "amod-diagnostics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-digital-twin",
+    "kind": "page",
+    "name": "digital-twin.component",
+    "path": "angular/modules/digital-twin/ui/pages/digital-twin.component.ts",
+    "ownerModule": "amod-digital-twin",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-digitization",
+    "kind": "page",
+    "name": "digitization.component",
+    "path": "angular/modules/digitization/ui/pages/digitization.component.ts",
+    "ownerModule": "amod-digitization",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-doc-viewer",
+    "kind": "page",
+    "name": "doc-viewer.component",
+    "path": "angular/modules/documentation/ui/pages/doc-viewer.component.ts",
+    "ownerModule": "amod-documentation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-documentation-hub",
+    "kind": "page",
+    "name": "documentation-hub.component",
+    "path": "angular/modules/documentation/ui/pages/documentation-hub.component.ts",
+    "ownerModule": "amod-documentation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-drug-reference",
+    "kind": "page",
+    "name": "drug-reference.component",
+    "path": "angular/modules/drug-reference/ui/pages/drug-reference.component.ts",
+    "ownerModule": "amod-drug-reference",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dynamics",
+    "kind": "page",
+    "name": "dynamics.component",
+    "path": "angular/modules/dynamics/ui/pages/dynamics.component.ts",
+    "ownerModule": "amod-dynamics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-health-analytics",
+    "kind": "page",
+    "name": "health-analytics.component",
+    "path": "angular/modules/health-analytics/ui/pages/health-analytics.component.ts",
+    "ownerModule": "amod-health-analytics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-health-systems",
+    "kind": "page",
+    "name": "health-systems.component",
+    "path": "angular/modules/health-systems/ui/pages/health-systems.component.ts",
+    "ownerModule": "amod-health-systems",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-import-area",
+    "kind": "page",
+    "name": "import-area.component",
+    "path": "angular/modules/import-area/ui/pages/import-area.component.ts",
+    "ownerModule": "amod-import-area",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-incidents",
+    "kind": "page",
+    "name": "incidents.component",
+    "path": "angular/modules/incidents/ui/pages/incidents.component.ts",
+    "ownerModule": "amod-incidents",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-inventory",
+    "kind": "page",
+    "name": "inventory.component",
+    "path": "angular/modules/inventory/ui/pages/inventory.component.ts",
+    "ownerModule": "amod-inventory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-live-visit",
+    "kind": "page",
+    "name": "live-visit.component",
+    "path": "angular/modules/live-visit/ui/pages/live-visit.component.ts",
+    "ownerModule": "amod-live-visit",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-medical-card",
+    "kind": "page",
+    "name": "medical-card.component",
+    "path": "angular/modules/medical-card/ui/pages/medical-card.component.ts",
+    "ownerModule": "amod-medical-card",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-document-card",
+    "kind": "page",
+    "name": "document-card.component",
+    "path": "angular/modules/medical-documents/ui/pages/components/document-card.component.ts",
+    "ownerModule": "amod-medical-documents",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-medical-documents",
+    "kind": "page",
+    "name": "medical-documents.component",
+    "path": "angular/modules/medical-documents/ui/pages/medical-documents.component.ts",
+    "ownerModule": "amod-medical-documents",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-medical-timeline",
+    "kind": "page",
+    "name": "medical-timeline.component",
+    "path": "angular/modules/medical-timeline/ui/pages/medical-timeline.component.ts",
+    "ownerModule": "amod-medical-timeline",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-medications",
+    "kind": "page",
+    "name": "medications.component",
+    "path": "angular/modules/medications/ui/pages/medications.component.ts",
+    "ownerModule": "amod-medications",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-organs-atlas",
+    "kind": "page",
+    "name": "organs-atlas.component",
+    "path": "angular/modules/organs-atlas/ui/pages/organs-atlas.component.ts",
+    "ownerModule": "amod-organs-atlas",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-massage-gun",
+    "kind": "page",
+    "name": "massage-gun.component",
+    "path": "angular/modules/physiotherapy/ui/pages/massage-gun.component.ts",
+    "ownerModule": "amod-physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-physio",
+    "kind": "page",
+    "name": "physio.component",
+    "path": "angular/modules/physiotherapy/ui/pages/physio.component.ts",
+    "ownerModule": "amod-physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-self-diagnostic-tests",
+    "kind": "page",
+    "name": "self-diagnostic-tests.component",
+    "path": "angular/modules/physiotherapy/ui/pages/self-diagnostic-tests.component.ts",
+    "ownerModule": "amod-physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-smr",
+    "kind": "page",
+    "name": "smr.component",
+    "path": "angular/modules/physiotherapy/ui/pages/smr.component.ts",
+    "ownerModule": "amod-physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-planner",
+    "kind": "page",
+    "name": "planner.component",
+    "path": "angular/modules/planner/ui/pages/planner.component.ts",
+    "ownerModule": "amod-planner",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recovery-biomechanics",
+    "kind": "page",
+    "name": "recovery-biomechanics.component",
+    "path": "angular/modules/recovery-biomechanics/ui/pages/recovery-biomechanics.component.ts",
+    "ownerModule": "amod-recovery-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-diagnostics-2",
+    "kind": "page",
+    "name": "diagnostics.component",
+    "path": "angular/modules/recovery/ui/pages/diagnostics.component.ts",
+    "ownerModule": "amod-recovery",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recovery-hub",
+    "kind": "page",
+    "name": "recovery-hub.component",
+    "path": "angular/modules/recovery/ui/pages/recovery-hub.component.ts",
+    "ownerModule": "amod-recovery",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recovery-today",
+    "kind": "page",
+    "name": "recovery-today.component",
+    "path": "angular/modules/recovery/ui/pages/recovery-today.component.ts",
+    "ownerModule": "amod-recovery",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-research",
+    "kind": "page",
+    "name": "research.component",
+    "path": "angular/modules/research/ui/pages/research.component.ts",
+    "ownerModule": "amod-research",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-section-detail",
+    "kind": "page",
+    "name": "section-detail.component",
+    "path": "angular/modules/sections/ui/pages/section-detail.component.ts",
+    "ownerModule": "amod-sections",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-section-hub",
+    "kind": "page",
+    "name": "section-hub.component",
+    "path": "angular/modules/sections/ui/pages/section-hub.component.ts",
+    "ownerModule": "amod-sections",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-sport",
+    "kind": "page",
+    "name": "sport.component",
+    "path": "angular/modules/sport/ui/pages/sport.component.ts",
+    "ownerModule": "amod-sport",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-strategy",
+    "kind": "page",
+    "name": "strategy.ui.page",
+    "path": "angular/modules/strategy/ui/pages/strategy.ui.page.ts",
+    "ownerModule": "amod-strategy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-symptom-grouper-util",
+    "kind": "page",
+    "name": "symptom-grouper.util",
+    "path": "angular/modules/symptom-journal/ui/pages/logic/symptom-grouper.util.ts",
+    "ownerModule": "amod-symptom-journal",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-symptom-journal",
+    "kind": "page",
+    "name": "symptom-journal.component",
+    "path": "angular/modules/symptom-journal/ui/pages/symptom-journal.component.ts",
+    "ownerModule": "amod-symptom-journal",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-ait-metabolism",
+    "kind": "page",
+    "name": "ait-metabolism.component",
+    "path": "angular/modules/wiki/ui/pages/ait-metabolism.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-ait-remission",
+    "kind": "page",
+    "name": "ait-remission.component",
+    "path": "angular/modules/wiki/ui/pages/ait-remission.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-amino-acid-detail",
+    "kind": "page",
+    "name": "amino-acid-detail.component",
+    "path": "angular/modules/wiki/ui/pages/amino-acid-detail.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-amino-acids",
+    "kind": "page",
+    "name": "amino-acids.component",
+    "path": "angular/modules/wiki/ui/pages/amino-acids.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-antioxidants",
+    "kind": "page",
+    "name": "antioxidants.component",
+    "path": "angular/modules/wiki/ui/pages/antioxidants.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-biomechanics-2",
+    "kind": "page",
+    "name": "biomechanics.component",
+    "path": "angular/modules/wiki/ui/pages/biomechanics.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-charcoal-landing",
+    "kind": "page",
+    "name": "charcoal-landing.component",
+    "path": "angular/modules/wiki/ui/pages/charcoal-landing.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-child-biomechanics",
+    "kind": "page",
+    "name": "child-biomechanics.component",
+    "path": "angular/modules/wiki/ui/pages/child-biomechanics.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-creatine-creatinine",
+    "kind": "page",
+    "name": "creatine-creatinine.component",
+    "path": "angular/modules/wiki/ui/pages/creatine-creatinine.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-dst-checklist",
+    "kind": "page",
+    "name": "dst-checklist.component",
+    "path": "angular/modules/wiki/ui/pages/dst-checklist.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-gluconeogenesis-cortisol",
+    "kind": "page",
+    "name": "gluconeogenesis-cortisol.component",
+    "path": "angular/modules/wiki/ui/pages/gluconeogenesis-cortisol.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-hormones-atlas",
+    "kind": "page",
+    "name": "hormones-atlas.component",
+    "path": "angular/modules/wiki/ui/pages/hormones-atlas.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-ketosis-strategy",
+    "kind": "page",
+    "name": "ketosis-strategy.component",
+    "path": "angular/modules/wiki/ui/pages/ketosis-strategy.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-oxalates-hydration",
+    "kind": "page",
+    "name": "oxalates-hydration.component",
+    "path": "angular/modules/wiki/ui/pages/oxalates-hydration.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-sauna-ait",
+    "kind": "page",
+    "name": "sauna-ait.component",
+    "path": "angular/modules/wiki/ui/pages/sauna-ait.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-visceral-fat",
+    "kind": "page",
+    "name": "visceral-fat.component",
+    "path": "angular/modules/wiki/ui/pages/visceral-fat.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-water-balance",
+    "kind": "page",
+    "name": "water-balance.component",
+    "path": "angular/modules/wiki/ui/pages/water-balance.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-wiki-hub",
+    "kind": "page",
+    "name": "wiki-hub.component",
+    "path": "angular/modules/wiki/ui/pages/wiki-hub.component.ts",
+    "ownerModule": "amod-wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-app-entry",
+    "kind": "page",
+    "name": "app.entry.page",
+    "path": "angular/ui/app/app.entry.page.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-app",
+    "kind": "component",
+    "name": "app.component",
+    "path": "angular/ui/app/app.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-archive-sidebar",
+    "kind": "component",
+    "name": "archive-sidebar.component",
+    "path": "angular/ui/components/archive/ui/archive-sidebar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-pdf-viewer",
+    "kind": "component",
+    "name": "pdf-viewer.component",
+    "path": "angular/ui/components/archive/ui/pdf-viewer.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-context-explorer",
+    "kind": "component",
+    "name": "context-explorer.component",
+    "path": "angular/ui/components/archive/widgets/context-explorer.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-document-placeholder",
+    "kind": "component",
+    "name": "document-placeholder.component",
+    "path": "angular/ui/components/archive/widgets/document-placeholder.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-record-reader",
+    "kind": "component",
+    "name": "record-reader.component",
+    "path": "angular/ui/components/archive/widgets/record-reader.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-contact-form",
+    "kind": "component",
+    "name": "contact-form.component",
+    "path": "angular/ui/components/contacts/ui/contact-form.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-activity-form",
+    "kind": "component",
+    "name": "activity-form.component",
+    "path": "angular/ui/components/dashboard/ui/activity-form.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-meal-form",
+    "kind": "component",
+    "name": "meal-form.component",
+    "path": "angular/ui/components/dashboard/ui/meal-form.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-active-problems",
+    "kind": "component",
+    "name": "active-problems.component",
+    "path": "angular/ui/components/dashboard/widgets/active-problems.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-activity-card",
+    "kind": "component",
+    "name": "activity-card.component",
+    "path": "angular/ui/components/dashboard/widgets/activity-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-backlog",
+    "kind": "component",
+    "name": "backlog.component",
+    "path": "angular/ui/components/dashboard/widgets/backlog.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-command-briefing",
+    "kind": "component",
+    "name": "command-briefing.component",
+    "path": "angular/ui/components/dashboard/widgets/command-briefing.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-daily-log-timeline",
+    "kind": "component",
+    "name": "daily-log-timeline.component",
+    "path": "angular/ui/components/dashboard/widgets/daily-log-timeline.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-dashboard-trends",
+    "kind": "component",
+    "name": "dashboard-trends.component",
+    "path": "angular/ui/components/dashboard/widgets/dashboard-trends.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-digitization-progress",
+    "kind": "component",
+    "name": "digitization-progress.component",
+    "path": "angular/ui/components/dashboard/widgets/digitization-progress.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-domain-dashboard",
+    "kind": "component",
+    "name": "domain-dashboard.component",
+    "path": "angular/ui/components/dashboard/widgets/domain-dashboard.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-meal-card",
+    "kind": "component",
+    "name": "meal-card.component",
+    "path": "angular/ui/components/dashboard/widgets/meal-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medication-card",
+    "kind": "component",
+    "name": "medication-card.component",
+    "path": "angular/ui/components/dashboard/widgets/medication-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-next-event",
+    "kind": "component",
+    "name": "next-event.component",
+    "path": "angular/ui/components/dashboard/widgets/next-event.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-project-tracker",
+    "kind": "component",
+    "name": "project-tracker.component",
+    "path": "angular/ui/components/dashboard/widgets/project-tracker.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-recent-activity",
+    "kind": "component",
+    "name": "recent-activity.component",
+    "path": "angular/ui/components/dashboard/widgets/recent-activity.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-record-log-card",
+    "kind": "component",
+    "name": "record-log-card.component",
+    "path": "angular/ui/components/dashboard/widgets/record-log-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-stat-cards",
+    "kind": "component",
+    "name": "stat-cards.component",
+    "path": "angular/ui/components/dashboard/widgets/stat-cards.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-system-status",
+    "kind": "component",
+    "name": "system-status.component",
+    "path": "angular/ui/components/dashboard/widgets/system-status.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-todays-intake",
+    "kind": "component",
+    "name": "todays-intake.component",
+    "path": "angular/ui/components/dashboard/widgets/todays-intake.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-analysis-report",
+    "kind": "component",
+    "name": "analysis-report.component",
+    "path": "angular/ui/components/diagnostics/widgets/analysis-report.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-scanner-queue",
+    "kind": "component",
+    "name": "scanner-queue.component",
+    "path": "angular/ui/components/digitization/widgets/scanner-queue.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-scanner-toolbar",
+    "kind": "component",
+    "name": "scanner-toolbar.component",
+    "path": "angular/ui/components/digitization/widgets/scanner-toolbar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-scanner-workspace",
+    "kind": "component",
+    "name": "scanner-workspace.component",
+    "path": "angular/ui/components/digitization/widgets/scanner-workspace.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-biometrics-tab",
+    "kind": "component",
+    "name": "biometrics-tab.component",
+    "path": "angular/ui/components/dynamics/tabs/biometrics-tab.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-metric-card",
+    "kind": "component",
+    "name": "metric-card.component",
+    "path": "angular/ui/components/dynamics/tabs/ui/metric-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-body-score-summary",
+    "kind": "component",
+    "name": "body-score-summary.component",
+    "path": "angular/ui/components/dynamics/tabs/widgets/body-score-summary.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-interactive-body",
+    "kind": "component",
+    "name": "interactive-body.component",
+    "path": "angular/ui/components/dynamics/tabs/widgets/interactive-body.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-score-chart",
+    "kind": "component",
+    "name": "score-chart.component",
+    "path": "angular/ui/components/dynamics/tabs/widgets/score-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-weight-history-chart",
+    "kind": "component",
+    "name": "weight-history-chart.component",
+    "path": "angular/ui/components/dynamics/tabs/widgets/weight-history-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-trend-card",
+    "kind": "component",
+    "name": "trend-card.component",
+    "path": "angular/ui/components/dynamics/widgets/trend-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-trend-detail-modal",
+    "kind": "component",
+    "name": "trend-detail-modal.component",
+    "path": "angular/ui/components/dynamics/widgets/trend-detail-modal.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-unified-chart",
+    "kind": "component",
+    "name": "unified-chart.component",
+    "path": "angular/ui/components/dynamics/widgets/unified-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-incident-card",
+    "kind": "component",
+    "name": "incident-card.component",
+    "path": "angular/ui/components/incidents/widgets/incident-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medical-card-sidebar",
+    "kind": "component",
+    "name": "medical-card-sidebar.component",
+    "path": "angular/ui/components/medical-card/widgets/medical-card-sidebar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medication-form",
+    "kind": "component",
+    "name": "medication-form.component",
+    "path": "angular/ui/components/medications/ui/medication-form.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medication-list",
+    "kind": "component",
+    "name": "medication-list.component",
+    "path": "angular/ui/components/medications/ui/medication-list.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-active-courses",
+    "kind": "component",
+    "name": "active-courses.component",
+    "path": "angular/ui/components/medications/widgets/active-courses.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-first-aid-kit",
+    "kind": "component",
+    "name": "first-aid-kit.component",
+    "path": "angular/ui/components/medications/widgets/first-aid-kit.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medication-guidelines",
+    "kind": "component",
+    "name": "medication-guidelines.component",
+    "path": "angular/ui/components/medications/widgets/medication-guidelines.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-medication-history",
+    "kind": "component",
+    "name": "medication-history.component",
+    "path": "angular/ui/components/medications/widgets/medication-history.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-neuro-ping",
+    "kind": "component",
+    "name": "neuro-ping.component",
+    "path": "angular/ui/components/physiotherapy/widgets/neuro-ping.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-tensegrity-modeler",
+    "kind": "component",
+    "name": "tensegrity-modeler.component",
+    "path": "angular/ui/components/physiotherapy/widgets/tensegrity-modeler.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-card",
+    "kind": "component",
+    "name": "card.component",
+    "path": "angular/ui/components/shared/card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-clock",
+    "kind": "component",
+    "name": "clock.component",
+    "path": "angular/ui/components/shared/clock.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-global-error",
+    "kind": "component",
+    "name": "global-error.component",
+    "path": "angular/ui/components/shared/global-error.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-global-search",
+    "kind": "component",
+    "name": "global-search.component",
+    "path": "angular/ui/components/shared/global-search.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-icon",
+    "kind": "component",
+    "name": "icon.component",
+    "path": "angular/ui/components/shared/icon.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-loading-spinner",
+    "kind": "component",
+    "name": "loading-spinner.component",
+    "path": "angular/ui/components/shared/loading-spinner.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-page-header",
+    "kind": "component",
+    "name": "page-header.component",
+    "path": "angular/ui/components/shared/page-header.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-sparkline-chart",
+    "kind": "component",
+    "name": "sparkline-chart.component",
+    "path": "angular/ui/components/shared/sparkline-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-system-hub",
+    "kind": "component",
+    "name": "system-hub.component",
+    "path": "angular/ui/components/shared/system-hub.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-toast-container",
+    "kind": "component",
+    "name": "toast-container.component",
+    "path": "angular/ui/components/shared/toast-container.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-trend-chart",
+    "kind": "component",
+    "name": "trend-chart.component",
+    "path": "angular/ui/components/shared/trend-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-window",
+    "kind": "component",
+    "name": "window.component",
+    "path": "angular/ui/components/shared/window.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-symptom-form",
+    "kind": "component",
+    "name": "symptom-form.component",
+    "path": "angular/ui/components/symptom-journal/ui/symptom-form.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-symptom-timeline",
+    "kind": "component",
+    "name": "symptom-timeline.component",
+    "path": "angular/ui/components/symptom-journal/ui/symptom-timeline.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-symptom-card",
+    "kind": "component",
+    "name": "symptom-card.component",
+    "path": "angular/ui/components/symptom-journal/widgets/symptom-card.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-symptom-chart",
+    "kind": "component",
+    "name": "symptom-chart.component",
+    "path": "angular/ui/components/symptom-journal/widgets/symptom-chart.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-symptom-filters",
+    "kind": "component",
+    "name": "symptom-filters.component",
+    "path": "angular/ui/components/symptom-journal/widgets/symptom-filters.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-bottom-nav",
+    "kind": "component",
+    "name": "bottom-nav.component",
+    "path": "angular/ui/layout/bottom-nav/bottom-nav.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-desktop",
+    "kind": "component",
+    "name": "desktop.component",
+    "path": "angular/ui/layout/desktop/desktop.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-main-layout",
+    "kind": "component",
+    "name": "main-layout.component",
+    "path": "angular/ui/layout/main-layout/main-layout.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-mobile-nav",
+    "kind": "component",
+    "name": "mobile-nav.component",
+    "path": "angular/ui/layout/mobile-nav/mobile-nav.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-sidebar",
+    "kind": "component",
+    "name": "sidebar.component",
+    "path": "angular/ui/layout/sidebar/sidebar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-taskbar",
+    "kind": "component",
+    "name": "taskbar.component",
+    "path": "angular/ui/layout/taskbar/taskbar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-app-initializer",
+    "kind": "service",
+    "name": "app-initializer.service",
+    "path": "angular/initialization/app-initializer.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-document-loader",
+    "kind": "service",
+    "name": "document-loader.service",
+    "path": "angular/modules/archive/services/document-loader.service.ts",
+    "ownerModule": "amod-archive",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-biomechanics",
+    "kind": "service",
+    "name": "biomechanics.service",
+    "path": "angular/modules/biomechanics/services/biomechanics.service.ts",
+    "ownerModule": "amod-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-calendar",
+    "kind": "service",
+    "name": "calendar.service",
+    "path": "angular/modules/calendar/services/calendar.service.ts",
+    "ownerModule": "amod-calendar",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-development",
+    "kind": "service",
+    "name": "development.service",
+    "path": "angular/modules/development/services/development.service.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-diagnostics",
+    "kind": "service",
+    "name": "diagnostics.service",
+    "path": "angular/modules/diagnostics/services/diagnostics.service.ts",
+    "ownerModule": "amod-diagnostics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-digitization",
+    "kind": "service",
+    "name": "digitization.service",
+    "path": "angular/modules/digitization/services/digitization.service.ts",
+    "ownerModule": "amod-digitization",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-documentation",
+    "kind": "service",
+    "name": "documentation.service",
+    "path": "angular/modules/documentation/services/documentation.service.ts",
+    "ownerModule": "amod-documentation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-recovery-biomechanics",
+    "kind": "service",
+    "name": "recovery-biomechanics.service",
+    "path": "angular/modules/recovery-biomechanics/services/recovery-biomechanics.service.ts",
+    "ownerModule": "amod-recovery-biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-recovery",
+    "kind": "service",
+    "name": "recovery.service",
+    "path": "angular/modules/recovery/services/recovery.service.ts",
+    "ownerModule": "amod-recovery",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-research",
+    "kind": "service",
+    "name": "research.service",
+    "path": "angular/modules/research/services/research.service.ts",
+    "ownerModule": "amod-research",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-sport",
+    "kind": "service",
+    "name": "sport.service",
+    "path": "angular/modules/sport/services/sport.service.ts",
+    "ownerModule": "amod-sport",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-anatomy",
+    "kind": "service",
+    "name": "anatomy.service",
+    "path": "angular/services/anatomy.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-atomic-data",
+    "kind": "service",
+    "name": "atomic-data.service",
+    "path": "angular/services/atomic-data.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-backend-analytics",
+    "kind": "service",
+    "name": "backend-analytics.service",
+    "path": "angular/services/backend-analytics.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-biometrics",
+    "kind": "service",
+    "name": "biometrics.service",
+    "path": "angular/services/biometrics.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-body-composition",
+    "kind": "service",
+    "name": "body-composition.service",
+    "path": "angular/services/body-composition.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-contact",
+    "kind": "service",
+    "name": "contact.service",
+    "path": "angular/services/contact.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-daily-log",
+    "kind": "service",
+    "name": "daily-log.service",
+    "path": "angular/services/daily-log.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-data-repository",
+    "kind": "service",
+    "name": "data-repository.service",
+    "path": "angular/services/data-repository.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-dynamics",
+    "kind": "service",
+    "name": "dynamics.service",
+    "path": "angular/services/dynamics.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-global-error-handler",
+    "kind": "service",
+    "name": "global-error-handler.service",
+    "path": "angular/services/global-error-handler.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-health-state",
+    "kind": "service",
+    "name": "health-state.service",
+    "path": "angular/services/health-state.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-incident",
+    "kind": "service",
+    "name": "incident.service",
+    "path": "angular/services/incident.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-intelligence",
+    "kind": "service",
+    "name": "intelligence.service",
+    "path": "angular/services/intelligence.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-journal",
+    "kind": "service",
+    "name": "journal.service",
+    "path": "angular/services/journal.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-medical-card",
+    "kind": "service",
+    "name": "medical-card.service",
+    "path": "angular/services/medical-card.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-medical-record",
+    "kind": "service",
+    "name": "medical-record.service",
+    "path": "angular/services/medical-record.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-medication",
+    "kind": "service",
+    "name": "medication.service",
+    "path": "angular/services/medication.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-physiotherapy",
+    "kind": "service",
+    "name": "physiotherapy.service",
+    "path": "angular/services/physiotherapy.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-planner",
+    "kind": "service",
+    "name": "planner.service",
+    "path": "angular/services/planner.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-system-hub",
+    "kind": "service",
+    "name": "system-hub.service",
+    "path": "angular/services/system-hub.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-tensegrity",
+    "kind": "service",
+    "name": "tensegrity.service",
+    "path": "angular/services/tensegrity.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-user-data",
+    "kind": "service",
+    "name": "user-data.service",
+    "path": "angular/services/user-data.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-window-manager",
+    "kind": "service",
+    "name": "window-manager.service",
+    "path": "angular/services/window-manager.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-notification",
+    "kind": "service",
+    "name": "notification.service",
+    "path": "angular/ui/shared/services/notification.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-theme",
+    "kind": "service",
+    "name": "theme.service",
+    "path": "angular/ui/themes/theme.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-angular",
+    "kind": "data",
+    "name": "angular/data",
+    "path": "angular/data",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-app-config",
+    "kind": "data",
+    "name": "app.config.data",
+    "path": "angular/data/app/config/app.config.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-icons-config",
+    "kind": "data",
+    "name": "icons.config.data",
+    "path": "angular/data/app/ui/icons.config.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-palette-config",
+    "kind": "data",
+    "name": "palette.config.data",
+    "path": "angular/data/app/ui/palette.config.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-principles",
+    "kind": "data",
+    "name": "principles.data",
+    "path": "angular/data/biomechanics/child-development/principles.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-skills",
+    "kind": "data",
+    "name": "skills.data",
+    "path": "angular/data/biomechanics/child-development/skills.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-stages-early",
+    "kind": "data",
+    "name": "stages.early.data",
+    "path": "angular/data/biomechanics/child-development/stages.early.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-stages-preschool",
+    "kind": "data",
+    "name": "stages.preschool.data",
+    "path": "angular/data/biomechanics/child-development/stages.preschool.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-stages-school",
+    "kind": "data",
+    "name": "stages.school.data",
+    "path": "angular/data/biomechanics/child-development/stages.school.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-body-systems",
+    "kind": "data",
+    "name": "body-systems.data",
+    "path": "angular/data/health-systems/body-systems.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-human",
+    "kind": "data",
+    "name": "human.data",
+    "path": "angular/data/human/human.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-massage-gun",
+    "kind": "data",
+    "name": "massage-gun.data",
+    "path": "angular/data/physiotherapy/massage-gun.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-smr-routine",
+    "kind": "data",
+    "name": "smr-routine.data",
+    "path": "angular/data/physiotherapy/smr-routine.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-research",
+    "kind": "data",
+    "name": "research.data",
+    "path": "angular/data/research/research.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-amino-acids",
+    "kind": "data",
+    "name": "amino-acids.data",
+    "path": "angular/data/wiki/amino-acids.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-antioxidants",
+    "kind": "data",
+    "name": "antioxidants.data",
+    "path": "angular/data/wiki/antioxidants.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-biomechanics",
+    "kind": "data",
+    "name": "biomechanics.data",
+    "path": "angular/data/wiki/biomechanics.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-icon-registry",
+    "kind": "data",
+    "name": "icon-registry.data",
+    "path": "angular/ui/shared/icons/icon-registry.data.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-anatomy",
+    "kind": "data",
+    "name": "anatomy",
+    "path": "data/anatomy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-app",
+    "kind": "data",
+    "name": "app",
+    "path": "data/app",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-biomechanics-2",
+    "kind": "data",
+    "name": "biomechanics",
+    "path": "data/biomechanics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-diagnostics",
+    "kind": "data",
+    "name": "diagnostics",
+    "path": "data/diagnostics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-dictionaries",
+    "kind": "data",
+    "name": "dictionaries",
+    "path": "data/dictionaries",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-health-systems",
+    "kind": "data",
+    "name": "health-systems",
+    "path": "data/health-systems",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-human-2",
+    "kind": "data",
+    "name": "human",
+    "path": "data/human",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-ontology",
+    "kind": "data",
+    "name": "ontology",
+    "path": "data/ontology",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-parquet",
+    "kind": "data",
+    "name": "parquet",
+    "path": "data/parquet",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-physiotherapy",
+    "kind": "data",
+    "name": "physiotherapy",
+    "path": "data/physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-relations",
+    "kind": "data",
+    "name": "relations",
+    "path": "data/relations",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-research-2",
+    "kind": "data",
+    "name": "research",
+    "path": "data/research",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-users",
+    "kind": "data",
+    "name": "users",
+    "path": "data/users",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-architecture-modules",
+    "kind": "data",
+    "name": "architecture-modules",
+    "path": "modules/development/data/architecture-modules.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-audit",
+    "kind": "data",
+    "name": "audit",
+    "path": "modules/development/data/audit.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-calendar-migration-current",
+    "kind": "data",
+    "name": "calendar-migration.current",
+    "path": "modules/development/data/calendar-migration.current.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-calendar-migration-design",
+    "kind": "data",
+    "name": "calendar-migration.design",
+    "path": "modules/development/data/calendar-migration.design.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-calendar-migration-plan",
+    "kind": "data",
+    "name": "calendar-migration.plan",
+    "path": "modules/development/data/calendar-migration.plan.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-calendar-migration-types",
+    "kind": "data",
+    "name": "calendar-migration.types",
+    "path": "modules/development/data/calendar-migration.types.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-composition",
+    "kind": "data",
+    "name": "composition",
+    "path": "modules/development/data/composition.data.json",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-composition-2",
+    "kind": "data",
+    "name": "composition",
+    "path": "modules/development/data/composition.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-dev-features",
+    "kind": "data",
+    "name": "dev-features",
+    "path": "modules/development/data/dev-features.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-dev-tasks",
+    "kind": "data",
+    "name": "dev-tasks",
+    "path": "modules/development/data/dev-tasks.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-development-stats",
+    "kind": "data",
+    "name": "development.stats",
+    "path": "modules/development/data/development.stats.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-directions",
+    "kind": "data",
+    "name": "directions",
+    "path": "modules/development/data/directions.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-epics",
+    "kind": "data",
+    "name": "epics",
+    "path": "modules/development/data/epics.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-specifications",
+    "kind": "data",
+    "name": "specifications",
+    "path": "modules/development/data/specifications.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-weaknesses",
+    "kind": "data",
+    "name": "weaknesses",
+    "path": "modules/development/data/weaknesses.data.ts",
+    "ownerModule": "mod-development-2",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-app",
+    "kind": "route",
+    "name": "app.routes",
+    "path": "angular/app.routes.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-development",
+    "kind": "route",
+    "name": "development.routes",
+    "path": "angular/modules/development/development.routes.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  }
+]

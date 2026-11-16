@@ -1,2 +1,3 @@
-export * from './domain/dev-task.model';
-export * from './data/dev-tasks.data';
+export * from './domain';
+export * from './data';
+export * from './services';
