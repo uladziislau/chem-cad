@@ -116,23 +116,19 @@
         </div>
       </div>
     </section>
+  }
 
-    <!-- Epics View -->
-    <div class="space-y-8">
-      @for (epic of epics(); track epic.id) {
+  <!-- Epics View -->
+  <div class="space-y-8">
+      @for (epic of visibleEpics(); track epic.id) {
         <div class="bg-slate-800/50 border border-white/10 rounded-xl overflow-hidden">
           <!-- Epic Header -->
           <div class="p-4 border-b border-white/10 flex items-start justify-between bg-slate-800/80">
             <div>
               <div class="flex items-center gap-3 mb-1">
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
-                      [class.bg-emerald-500/20]="epic.status === 'completed'"
-                      [class.text-emerald-400]="epic.status === 'completed'"
-                      [class.bg-amber-500/20]="epic.status === 'active'"
-                      [class.text-amber-400]="epic.status === 'active'"
-                      [class.bg-slate-500/20]="epic.status === 'planned'"
-                      [class.text-slate-400]="epic.status === 'planned'">
-                  {{ epic.status === 'completed' ? 'Завершено' : epic.status === 'active' ? 'В работе' : 'В планах' }}
+                      [class]="epicStatusClass(epic.status)">
+                  {{ epicStatusLabel(epic.status) }}
                 </span>
                 <span class="text-xs font-mono text-slate-500">{{ epic.id }}</span>
               </div>
@@ -143,7 +139,7 @@
 
           <!-- Epic Tasks -->
           <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            @for (task of epic.tasks; track task.id) {
+            @for (task of tasksOf(epic); track task.id) {
               <div class="bg-slate-900/50 border border-white/5 rounded-lg p-4">
                 <div class="flex justify-between items-start mb-2">
                   <div class="flex items-center gap-2">
@@ -161,43 +157,22 @@
                     </span>
                   </div>
                   <span class="text-[10px] uppercase tracking-wider font-bold"
-                        [class.text-emerald-400]="task.status === 'done'"
-                        [class.text-amber-400]="task.status === 'implementation'"
-                        [class.text-slate-500]="task.status === 'backlog' || task.status === 'pending'">
-                    {{ task.status }}
+                        [class]="taskStatusClass(task.status)">
+                    {{ taskStatusLabel(task.status) }}
                   </span>
                 </div>
-                
+
                 <h3 class="text-sm font-bold text-white mb-1">{{ task.title }}</h3>
                 <p class="text-xs text-slate-400 mb-3">{{ task.description }}</p>
-
-                @if (task.subtasks && task.subtasks.length > 0) {
-                  <div class="space-y-1.5 mt-3 pt-3 border-t border-white/5">
-                    @for (sub of task.subtasks; track sub.id) {
-                      <div class="flex items-start gap-2 text-xs">
-                        <div class="mt-0.5">
-                          @if (sub.status === 'done') {
-                            <span class="text-emerald-500">✔</span>
-                          } @else if (sub.status === 'in-progress' || sub.status === 'implementation') {
-                            <span class="text-amber-500 animate-pulse">▶</span>
-                          } @else {
-                            <span class="text-slate-600">○</span>
-                          }
-                        </div>
-                        <span [class.text-slate-300]="sub.status === 'done'"
-                              [class.text-white]="sub.status === 'in-progress' || sub.status === 'implementation'"
-                              [class.text-slate-500]="sub.status === 'pending'">
-                          {{ sub.title }}
-                        </span>
-                      </div>
-                    }
-                  </div>
-                }
               </div>
+            } @empty {
+              <p class="text-xs text-slate-500 col-span-full">Задач в эпике пока нет.</p>
             }
           </div>
         </div>
       }
-    </div>
-  }
+      @empty {
+        <p class="text-sm text-slate-500">В этом режиме эпиков нет.</p>
+      }
+  </div>
 </div>
