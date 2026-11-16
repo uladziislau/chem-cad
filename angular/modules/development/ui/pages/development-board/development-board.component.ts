@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DEV_EPICS, DevelopmentEpic } from '@root-modules/development';
+import { EPICS, Epic } from '@root-modules/development';
 
 @Component({
   selector: 'app-development-board',
@@ -11,5 +11,5 @@ import { DEV_EPICS, DevelopmentEpic } from '@root-modules/development';
 })
 export class DevelopmentBoardComponent {
   viewMode = signal<'active' | 'archive'>('active');
-  epics = signal<DevelopmentEpic[]>(DEV_EPICS);
+  epics = signal<Epic[]>(EPICS);
 }

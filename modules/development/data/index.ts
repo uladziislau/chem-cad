@@ -1,7 +1,3 @@
-export * from './calendar-migration.types.data';
-export * from './calendar-migration.current.data';
-export * from './calendar-migration.plan.data';
-export * from './calendar-migration.design.data';
 export * from './directions.data';
 export * from './epics.data';
 export * from './dev-features.data';

@@ -1,5 +1,12 @@
 [
   {
+    "id": "mod-architecture",
+    "kind": "module",
+    "name": "architecture",
+    "path": "modules/architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "mod-archive",
     "kind": "module",
     "name": "archive",
@@ -25,6 +32,13 @@
     "kind": "module",
     "name": "calendar",
     "path": "modules/calendar",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-classroom",
+    "kind": "module",
+    "name": "classroom",
+    "path": "modules/classroom",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -63,6 +77,20 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "mod-engine",
+    "kind": "module",
+    "name": "engine",
+    "path": "modules/engine",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-formulation",
+    "kind": "module",
+    "name": "formulation",
+    "path": "modules/formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "mod-global-error-handler",
     "kind": "module",
     "name": "global-error-handler",
@@ -74,6 +102,13 @@
     "kind": "module",
     "name": "human",
     "path": "modules/human",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-laboratory",
+    "kind": "module",
+    "name": "laboratory",
+    "path": "modules/laboratory",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -98,6 +133,20 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "mod-quantum",
+    "kind": "module",
+    "name": "quantum",
+    "path": "modules/quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-recipe",
+    "kind": "module",
+    "name": "recipe",
+    "path": "modules/recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "mod-recovery",
     "kind": "module",
     "name": "recovery",
@@ -112,10 +161,45 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "mod-simulator",
+    "kind": "module",
+    "name": "simulator",
+    "path": "modules/simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-solvers",
+    "kind": "module",
+    "name": "solvers",
+    "path": "modules/solvers",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "mod-sport",
     "kind": "module",
     "name": "sport",
     "path": "modules/sport",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-testing",
+    "kind": "module",
+    "name": "testing",
+    "path": "modules/testing",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-thermodynamics",
+    "kind": "module",
+    "name": "thermodynamics",
+    "path": "modules/thermodynamics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "mod-units",
+    "kind": "module",
+    "name": "units",
+    "path": "modules/units",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -126,10 +210,25 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "amod-advanced",
+    "kind": "angular-module",
+    "name": "advanced",
+    "path": "angular/modules/advanced",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-analysis",
     "kind": "angular-module",
     "name": "analysis",
     "path": "angular/modules/analysis",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "amod-architecture",
+    "kind": "angular-module",
+    "name": "architecture",
+    "path": "angular/modules/architecture",
+    "ownerModule": "mod-architecture",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -157,6 +256,14 @@
     "ownerModule": "mod-calendar-2"
   },
   {
+    "id": "amod-classroom",
+    "kind": "angular-module",
+    "name": "classroom",
+    "path": "angular/modules/classroom",
+    "ownerModule": "mod-classroom",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-contacts",
     "kind": "angular-module",
     "name": "contacts",
@@ -177,7 +284,7 @@
     "name": "development",
     "path": "angular/modules/development",
     "lastSeenAt": "2026-11-16",
-    "ownerModule": "mod-development-2"
+    "ownerModule": "mod-development"
   },
   {
     "id": "ang-diagnostics",
@@ -225,6 +332,14 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "amod-formulation",
+    "kind": "angular-module",
+    "name": "formulation",
+    "path": "angular/modules/formulation",
+    "ownerModule": "mod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-health-analytics",
     "kind": "angular-module",
     "name": "health-analytics",
@@ -257,6 +372,21 @@
     "kind": "angular-module",
     "name": "inventory",
     "path": "angular/modules/inventory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "amod-lab",
+    "kind": "angular-module",
+    "name": "lab",
+    "path": "angular/modules/lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "amod-laboratory",
+    "kind": "angular-module",
+    "name": "laboratory",
+    "path": "angular/modules/laboratory",
+    "ownerModule": "mod-laboratory",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -318,6 +448,22 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "amod-quantum",
+    "kind": "angular-module",
+    "name": "quantum",
+    "path": "angular/modules/quantum",
+    "ownerModule": "mod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "amod-recipe",
+    "kind": "angular-module",
+    "name": "recipe",
+    "path": "angular/modules/recipe",
+    "ownerModule": "mod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-recovery",
     "kind": "angular-module",
     "name": "recovery",
@@ -341,10 +487,25 @@
     "ownerModule": "mod-research-2"
   },
   {
+    "id": "amod-safety",
+    "kind": "angular-module",
+    "name": "safety",
+    "path": "angular/modules/safety",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-sections",
     "kind": "angular-module",
     "name": "sections",
     "path": "angular/modules/sections",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "amod-simulator",
+    "kind": "angular-module",
+    "name": "simulator",
+    "path": "angular/modules/simulator",
+    "ownerModule": "mod-simulator",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -370,10 +531,26 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "amod-thermodynamics",
+    "kind": "angular-module",
+    "name": "thermodynamics",
+    "path": "angular/modules/thermodynamics",
+    "ownerModule": "mod-thermodynamics",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "ang-wiki",
     "kind": "angular-module",
     "name": "wiki",
     "path": "angular/modules/wiki",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-molecular-viewer",
+    "kind": "page",
+    "name": "molecular-viewer.component",
+    "path": "angular/modules/advanced/ui/pages/molecular-viewer/molecular-viewer.component.ts",
+    "ownerModule": "amod-advanced",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -382,6 +559,30 @@
     "name": "analysis.component",
     "path": "angular/modules/analysis/ui/pages/analysis.component.ts",
     "ownerModule": "amod-analysis",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-oop-sandbox-analysis-demos",
+    "kind": "page",
+    "name": "oop-sandbox.analysis-demos",
+    "path": "angular/modules/architecture/ui/pages/oop-sandbox/oop-sandbox.analysis-demos.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-oop-sandbox",
+    "kind": "page",
+    "name": "oop-sandbox.component",
+    "path": "angular/modules/architecture/ui/pages/oop-sandbox/oop-sandbox.component.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-oop-sandbox-demos",
+    "kind": "page",
+    "name": "oop-sandbox.demos",
+    "path": "angular/modules/architecture/ui/pages/oop-sandbox/oop-sandbox.demos.ts",
+    "ownerModule": "amod-architecture",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -425,6 +626,22 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "page-interactive-lesson",
+    "kind": "page",
+    "name": "interactive-lesson.component",
+    "path": "angular/modules/classroom/ui/pages/interactive-lesson/interactive-lesson.component.ts",
+    "ownerModule": "amod-classroom",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-lesson-list",
+    "kind": "page",
+    "name": "lesson-list.component",
+    "path": "angular/modules/classroom/ui/pages/lesson-list/lesson-list.component.ts",
+    "ownerModule": "amod-classroom",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "page-contacts",
     "kind": "page",
     "name": "contacts.component",
@@ -436,7 +653,7 @@
     "id": "page-dashboard",
     "kind": "page",
     "name": "dashboard.component",
-    "path": "angular/modules/dashboard/ui/pages/dashboard.component.ts",
+    "path": "angular/modules/dashboard/ui/pages/dashboard/dashboard.component.ts",
     "ownerModule": "amod-dashboard",
     "lastSeenAt": "2026-11-16"
   },
@@ -461,6 +678,22 @@
     "kind": "page",
     "name": "dev-audit-pages.component",
     "path": "angular/modules/development/ui/pages/audit/pages/dev-audit-pages.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-development-board",
+    "kind": "page",
+    "name": "development-board.component",
+    "path": "angular/modules/development/ui/pages/development-board/development-board.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-development-specs",
+    "kind": "page",
+    "name": "development-specs.component",
+    "path": "angular/modules/development/ui/pages/development-specs/development-specs.component.ts",
     "ownerModule": "amod-development",
     "lastSeenAt": "2026-11-16"
   },
@@ -593,6 +826,22 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "page-formulator",
+    "kind": "page",
+    "name": "formulator.component",
+    "path": "angular/modules/formulation/ui/pages/formulator/formulator.component.ts",
+    "ownerModule": "amod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-ingredient-catalog",
+    "kind": "page",
+    "name": "ingredient-catalog.component",
+    "path": "angular/modules/formulation/ui/pages/ingredient-catalog/ingredient-catalog.component.ts",
+    "ownerModule": "amod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "page-health-analytics",
     "kind": "page",
     "name": "health-analytics.component",
@@ -630,6 +879,102 @@
     "name": "inventory.component",
     "path": "angular/modules/inventory/ui/pages/inventory.component.ts",
     "ownerModule": "amod-inventory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-detergency-panel",
+    "kind": "page",
+    "name": "detergency-panel.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/detergency-panel.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-drying-panel",
+    "kind": "page",
+    "name": "drying-panel.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/drying-panel.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-formulation-optimizer",
+    "kind": "page",
+    "name": "formulation-optimizer.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/formulation-optimizer.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-lab-dashboard",
+    "kind": "page",
+    "name": "lab-dashboard.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/lab-dashboard.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-microscope-view",
+    "kind": "page",
+    "name": "microscope-view.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/microscope-view.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-reasoning-panel",
+    "kind": "page",
+    "name": "reasoning-panel.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/reasoning-panel.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-safety-banner",
+    "kind": "page",
+    "name": "safety-banner.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/safety-banner.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-target-specs",
+    "kind": "page",
+    "name": "target-specs.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/target-specs.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-version-history",
+    "kind": "page",
+    "name": "version-history.component",
+    "path": "angular/modules/lab/ui/pages/lab-dashboard/version-history.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-molecule-explorer",
+    "kind": "page",
+    "name": "molecule-explorer.component",
+    "path": "angular/modules/lab/ui/pages/molecule-explorer/molecule-explorer.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-process-designer",
+    "kind": "page",
+    "name": "process-designer.component",
+    "path": "angular/modules/lab/ui/pages/process-designer/process-designer.component.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-virtual-lab",
+    "kind": "page",
+    "name": "virtual-lab.component",
+    "path": "angular/modules/laboratory/ui/pages/virtual-lab/virtual-lab.component.ts",
+    "ownerModule": "amod-laboratory",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -729,6 +1074,46 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "page-atom-explorer",
+    "kind": "page",
+    "name": "atom-explorer.component",
+    "path": "angular/modules/quantum/ui/pages/atom-explorer/atom-explorer.component.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-bonding-arena",
+    "kind": "page",
+    "name": "bonding-arena.component",
+    "path": "angular/modules/quantum/ui/pages/bonding-arena/bonding-arena.component.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recipe-detail",
+    "kind": "page",
+    "name": "recipe-detail.component",
+    "path": "angular/modules/recipe/ui/pages/recipe-detail/recipe-detail.component.ts",
+    "ownerModule": "amod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recipe-form",
+    "kind": "page",
+    "name": "recipe-form.component",
+    "path": "angular/modules/recipe/ui/pages/recipe-form/recipe-form.component.ts",
+    "ownerModule": "amod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-recipe-list",
+    "kind": "page",
+    "name": "recipe-list.component",
+    "path": "angular/modules/recipe/ui/pages/recipe-list/recipe-list.component.ts",
+    "ownerModule": "amod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "page-recovery-biomechanics",
     "kind": "page",
     "name": "recovery-biomechanics.component",
@@ -769,6 +1154,14 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "page-safety-guide",
+    "kind": "page",
+    "name": "safety-guide.component",
+    "path": "angular/modules/safety/ui/pages/safety-guide/safety-guide.component.ts",
+    "ownerModule": "amod-safety",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "page-section-detail",
     "kind": "page",
     "name": "section-detail.component",
@@ -782,6 +1175,54 @@
     "name": "section-hub.component",
     "path": "angular/modules/sections/ui/pages/section-hub.component.ts",
     "ownerModule": "amod-sections",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-jsme-editor",
+    "kind": "page",
+    "name": "jsme-editor.component",
+    "path": "angular/modules/simulator/ui/pages/jsme-editor/jsme-editor.component.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-md-canvas",
+    "kind": "page",
+    "name": "md-canvas.component",
+    "path": "angular/modules/simulator/ui/pages/md-canvas/md-canvas.component.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-pro-3d-viewer",
+    "kind": "page",
+    "name": "pro-3d-viewer.component",
+    "path": "angular/modules/simulator/ui/pages/pro-3d-viewer/pro-3d-viewer.component.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-vmd-3d",
+    "kind": "page",
+    "name": "vmd-3d.component",
+    "path": "angular/modules/simulator/ui/pages/vmd-3d/vmd-3d.component.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-vmd-3d-renderer",
+    "kind": "page",
+    "name": "vmd-3d.renderer",
+    "path": "angular/modules/simulator/ui/pages/vmd-3d/vmd-3d.renderer.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-vmd-3d-visual-modes",
+    "kind": "page",
+    "name": "vmd-3d.visual-modes",
+    "path": "angular/modules/simulator/ui/pages/vmd-3d/vmd-3d.visual-modes.ts",
+    "ownerModule": "amod-simulator",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -814,6 +1255,14 @@
     "name": "symptom-journal.component",
     "path": "angular/modules/symptom-journal/ui/pages/symptom-journal.component.ts",
     "ownerModule": "amod-symptom-journal",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "page-reaction-predictor",
+    "kind": "page",
+    "name": "reaction-predictor.component",
+    "path": "angular/modules/thermodynamics/ui/pages/reaction-predictor/reaction-predictor.component.ts",
+    "ownerModule": "amod-thermodynamics",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -965,6 +1414,46 @@
     "kind": "page",
     "name": "app.entry.page",
     "path": "angular/ui/app/app.entry.page.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-development-navigation",
+    "kind": "component",
+    "name": "development-navigation.component",
+    "path": "angular/modules/development/ui/components/development-navigation/development-navigation.component.ts",
+    "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-atom-3d-viewer",
+    "kind": "component",
+    "name": "atom-3d-viewer.component",
+    "path": "angular/modules/quantum/ui/components/atom-3d-viewer/atom-3d-viewer.component.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-atom-controls",
+    "kind": "component",
+    "name": "atom-controls.component",
+    "path": "angular/modules/quantum/ui/components/atom-controls/atom-controls.component.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-atom-info",
+    "kind": "component",
+    "name": "atom-info.component",
+    "path": "angular/modules/quantum/ui/components/atom-info/atom-info.component.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "cmp-bond-visualizer",
+    "kind": "component",
+    "name": "bond-visualizer.component",
+    "path": "angular/modules/quantum/ui/components/bond-visualizer/bond-visualizer.component.ts",
+    "ownerModule": "amod-quantum",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1472,10 +1961,86 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "cmp-navbar",
+    "kind": "component",
+    "name": "navbar.component",
+    "path": "angular/ui/shell/navbar.component.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-autarky",
+    "kind": "service",
+    "name": "autarky.service",
+    "path": "angular/adapters/autarky.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-instrumentariy",
+    "kind": "service",
+    "name": "instrumentariy.service",
+    "path": "angular/adapters/instrumentariy.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-report",
+    "kind": "service",
+    "name": "report.service",
+    "path": "angular/adapters/report.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "svc-app-initializer",
     "kind": "service",
     "name": "app-initializer.service",
     "path": "angular/initialization/app-initializer.service.ts",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-chem-core",
+    "kind": "service",
+    "name": "chem-core.service",
+    "path": "angular/modules/architecture/services/chem-core.service.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-chem-event-bus",
+    "kind": "service",
+    "name": "chem-event-bus.service",
+    "path": "angular/modules/architecture/services/chem-event-bus.service.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-chemistry-inventory",
+    "kind": "service",
+    "name": "chemistry-inventory.service",
+    "path": "angular/modules/architecture/services/chemistry-inventory.service.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-smiles-parser",
+    "kind": "service",
+    "name": "smiles-parser.service",
+    "path": "angular/modules/architecture/services/smiles-parser.service.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-webgpu-engine",
+    "kind": "service",
+    "name": "webgpu-engine.service",
+    "path": "angular/modules/architecture/services/webgpu-engine.service.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-webgpu-md-engine",
+    "kind": "service",
+    "name": "webgpu-md-engine.service",
+    "path": "angular/modules/architecture/services/webgpu-md-engine.service.ts",
+    "ownerModule": "amod-architecture",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1500,6 +2065,14 @@
     "name": "calendar.service",
     "path": "angular/modules/calendar/services/calendar.service.ts",
     "ownerModule": "amod-calendar",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-classroom",
+    "kind": "service",
+    "name": "classroom.service",
+    "path": "angular/modules/classroom/services/classroom.service.ts",
+    "ownerModule": "amod-classroom",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1535,6 +2108,118 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "svc-formulation-draft",
+    "kind": "service",
+    "name": "formulation-draft.service",
+    "path": "angular/modules/formulation/services/formulation-draft.service.ts",
+    "ownerModule": "amod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-ingredient",
+    "kind": "service",
+    "name": "ingredient.service",
+    "path": "angular/modules/formulation/services/ingredient.service.ts",
+    "ownerModule": "amod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-catalog",
+    "kind": "service",
+    "name": "catalog.service",
+    "path": "angular/modules/lab/services/catalog.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-formulation-persistence",
+    "kind": "service",
+    "name": "formulation-persistence.service",
+    "path": "angular/modules/lab/services/formulation-persistence.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-formulation-report",
+    "kind": "service",
+    "name": "formulation-report.service",
+    "path": "angular/modules/lab/services/formulation-report.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-formulation-state",
+    "kind": "service",
+    "name": "formulation-state.service",
+    "path": "angular/modules/lab/services/formulation-state.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-process-persistence",
+    "kind": "service",
+    "name": "process-persistence.service",
+    "path": "angular/modules/lab/services/process-persistence.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-process-state",
+    "kind": "service",
+    "name": "process-state.service",
+    "path": "angular/modules/lab/services/process-state.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-sds",
+    "kind": "service",
+    "name": "sds.service",
+    "path": "angular/modules/lab/services/sds.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-version-history",
+    "kind": "service",
+    "name": "version-history.service",
+    "path": "angular/modules/lab/services/version-history.service.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-reaction-engine",
+    "kind": "service",
+    "name": "reaction-engine.service",
+    "path": "angular/modules/laboratory/services/reaction-engine.service.ts",
+    "ownerModule": "amod-laboratory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-bonding-engine",
+    "kind": "service",
+    "name": "bonding-engine.service",
+    "path": "angular/modules/quantum/services/bonding-engine.service.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-quantum-engine",
+    "kind": "service",
+    "name": "quantum-engine.service",
+    "path": "angular/modules/quantum/services/quantum-engine.service.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-recipe",
+    "kind": "service",
+    "name": "recipe.service",
+    "path": "angular/modules/recipe/services/recipe.service.ts",
+    "ownerModule": "amod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "svc-recovery-biomechanics",
     "kind": "service",
     "name": "recovery-biomechanics.service",
@@ -1564,6 +2249,14 @@
     "name": "sport.service",
     "path": "angular/modules/sport/services/sport.service.ts",
     "ownerModule": "amod-sport",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "svc-thermo-engine",
+    "kind": "service",
+    "name": "thermo-engine.service",
+    "path": "angular/modules/thermodynamics/services/thermo-engine.service.ts",
+    "ownerModule": "amod-thermodynamics",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1889,6 +2582,13 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "data-classroom",
+    "kind": "data",
+    "name": "classroom",
+    "path": "data/classroom",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "data-diagnostics",
     "kind": "data",
     "name": "diagnostics",
@@ -1903,6 +2603,13 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "data-formulation",
+    "kind": "data",
+    "name": "formulation",
+    "path": "data/formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "data-health-systems",
     "kind": "data",
     "name": "health-systems",
@@ -1914,6 +2621,13 @@
     "kind": "data",
     "name": "human",
     "path": "data/human",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-laboratory",
+    "kind": "data",
+    "name": "laboratory",
+    "path": "data/laboratory",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1935,6 +2649,13 @@
     "kind": "data",
     "name": "physiotherapy",
     "path": "data/physiotherapy",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "data-recipe",
+    "kind": "data",
+    "name": "recipe",
+    "path": "data/recipe",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1963,7 +2684,7 @@
     "kind": "data",
     "name": "architecture-modules",
     "path": "modules/development/data/architecture-modules.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1971,7 +2692,7 @@
     "kind": "data",
     "name": "audit",
     "path": "modules/development/data/audit.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1979,7 +2700,7 @@
     "kind": "data",
     "name": "calendar-migration.current",
     "path": "modules/development/data/calendar-migration.current.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1987,7 +2708,7 @@
     "kind": "data",
     "name": "calendar-migration.design",
     "path": "modules/development/data/calendar-migration.design.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -1995,7 +2716,7 @@
     "kind": "data",
     "name": "calendar-migration.plan",
     "path": "modules/development/data/calendar-migration.plan.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2003,7 +2724,7 @@
     "kind": "data",
     "name": "calendar-migration.types",
     "path": "modules/development/data/calendar-migration.types.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2011,7 +2732,7 @@
     "kind": "data",
     "name": "composition",
     "path": "modules/development/data/composition.data.json",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2019,7 +2740,7 @@
     "kind": "data",
     "name": "composition",
     "path": "modules/development/data/composition.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2027,7 +2748,7 @@
     "kind": "data",
     "name": "dev-features",
     "path": "modules/development/data/dev-features.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2035,7 +2756,7 @@
     "kind": "data",
     "name": "dev-tasks",
     "path": "modules/development/data/dev-tasks.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2043,7 +2764,7 @@
     "kind": "data",
     "name": "development.stats",
     "path": "modules/development/data/development.stats.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2051,7 +2772,7 @@
     "kind": "data",
     "name": "directions",
     "path": "modules/development/data/directions.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2059,7 +2780,7 @@
     "kind": "data",
     "name": "epics",
     "path": "modules/development/data/epics.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2067,7 +2788,7 @@
     "kind": "data",
     "name": "specifications",
     "path": "modules/development/data/specifications.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2075,7 +2796,7 @@
     "kind": "data",
     "name": "weaknesses",
     "path": "modules/development/data/weaknesses.data.ts",
-    "ownerModule": "mod-development-2",
+    "ownerModule": "mod-development",
     "lastSeenAt": "2026-11-16"
   },
   {
@@ -2086,11 +2807,107 @@
     "lastSeenAt": "2026-11-16"
   },
   {
+    "id": "route-advanced",
+    "kind": "route",
+    "name": "advanced.routes",
+    "path": "angular/modules/advanced/advanced.routes.ts",
+    "ownerModule": "amod-advanced",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-architecture",
+    "kind": "route",
+    "name": "architecture.routes",
+    "path": "angular/modules/architecture/architecture.routes.ts",
+    "ownerModule": "amod-architecture",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-classroom",
+    "kind": "route",
+    "name": "classroom.routes",
+    "path": "angular/modules/classroom/classroom.routes.ts",
+    "ownerModule": "amod-classroom",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-dashboard",
+    "kind": "route",
+    "name": "dashboard.routes",
+    "path": "angular/modules/dashboard/dashboard.routes.ts",
+    "ownerModule": "amod-dashboard",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
     "id": "route-development",
     "kind": "route",
     "name": "development.routes",
     "path": "angular/modules/development/development.routes.ts",
     "ownerModule": "amod-development",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-formulation",
+    "kind": "route",
+    "name": "formulation.routes",
+    "path": "angular/modules/formulation/formulation.routes.ts",
+    "ownerModule": "amod-formulation",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-lab",
+    "kind": "route",
+    "name": "lab.routes",
+    "path": "angular/modules/lab/lab.routes.ts",
+    "ownerModule": "amod-lab",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-laboratory",
+    "kind": "route",
+    "name": "laboratory.routes",
+    "path": "angular/modules/laboratory/laboratory.routes.ts",
+    "ownerModule": "amod-laboratory",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-quantum",
+    "kind": "route",
+    "name": "quantum.routes",
+    "path": "angular/modules/quantum/quantum.routes.ts",
+    "ownerModule": "amod-quantum",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-recipe",
+    "kind": "route",
+    "name": "recipe.routes",
+    "path": "angular/modules/recipe/recipe.routes.ts",
+    "ownerModule": "amod-recipe",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-safety",
+    "kind": "route",
+    "name": "safety.routes",
+    "path": "angular/modules/safety/safety.routes.ts",
+    "ownerModule": "amod-safety",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-simulator",
+    "kind": "route",
+    "name": "simulator.routes",
+    "path": "angular/modules/simulator/simulator.routes.ts",
+    "ownerModule": "amod-simulator",
+    "lastSeenAt": "2026-11-16"
+  },
+  {
+    "id": "route-thermodynamics",
+    "kind": "route",
+    "name": "thermodynamics.routes",
+    "path": "angular/modules/thermodynamics/thermodynamics.routes.ts",
+    "ownerModule": "amod-thermodynamics",
     "lastSeenAt": "2026-11-16"
   }
 ]
