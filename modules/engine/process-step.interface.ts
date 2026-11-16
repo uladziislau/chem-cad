@@ -50,23 +50,18 @@ export interface ManufacturingProcess {
 export function validateProcessStep(step: ProcessStep): string[] {
   const issues: string[] = [];
 
-  if (!step.id || !step.id.trim()) {
-    issues.push('Идентификатор этапа не может быть пустым');
-  }
-  if (!isOperationType(step.operation)) {
-    issues.push(`Неизвестный тип операции «${String(step.operation)}»`);
-  }
-  if (!step.name || !step.name.trim()) {
-    issues.push('Название этапа не может быть пустым');
-  }
-  if (!Number.isFinite(step.durationMinutes) || step.durationMinutes <= 0) {
-    issues.push('Длительность должна быть положительным числом минут');
-  }
-  if (step.targetTemperature !== undefined && !Number.isFinite(step.targetTemperature)) {
-    issues.push('Целевая температура должна быть числом');
-  }
-  if (step.rpm !== undefined && (!Number.isFinite(step.rpm) || step.rpm < 0)) {
-    issues.push('Скорость вращения должна быть неотрицательным числом');
+  const checks: (() => string | null)[] = [
+    () => (!step.id || !step.id.trim()) ? 'Идентификатор этапа не может быть пустым' : null,
+    () => (!isOperationType(step.operation)) ? `Неизвестный тип операции «${String(step.operation)}»` : null,
+    () => (!step.name || !step.name.trim()) ? 'Название этапа не может быть пустым' : null,
+    () => (!Number.isFinite(step.durationMinutes) || step.durationMinutes <= 0) ? 'Длительность должна быть положительным числом минут' : null,
+    () => (step.targetTemperature !== undefined && !Number.isFinite(step.targetTemperature)) ? 'Целевая температура должна быть числом' : null,
+    () => (step.rpm !== undefined && (!Number.isFinite(step.rpm) || step.rpm < 0)) ? 'Скорость вращения должна быть неотрицательным числом' : null,
+  ];
+
+  for (const check of checks) {
+    const issue = check();
+    if (issue) issues.push(issue);
   }
 
   const firstBad = (step.ingredients ?? []).find(i =>
