@@ -41,13 +41,17 @@ function isRecipe(value: unknown): value is Recipe {
   if (!Array.isArray(steps) || !steps.every(isRecipeStep)) return false;
   // Нормализуем legacy string[] → RecipeStep[] на месте
   r['steps'] = steps.map(s => typeof s === 'string' ? { text: s } : s);
-  return isNonEmptyString(r['id'])
-    && isNonEmptyString(r['name'])
-    && typeof r['category'] === 'string' && VALID_CATEGORIES[r['category'] as string] === true
-    && typeof r['description'] === 'string'
-    && typeof r['difficulty'] === 'string' && VALID_DIFFICULTIES[r['difficulty'] as string] === true
-    && Array.isArray(ingredients) && ingredients.every(isRecipeIngredient)
-    && isStringArray(r['safetyWarnings']);
+
+  const checks: (() => boolean)[] = [
+    () => isNonEmptyString(r['id']),
+    () => isNonEmptyString(r['name']),
+    () => typeof r['category'] === 'string' && VALID_CATEGORIES[r['category'] as string] === true,
+    () => typeof r['description'] === 'string',
+    () => typeof r['difficulty'] === 'string' && VALID_DIFFICULTIES[r['difficulty'] as string] === true,
+    () => Array.isArray(ingredients) && ingredients.every(isRecipeIngredient),
+    () => isStringArray(r['safetyWarnings']),
+  ];
+  return checks.every((c) => c());
 }
 
 /**
