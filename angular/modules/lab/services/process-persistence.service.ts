@@ -106,11 +106,24 @@ export class ProcessPersistenceService {
     return ingredients;
   }
 
+  private validateStoredStep(stored: StoredStep | null | undefined): stored is StoredStep {
+    if (!stored || typeof stored !== 'object') return false;
+    if (!isOperationType(stored.operation)) return false;
+    if (!Number.isFinite(stored.durationMinutes) || stored.durationMinutes <= 0) return false;
+    return true;
+  }
+
+  private safeString(value: unknown): string | undefined {
+    return typeof value === 'string' && value.trim() ? value : undefined;
+  }
+
+  private safeNumber(value: unknown): number | undefined {
+    return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
+  }
+
   /** Возвращает null для шага, который нельзя безопасно восстановить. */
   private deserializeStep(stored: StoredStep | null | undefined): ProcessStep | null {
-    if (!stored || typeof stored !== 'object') return null;
-    if (!isOperationType(stored.operation)) return null;
-    if (!Number.isFinite(stored.durationMinutes) || stored.durationMinutes <= 0) return null;
+    if (!this.validateStoredStep(stored)) return null;
 
     const id = typeof stored.id === 'string' && stored.id.trim() ? stored.id : crypto.randomUUID();
     const name = typeof stored.name === 'string' && stored.name.trim()
@@ -123,10 +136,10 @@ export class ProcessPersistenceService {
       id,
       name,
       operation: stored.operation,
-      targetTemperature: typeof stored.targetTemperature === 'number' ? stored.targetTemperature : undefined,
-      rpm: typeof stored.rpm === 'number' ? stored.rpm : undefined,
+      targetTemperature: this.safeNumber(stored.targetTemperature),
+      rpm: this.safeNumber(stored.rpm),
       durationMinutes: stored.durationMinutes,
-      instructions: typeof stored.instructions === 'string' ? stored.instructions : undefined,
+      instructions: this.safeString(stored.instructions),
       ingredients: ingredients.length > 0 ? ingredients : undefined
     };
   }
