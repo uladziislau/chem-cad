@@ -18,3 +18,9 @@ pnpm install          # зависимости
 ## Линтер
 
 oxlint (TypeScript/JavaScript) + angular-eslint (шаблоны).
+
+## Форм-факторы
+
+**Single-shell by design** — desktop-first инструмент, мобильный UI не планируется.
+Один responsive shell, разделение `ui/desktop`/`ui/mobile` и `resolveDeviceKind()`
+не требуются (норма: synchronika `angular.conventions.md` §6).
