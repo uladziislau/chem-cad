@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "source": "kanzo",
+  "project": "chem-cad",
+  "repo": "uladziislau/chem-cad",
+  "boardUrl": "http://localhost:4242",
+  "cards": [
+    {
+      "id": 150,
+      "repoId": "chem-cad:017",
+      "title": "Интеграция термодинамики и физики",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e01"
+      ],
+      "url": ""
+    },
+    {
+      "id": 151,
+      "repoId": "chem-cad:018",
+      "title": "pH-баланс и электролиты",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e01"
+      ],
+      "url": ""
+    },
+    {
+      "id": 152,
+      "repoId": "chem-cad:019",
+      "title": "Архитектура сегментов и Хаб",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e02"
+      ],
+      "url": ""
+    },
+    {
+      "id": 153,
+      "repoId": "chem-cad:020",
+      "title": "Решатель моющей способности (DetergencySolver)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e03"
+      ],
+      "url": ""
+    },
+    {
+      "id": 154,
+      "repoId": "chem-cad:021",
+      "title": "Валидатор химической безопасности (SafetyValidator)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e03"
+      ],
+      "url": ""
+    },
+    {
+      "id": 155,
+      "repoId": "chem-cad:022",
+      "title": "Решатель высыхания (DryingSolver)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e04"
+      ],
+      "url": ""
+    },
+    {
+      "id": 156,
+      "repoId": "chem-cad:PRO-1",
+      "title": "Декларативное проектирование (Constraint-Based Solver)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 157,
+      "repoId": "chem-cad:PRO-2",
+      "title": "Продвинутая Термодинамика (HLD / Net-IFT)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 158,
+      "repoId": "chem-cad:PRO-3",
+      "title": "ELN (Электронный лабораторный журнал)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 159,
+      "repoId": "chem-cad:PRO-4",
+      "title": "Строгое кислотно-основное равновесие (pH Solver)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 160,
+      "repoId": "chem-cad:PRO-5",
+      "title": "Прогнозирование типа эмульсии (HLB & Phase Inversion)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 161,
+      "repoId": "chem-cad:PRO-6",
+      "title": "Предел растворимости и кристаллизация (Solubility Solver)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "medium",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 162,
+      "repoId": "chem-cad:PRO-7",
+      "title": "Композиция композиций (Nested Formulations)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 163,
+      "repoId": "chem-cad:PRO-8",
+      "title": "Композиция процессов (Unit Operations)",
+      "status": "done",
+      "tags": [
+        "imported",
+        "fleet",
+        "high",
+        "epic:e-pro"
+      ],
+      "url": ""
+    },
+    {
+      "id": 60,
+      "repoId": "drift-chem-cad-@angular/core-22.3.0",
+      "title": "Обновить @angular/core до 22.3.0 — chem-cad",
+      "status": "todo",
+      "tags": [
+        "imported",
+        "devimp-drift-chem-cad-angular-core-22-3-0",
+        "drift",
+        "@angular/core"
+      ],
+      "url": ""
+    },
+    {
+      "id": 61,
+      "repoId": "drift-chem-cad-typescript-7.0.2",
+      "title": "Обновить typescript до 7.0.2 — chem-cad",
+      "status": "todo",
+      "tags": [
+        "imported",
+        "devimp-drift-chem-cad-typescript-7-0-2",
+        "drift",
+        "typescript"
+      ],
+      "url": ""
+    }
+  ]
+}
