@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "kanzo": {
+        "type": "local",
+        "command": ["kanzo", "mcp"],
+        "codemode": false
+      }
+    }
+  }
+}
