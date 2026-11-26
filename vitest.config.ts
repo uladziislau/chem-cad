@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import angular from '@analogjs/vite-plugin-angular';
 import path from 'node:path';
 
 /**
@@ -7,9 +8,12 @@ import path from 'node:path';
  * указывает на чистый TS modules/, @modules/* — на angular/modules/).
  */
 export default defineConfig({
+  plugins: [angular({ jit: true })],
   test: {
     globals: true,
     environment: 'jsdom',
+    setupFiles: ['./tests/setup/angular.testing.setup.ts'],
+    exclude: ['e2e/**', '**/node_modules/**', '**/dist/**'],
   },
   resolve: {
     alias: [
